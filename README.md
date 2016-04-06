@@ -6,7 +6,7 @@ The app's idea is to help people to find short term job (part time job) quickly.
 
 ![UI/UX](ui.png)
 
-## Userstories
+## User stories
 
 - Must have
   - Login: by email/ facebook
