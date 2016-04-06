@@ -30,4 +30,4 @@ The app's idea is to help people to find short term job (part time job) quickly.
   - Report Violation
   
 ## Survey 
-![Survey](Survey\1.png)
+![Survey](Survey/1.png)
