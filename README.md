@@ -28,3 +28,6 @@ The app's idea is to help people to find short term job (part time job) quickly.
   - Allow to configure the type of jobs which I would like to see more often, ex: I'm on interested in tutor jobs
   - Job seeker and posted job can be able to chat
   - Report Violation
+  
+## Survey 
+![Survey](Survey\1.png)
