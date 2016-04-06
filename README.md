@@ -31,3 +31,4 @@ The app's idea is to help people to find short term job (part time job) quickly.
   
 ## Survey 
 ![Survey](Survey/1.png)
+![Survey](Survey/2.png)
