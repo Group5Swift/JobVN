@@ -10,6 +10,10 @@ import UIKit
 
 class NewUserViewController: UIViewController {
 
+    @IBOutlet weak var emailInput: UITextField!
+    @IBOutlet weak var nameInput: UITextField!
+    @IBOutlet weak var passwordInput: UITextField!
+    @IBOutlet weak var retypePasswordInput: UITextField!
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -21,6 +25,10 @@ class NewUserViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
+    @IBAction func onCreateUser(sender: UIButton) {
+    }
+    @IBAction func onBack(sender: AnyObject) {
+    }
 
     /*
     // MARK: - Navigation

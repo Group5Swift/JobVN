@@ -21,6 +21,13 @@ class WelcomeScreenViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
 
+    @IBAction func onLoginWithFacebook(sender: UIButton) {
+    }
 
+    @IBAction func onCreateNewUser(sender: UIButton) {
+    }
+    
+    @IBAction func onLoginWithAccount(sender: UIButton) {
+    }
 }
 

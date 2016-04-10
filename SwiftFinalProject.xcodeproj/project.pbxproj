@@ -7,6 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		94791B841CBA82B00096E020 /* RecordJobViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94791B831CBA82B00096E020 /* RecordJobViewController.swift */; };
+		94791B861CBA89F40096E020 /* JobCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94791B851CBA89F40096E020 /* JobCollectionViewCell.swift */; };
+		94791B881CBA8AFB0096E020 /* CategoryTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94791B871CBA8AFB0096E020 /* CategoryTableViewCell.swift */; };
+		94791B8A1CBA90FD0096E020 /* ViewVideoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94791B891CBA90FD0096E020 /* ViewVideoViewController.swift */; };
 		9498797E1CB4A69300219AD4 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9498797D1CB4A69300219AD4 /* AppDelegate.swift */; };
 		949879801CB4A69300219AD4 /* WelcomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9498797F1CB4A69300219AD4 /* WelcomeViewController.swift */; };
 		949879831CB4A69300219AD4 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 949879811CB4A69300219AD4 /* Main.storyboard */; };
@@ -27,6 +31,10 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		94791B831CBA82B00096E020 /* RecordJobViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RecordJobViewController.swift; sourceTree = "<group>"; };
+		94791B851CBA89F40096E020 /* JobCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JobCollectionViewCell.swift; sourceTree = "<group>"; };
+		94791B871CBA8AFB0096E020 /* CategoryTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CategoryTableViewCell.swift; sourceTree = "<group>"; };
+		94791B891CBA90FD0096E020 /* ViewVideoViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewVideoViewController.swift; sourceTree = "<group>"; };
 		9498797A1CB4A69300219AD4 /* SwiftFinalProject.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SwiftFinalProject.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		9498797D1CB4A69300219AD4 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		9498797F1CB4A69300219AD4 /* WelcomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WelcomeViewController.swift; sourceTree = "<group>"; };
@@ -73,6 +81,8 @@
 		9412D91C1CB7FDEB006049BE /* View */ = {
 			isa = PBXGroup;
 			children = (
+				94791B851CBA89F40096E020 /* JobCollectionViewCell.swift */,
+				94791B871CBA8AFB0096E020 /* CategoryTableViewCell.swift */,
 			);
 			name = View;
 			sourceTree = "<group>";
@@ -123,6 +133,8 @@
 				94E4E0DB1CB699670090061E /* PostJobViewController.swift */,
 				94E4E0DD1CB699AC0090061E /* JobDetailViewController.swift */,
 				94E4E0DF1CB699C60090061E /* UserDetailViewController.swift */,
+				94791B831CBA82B00096E020 /* RecordJobViewController.swift */,
+				94791B891CBA90FD0096E020 /* ViewVideoViewController.swift */,
 			);
 			name = "View Controller";
 			sourceTree = "<group>";
@@ -274,12 +286,16 @@
 				94E4E0DA1CB6994A0090061E /* CategoryViewController.swift in Sources */,
 				94E4E0D61CB6986E0090061E /* NewUserViewController.swift in Sources */,
 				94E4E0D81CB698960090061E /* MainViewController.swift in Sources */,
+				94791B881CBA8AFB0096E020 /* CategoryTableViewCell.swift in Sources */,
 				949879801CB4A69300219AD4 /* WelcomeViewController.swift in Sources */,
+				94791B861CBA89F40096E020 /* JobCollectionViewCell.swift in Sources */,
 				94E4E0E01CB699C60090061E /* UserDetailViewController.swift in Sources */,
+				94791B8A1CBA90FD0096E020 /* ViewVideoViewController.swift in Sources */,
 				94E4E0E51CB6A6240090061E /* Job.swift in Sources */,
 				94E4E0DC1CB699670090061E /* PostJobViewController.swift in Sources */,
 				94E4E0DE1CB699AC0090061E /* JobDetailViewController.swift in Sources */,
 				9498797E1CB4A69300219AD4 /* AppDelegate.swift in Sources */,
+				94791B841CBA82B00096E020 /* RecordJobViewController.swift in Sources */,
 				94E4E0E31CB69F6F0090061E /* User.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
