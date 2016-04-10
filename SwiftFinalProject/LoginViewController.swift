@@ -42,26 +42,32 @@ class LoginViewController: UIViewController {
         user.username = emailInput.text
         user.password = passwordInput.text
         
-        PFUser.logInWithUsernameInBackground(emailInput.text!, password: passwordInput.text!) { (User: PFUser?, error: NSError?) in
-            
-            if error == nil {
-                dispatch_async(dispatch_get_main_queue(), {
+        if (emailInput.text == "" || passwordInput.text == "") {
+            self.showErrorAlert("Error Sign in", msg: "Please input required fields")
+        }else {
+            PFUser.logInWithUsernameInBackground(emailInput.text!, password: passwordInput.text!) { (User: PFUser?, error: NSError?) in
+                
+                if error == nil {
+                    dispatch_async(dispatch_get_main_queue(), {
+                        
+                        //                    var Storyboard = UIStoryboard(name: "Main", bundle: nil)
+                        //                    var MainVC : UIViewController = Storyboard.instantiateViewControllerWithIdentifier("MainVC") as! UIViewController
+                        //                    self.presentViewController(MainVC, animated: true, completion: nil)
+                        //self.performSegueWithIdentifier("successLogin", sender: nil)
+                        self.showErrorAlert("Success", msg: "Login Successful")
+                        
+                        self.onBack(self)
+                    })
+                }else {
+                    //print ("Error: \(error)")
+                    self.showErrorAlert("Could not login", msg: "Please check your email and password")
                     
-                    //                    var Storyboard = UIStoryboard(name: "Main", bundle: nil)
-                    //                    var MainVC : UIViewController = Storyboard.instantiateViewControllerWithIdentifier("MainVC") as! UIViewController
-                    //                    self.presentViewController(MainVC, animated: true, completion: nil)
-                    //self.performSegueWithIdentifier("successLogin", sender: nil)
-                    self.showErrorAlert("Success", msg: "Login Successful")
-
-                    self.onBack(self)
-                })
-            }else {
-                //print ("Error: \(error)")
-                self.showErrorAlert("Could not login", msg: "Please check your email and password")
-
+                }
+                
             }
-            
         }
+        
+        
         
     }
     func showErrorAlert(title: String, msg: String) {

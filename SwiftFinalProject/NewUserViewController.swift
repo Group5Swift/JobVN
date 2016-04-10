@@ -40,17 +40,28 @@ class NewUserViewController: UIViewController {
         user.email = emailInput.text!
         user.password = passwordInput.text!
         
-        user.signUpInBackgroundWithBlock { (success, error) in
-            if success {
-                //print("Successfully Signed Up \(user.username) and \(user.email) and \(user.password)")
-                self.showErrorAlert("Successfull", msg: "Sign up successfull with User name : \(user.username!)")
-                self.performSegueWithIdentifier("SignIn", sender: nil)
-                
+        if (retypePasswordInput.text == passwordInput.text) {
+            if (nameInput.text == "" || emailInput.text == "" || passwordInput.text == "" || retypePasswordInput.text == "") {
+                self.showErrorAlert("Error input", msg: "Please input require fields")
             }else {
-                //print ("Error: \(error)")
-                self.showErrorAlert("Could not sign up", msg: "Please check your email and password")
+                user.signUpInBackgroundWithBlock { (success, error) in
+                    if success {
+                        //print("Successfully Signed Up \(user.username) and \(user.email) and \(user.password)")
+                        self.showErrorAlert("Successfull", msg: "Sign up successfull with User name : \(user.username!)")
+                        self.performSegueWithIdentifier("SignIn", sender: nil)
+                        
+                    }else {
+                        //print ("Error: \(error)")
+                        self.showErrorAlert("Could not sign up", msg: "Please check your email and password")
+                    }
+                }
             }
+            
+        }else {
+            self.showErrorAlert("Error input", msg: "Retype password is not match")
         }
+        
+        
     }
     
     func showErrorAlert(title: String, msg: String) {
