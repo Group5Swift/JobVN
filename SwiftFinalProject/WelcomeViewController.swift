@@ -8,7 +8,8 @@
 
 import UIKit
 import Parse
-
+import FBSDKCoreKit
+import FBSDKLoginKit
 
 class WelcomeScreenViewController: UIViewController {
 
@@ -23,6 +24,20 @@ class WelcomeScreenViewController: UIViewController {
     }
 
     @IBAction func onLoginWithFacebook(sender: UIButton) {
+        let facebookLogin = FBSDKLoginManager()
+        
+        facebookLogin.logInWithReadPermissions(["email"]) { (facebookResult: FBSDKLoginManagerLoginResult!,facebookError: NSError!) in
+            if facebookError != nil {
+                print("Facebook login failed. Error\(facebookError)")
+            }else if facebookResult.isCancelled {
+                print("Facebook login was cancelled")
+            }else {
+                let accessToken = FBSDKAccessToken.currentAccessToken().tokenString
+                print("Successfully logged in with facebook. \(accessToken)")
+                //self.performSegueWithIdentifier("facebookLogin", sender: nil)
+            }
+            
+        }
     }
 
     @IBAction func onCreateNewUser(sender: UIButton) {
