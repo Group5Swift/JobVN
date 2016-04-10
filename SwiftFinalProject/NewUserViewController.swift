@@ -7,9 +7,11 @@
 //
 
 import UIKit
-
+import Parse
 class NewUserViewController: UIViewController {
 
+    var welcomeScreen: WelcomeScreenViewController!
+    
     @IBOutlet weak var emailInput: UITextField!
     @IBOutlet weak var nameInput: UITextField!
     @IBOutlet weak var passwordInput: UITextField!
@@ -26,9 +28,50 @@ class NewUserViewController: UIViewController {
     }
     
     @IBAction func onCreateUser(sender: UIButton) {
+        signUp()
     }
     @IBAction func onBack(sender: AnyObject) {
+        dismissViewControllerAnimated(true, completion: nil)
     }
+    
+    func signUp() {
+        var user = PFUser()
+        user.username = nameInput.text!
+        user.email = emailInput.text!
+        user.password = passwordInput.text!
+        
+        if (retypePasswordInput.text == passwordInput.text) {
+            if (nameInput.text == "" || emailInput.text == "" || passwordInput.text == "" || retypePasswordInput.text == "") {
+                self.showErrorAlert("Error input", msg: "Please input require fields")
+            }else {
+                user.signUpInBackgroundWithBlock { (success, error) in
+                    if success {
+                        //print("Successfully Signed Up \(user.username) and \(user.email) and \(user.password)")
+                        self.showErrorAlert("Successfull", msg: "Sign up successfull with User name : \(user.username!)")
+                        self.performSegueWithIdentifier("SignIn", sender: nil)
+                        
+                    }else {
+                        //print ("Error: \(error)")
+                        self.showErrorAlert("Could not sign up", msg: "Please check your email and password")
+                    }
+                }
+            }
+            
+        }else {
+            self.showErrorAlert("Error input", msg: "Retype password is not match")
+        }
+        
+        
+    }
+    
+    func showErrorAlert(title: String, msg: String) {
+        let alert = UIAlertController(title: title, message: msg, preferredStyle: .Alert)
+        let action = UIAlertAction(title: "OK", style: .Default, handler: nil)
+        alert.addAction(action)
+        presentViewController(alert, animated: true, completion: nil)
+    }
+    
+    
 
     /*
     // MARK: - Navigation

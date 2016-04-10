@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		043C5A6F1CBAB7BB0087A7D0 /* FBSDKCoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 043C5A6C1CBAB7BB0087A7D0 /* FBSDKCoreKit.framework */; };
+		043C5A701CBAB7BB0087A7D0 /* FBSDKLoginKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 043C5A6D1CBAB7BB0087A7D0 /* FBSDKLoginKit.framework */; };
+		043C5A711CBAB7BB0087A7D0 /* FBSDKShareKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 043C5A6E1CBAB7BB0087A7D0 /* FBSDKShareKit.framework */; };
 		94791B841CBA82B00096E020 /* RecordJobViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94791B831CBA82B00096E020 /* RecordJobViewController.swift */; };
 		94791B861CBA89F40096E020 /* JobCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94791B851CBA89F40096E020 /* JobCollectionViewCell.swift */; };
 		94791B881CBA8AFB0096E020 /* CategoryTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94791B871CBA8AFB0096E020 /* CategoryTableViewCell.swift */; };
@@ -31,6 +34,10 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		043C5A6C1CBAB7BB0087A7D0 /* FBSDKCoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = FBSDKCoreKit.framework; sourceTree = "<group>"; };
+		043C5A6D1CBAB7BB0087A7D0 /* FBSDKLoginKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = FBSDKLoginKit.framework; sourceTree = "<group>"; };
+		043C5A6E1CBAB7BB0087A7D0 /* FBSDKShareKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = FBSDKShareKit.framework; sourceTree = "<group>"; };
+		043C5A731CBAB91D0087A7D0 /* SwiftFinalProject-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "SwiftFinalProject-Bridging-Header.h"; sourceTree = "<group>"; };
 		94791B831CBA82B00096E020 /* RecordJobViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RecordJobViewController.swift; sourceTree = "<group>"; };
 		94791B851CBA89F40096E020 /* JobCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JobCollectionViewCell.swift; sourceTree = "<group>"; };
 		94791B871CBA8AFB0096E020 /* CategoryTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CategoryTableViewCell.swift; sourceTree = "<group>"; };
@@ -63,13 +70,26 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				043C5A711CBAB7BB0087A7D0 /* FBSDKShareKit.framework in Frameworks */,
 				FDFEFE2A55750A93040F8132 /* Pods_SwiftFinalProject.framework in Frameworks */,
+				043C5A6F1CBAB7BB0087A7D0 /* FBSDKCoreKit.framework in Frameworks */,
+				043C5A701CBAB7BB0087A7D0 /* FBSDKLoginKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		043C5A721CBAB7C20087A7D0 /* FrameWork */ = {
+			isa = PBXGroup;
+			children = (
+				043C5A6C1CBAB7BB0087A7D0 /* FBSDKCoreKit.framework */,
+				043C5A6D1CBAB7BB0087A7D0 /* FBSDKLoginKit.framework */,
+				043C5A6E1CBAB7BB0087A7D0 /* FBSDKShareKit.framework */,
+			);
+			name = FrameWork;
+			sourceTree = "<group>";
+		};
 		49B82793C69C27162CE56624 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
@@ -110,6 +130,7 @@
 		9498797C1CB4A69300219AD4 /* SwiftFinalProject */ = {
 			isa = PBXGroup;
 			children = (
+				043C5A721CBAB7C20087A7D0 /* FrameWork */,
 				9412D91C1CB7FDEB006049BE /* View */,
 				94E4E0E11CB69F450090061E /* Modal */,
 				94E4E0D21CB698250090061E /* View Controller */,
@@ -118,6 +139,7 @@
 				949879841CB4A69300219AD4 /* Assets.xcassets */,
 				949879861CB4A69300219AD4 /* LaunchScreen.storyboard */,
 				949879891CB4A69300219AD4 /* Info.plist */,
+				043C5A731CBAB91D0087A7D0 /* SwiftFinalProject-Bridging-Header.h */,
 			);
 			path = SwiftFinalProject;
 			sourceTree = "<group>";
@@ -410,10 +432,17 @@
 			baseConfigurationReference = E6D35319A836DFF8829CF446 /* Pods-SwiftFinalProject.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/SwiftFinalProject",
+				);
 				INFOPLIST_FILE = SwiftFinalProject/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.RStudio.ios.coderschool.SwiftFinalProject;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "SwiftFinalProject/SwiftFinalProject-Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 			};
 			name = Debug;
 		};
@@ -422,10 +451,16 @@
 			baseConfigurationReference = DFB1DD9A1C816E1196340D0A /* Pods-SwiftFinalProject.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/SwiftFinalProject",
+				);
 				INFOPLIST_FILE = SwiftFinalProject/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.RStudio.ios.coderschool.SwiftFinalProject;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "SwiftFinalProject/SwiftFinalProject-Bridging-Header.h";
 			};
 			name = Release;
 		};
