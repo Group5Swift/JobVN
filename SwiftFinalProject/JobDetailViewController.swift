@@ -10,6 +10,11 @@ import UIKit
 
 class JobDetailViewController: UIViewController {
 
+    @IBOutlet weak var titleLabel: UILabel!
+    @IBOutlet weak var byUserLabel: UILabel!
+    @IBOutlet weak var priceLabel: UILabel!
+    @IBOutlet weak var locationLabel: UILabel!
+    @IBOutlet weak var descriptionLabel: UILabel!
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -21,7 +26,11 @@ class JobDetailViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
+    @IBAction func onback(sender: AnyObject) {
+    }
 
+    @IBAction func onTakeThisJob(sender: AnyObject) {
+    }
     /*
     // MARK: - Navigation
 

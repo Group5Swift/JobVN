@@ -1,20 +1,16 @@
 //
-//  PostJobViewController.swift
+//  ViewVideoViewController.swift
 //  SwiftFinalProject
 //
-//  Created by Dam Vu Duy on 4/7/16.
+//  Created by Dam Vu Duy on 4/10/16.
 //  Copyright © 2016 dotRStudio. All rights reserved.
 //
 
 import UIKit
 
-class PostJobViewController: UIViewController {
+class ViewVideoViewController: UIViewController {
 
     @IBOutlet weak var headView: UIView!
-    @IBOutlet weak var titleLabel: UITextField!
-    @IBOutlet weak var price: UITextField!
-    @IBOutlet weak var locationLabel: UITextField!
-    @IBOutlet weak var jobDescription: UITextView!
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -29,10 +25,6 @@ class PostJobViewController: UIViewController {
     @IBAction func onBack(sender: AnyObject) {
     }
 
-    @IBAction func onRecordVideo(sender: AnyObject) {
-    }
-    @IBAction func onPost(sender: AnyObject) {
-    }
     /*
     // MARK: - Navigation
 
