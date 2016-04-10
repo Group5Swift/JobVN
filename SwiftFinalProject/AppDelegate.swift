@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Parse
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -16,6 +17,16 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
         // Override point for customization after application launch.
+        
+        Parse.initializeWithConfiguration(
+            ParseClientConfiguration(block: { (config: ParseMutableClientConfiguration) in
+                User.registerSubclass()
+                Job.registerSubclass()
+                config.applicationId = "jobvietnamgroup5"
+                config.clientKey = nil
+                config.server = "htpps://jobvietnam.herokuapp.com/parse"
+        }))
+        
         return true
     }
 

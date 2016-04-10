@@ -7,8 +7,9 @@
 //
 
 import UIKit
+import Parse
 
-class ViewController: UIViewController {
+class WelcomeScreenViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()

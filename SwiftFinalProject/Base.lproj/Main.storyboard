@@ -1,25 +1,161 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6211" systemVersion="14A298i" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10116" systemVersion="15E65" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="BYZ-38-t0r">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6204"/>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
     </dependencies>
     <scenes>
-        <!--View Controller-->
+        <!--Welcome Screen View Controller-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController id="BYZ-38-t0r" customClass="ViewController" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="BYZ-38-t0r" customClass="WelcomeScreenViewController" customModule="SwiftFinalProject" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="y3c-jy-aDJ"/>
                         <viewControllerLayoutGuide type="bottom" id="wfy-db-euE"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
+                    <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
+            <point key="canvasLocation" x="-39.5" y="530.5"/>
+        </scene>
+        <!--Login View Controller-->
+        <scene sceneID="7L0-ZE-qyf">
+            <objects>
+                <viewController id="Bjp-nw-hZA" customClass="LoginViewController" customModule="SwiftFinalProject" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="GDq-3A-ppW"/>
+                        <viewControllerLayoutGuide type="bottom" id="E5B-NP-2HI"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="fZg-eV-QBd">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="IzH-OZ-cPE" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="612.5" y="530.5"/>
+        </scene>
+        <!--Main View Controller-->
+        <scene sceneID="4VL-ur-DMd">
+            <objects>
+                <viewController id="Nqm-mX-Sja" customClass="MainViewController" customModule="SwiftFinalProject" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="omF-Zq-3vd"/>
+                        <viewControllerLayoutGuide type="bottom" id="wqZ-jK-M6m"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="OE7-Yy-6Cg">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="DC3-Um-WrM" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1188.5" y="530.5"/>
+        </scene>
+        <!--Job Detail View Controller-->
+        <scene sceneID="GTA-8E-qUV">
+            <objects>
+                <viewController id="pQa-Bh-yid" customClass="JobDetailViewController" customModule="SwiftFinalProject" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="Bak-k1-rBc"/>
+                        <viewControllerLayoutGuide type="bottom" id="Ra0-DE-Q28"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="DgY-vm-9rw">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="6H9-j3-RKp" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1940.5" y="84.5"/>
+        </scene>
+        <!--Post Job View Controller-->
+        <scene sceneID="Pxd-78-iTW">
+            <objects>
+                <viewController id="PnC-FA-2o5" customClass="PostJobViewController" customModule="SwiftFinalProject" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="z0X-sV-JTM"/>
+                        <viewControllerLayoutGuide type="bottom" id="WxA-aO-uxl"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="wZo-8t-Lsq">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="1Vf-Lc-Muv" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1188.5" y="-309.5"/>
+        </scene>
+        <!--New User View Controller-->
+        <scene sceneID="476-Zb-pE8">
+            <objects>
+                <viewController id="0E7-Tf-IiX" customClass="NewUserViewController" customModule="SwiftFinalProject" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="SWx-HH-CSc"/>
+                        <viewControllerLayoutGuide type="bottom" id="8b9-k7-KFF"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="ihL-bi-ewX">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="qvk-37-r7c" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="612.5" y="1309.5"/>
+        </scene>
+        <!--Category View Controller-->
+        <scene sceneID="bSs-vt-qSa">
+            <objects>
+                <viewController id="7WP-zz-DwQ" customClass="CategoryViewController" customModule="SwiftFinalProject" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="8SU-gf-1MW"/>
+                        <viewControllerLayoutGuide type="bottom" id="Q74-rk-ckP"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="ebV-hR-qBH">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="gbo-fH-AR2" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1188.5" y="1309.5"/>
+        </scene>
+        <!--User Detail View Controller-->
+        <scene sceneID="OVW-Kw-rns">
+            <objects>
+                <viewController id="WZj-YM-ajL" customClass="UserDetailViewController" customModule="SwiftFinalProject" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="eqC-dt-dYc"/>
+                        <viewControllerLayoutGuide type="bottom" id="YHr-dN-5M0"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="S16-fe-cjw">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="fhc-Bl-YSL" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1940.5" y="976.5"/>
         </scene>
     </scenes>
 </document>
