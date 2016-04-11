@@ -48,7 +48,7 @@ class NewUserViewController: UIViewController {
                     if success {
                         //print("Successfully Signed Up \(user.username) and \(user.email) and \(user.password)")
                         self.showErrorAlert("Successfull", msg: "Sign up successfull with User name : \(user.username!)")
-                        self.performSegueWithIdentifier("SignIn", sender: nil)
+                        self.performSegueWithIdentifier("GoToMainScreen", sender: nil)
                         
                     }else {
                         //print ("Error: \(error)")
