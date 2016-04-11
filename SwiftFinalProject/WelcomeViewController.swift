@@ -22,6 +22,12 @@ class WelcomeScreenViewController: UIViewController {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
+    
+    override func viewDidAppear(animated: Bool) {
+        if NSUserDefaults.standardUserDefaults().valueForKey(KEY_UID) != nil {
+            self.performSegueWithIdentifier(SEGUE_LOGGED_IN, sender: nil)
+        }
+    }
 
     @IBAction func onLoginWithFacebook(sender: UIButton) {
         let facebookLogin = FBSDKLoginManager()
@@ -34,7 +40,18 @@ class WelcomeScreenViewController: UIViewController {
             }else {
                 let accessToken = FBSDKAccessToken.currentAccessToken().tokenString
                 print("Successfully logged in with facebook. \(accessToken)")
-                self.performSegueWithIdentifier("GoToMainScreen", sender: nil)
+                
+                FBSDKGraphRequest.init(graphPath: "me", parameters: ["fields":"first_name, last_name, picture.type(large)"]).startWithCompletionHandler { (connection, facebookResult, error) -> Void in
+                    let strFirstName: String = (facebookResult.objectForKey("first_name") as? String)!
+                    let strLastName: String = (facebookResult.objectForKey("last_name") as? String)!
+                    let strPictureURL: String = (facebookResult.objectForKey("picture")?.objectForKey("data")?.objectForKey("url") as? String)!
+                    let name = "Welcome, \(strFirstName) \(strLastName)"
+                    //self.ivUserProfileImage.image = UIImage(data: NSData(contentsOfURL: NSURL(string: strPictureURL)!)!)
+                    }
+                
+                NSUserDefaults.standardUserDefaults().setValue(SEGUE_LOGGED_IN, forKey: KEY_UID)
+                self.performSegueWithIdentifier(SEGUE_LOGGED_IN, sender: nil)
+                //self.performSegueWithIdentifier("GoToMainScreen", sender: nil)
             }
             
         }
