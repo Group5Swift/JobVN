@@ -10,6 +10,7 @@ import UIKit
 
 class CategoryViewController: UIViewController {
 
+    @IBOutlet weak var catagoryTable: UITableView!
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -22,6 +23,10 @@ class CategoryViewController: UIViewController {
     }
     
 
+    @IBAction func onDone(sender: UIButton) {
+    }
+    @IBAction func onBack(sender: AnyObject) {
+    }
     /*
     // MARK: - Navigation
 
