@@ -21,9 +21,9 @@ class User: PFUser {
     
     var isNeedSaveData = true;
     
-    override static func parseClassName() -> String {
-        return CLASS_STRING
-    }
+//    override static func parseClassName() -> String {
+//        return CLASS_STRING
+//    }
     
     var avatar: PFFile {
         set (newValue) {
