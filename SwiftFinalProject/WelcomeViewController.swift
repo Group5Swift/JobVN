@@ -34,7 +34,7 @@ class WelcomeScreenViewController: UIViewController {
             }else {
                 let accessToken = FBSDKAccessToken.currentAccessToken().tokenString
                 print("Successfully logged in with facebook. \(accessToken)")
-                //self.performSegueWithIdentifier("facebookLogin", sender: nil)
+                self.performSegueWithIdentifier("GoToMainScreen", sender: nil)
             }
             
         }
