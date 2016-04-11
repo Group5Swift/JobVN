@@ -18,16 +18,54 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
         // Override point for customization after application launch.
         
-        Parse.initializeWithConfiguration(
-            ParseClientConfiguration(block: { (config: ParseMutableClientConfiguration) in
-                User.registerSubclass()
-                Job.registerSubclass()
-                config.applicationId = "jobvietnamgroup5"
-                config.clientKey = nil
-                config.server = "htpps://jobvietnam.herokuapp.com/parse"
-        }))
+//        Parse.initializeWithConfiguration(
+//            ParseClientConfiguration(block: { (config: ParseMutableClientConfiguration) in
+//                User.registerSubclass()
+//                Job.registerSubclass()
+//                config.applicationId = "jobvietnamgroup5"
+//                config.clientKey = nil
+//                config.server = "htpps://jobvietnam.herokuapp.com/parse"
+//        }))
+//        
+//        return true
         
-        return true
+        Parse.enableLocalDatastore()
+        
+        let parseConfiguration = ParseClientConfiguration(block: { (ParseMutableClientConfiguration) -> Void in
+            ParseMutableClientConfiguration.applicationId = "jobvietnamgroup5"
+            //ParseMutableClientConfiguration.clientKey = "dfghjnb67854HIHKL"
+            ParseMutableClientConfiguration.clientKey = nil
+            ParseMutableClientConfiguration.server = "https://jobvietnam.herokuapp.com/parse"
+        })
+        
+        Parse.initializeWithConfiguration(parseConfiguration)
+        
+        PFUser.enableAutomaticUser()
+        
+        let defaultACL = PFACL();
+        
+        // If you would like all objects to be private by default, remove this line.
+        defaultACL.publicReadAccess = true
+        
+        PFACL.setDefaultACL(defaultACL, withAccessForCurrentUser: true)
+        
+        if application.applicationState != UIApplicationState.Background {
+            // Track an app open here if we launch with a push, unless
+            // "content_available" was used to trigger a background push (introduced in iOS 7).
+            // In that case, we skip tracking here to avoid double counting the app-open.
+            
+            let preBackgroundPush = !application.respondsToSelector("backgroundRefreshStatus")
+            let oldPushHandlerOnly = !self.respondsToSelector("application:didReceiveRemoteNotification:fetchCompletionHandler:")
+            var noPushPayload = false;
+            if let options = launchOptions {
+                noPushPayload = options[UIApplicationLaunchOptionsRemoteNotificationKey] != nil;
+            }
+            if (preBackgroundPush || oldPushHandlerOnly || noPushPayload) {
+                PFAnalytics.trackAppOpenedWithLaunchOptions(launchOptions)
+            }
+        }
+        
+        return FBSDKApplicationDelegate.sharedInstance().application(application, didFinishLaunchingWithOptions: launchOptions)
     }
 
     func applicationWillResignActive(application: UIApplication) {
@@ -50,6 +88,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func applicationWillTerminate(application: UIApplication) {
         // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
+    }
+    
+    func application(application: UIApplication, openURL url: NSURL, sourceApplication: String?, annotation: AnyObject) -> Bool {
+        return FBSDKApplicationDelegate.sharedInstance().application(application, openURL: url, sourceApplication: sourceApplication, annotation: annotation)
     }
 
 

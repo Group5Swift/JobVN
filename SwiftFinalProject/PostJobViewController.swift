@@ -10,6 +10,11 @@ import UIKit
 
 class PostJobViewController: UIViewController {
 
+    @IBOutlet weak var headView: UIView!
+    @IBOutlet weak var titleLabel: UITextField!
+    @IBOutlet weak var price: UITextField!
+    @IBOutlet weak var locationLabel: UITextField!
+    @IBOutlet weak var jobDescription: UITextView!
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -21,7 +26,13 @@ class PostJobViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
+    @IBAction func onBack(sender: AnyObject) {
+    }
 
+    @IBAction func onRecordVideo(sender: AnyObject) {
+    }
+    @IBAction func onPost(sender: AnyObject) {
+    }
     /*
     // MARK: - Navigation
 
