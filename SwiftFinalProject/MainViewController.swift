@@ -8,8 +8,11 @@
 
 import UIKit
 
-class MainViewController: UIViewController {
+class JobsViewController: UIViewController {
 
+    @IBOutlet weak var containerView: UIView!
+    @IBOutlet weak var mainCollectionView: UICollectionView!
+    @IBOutlet weak var mainTabar: UITabBar!
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -21,7 +24,13 @@ class MainViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
+    @IBAction func onLogout(sender: AnyObject) {
+    }
 
+    @IBAction func onChooseCategory(sender: AnyObject) {
+    }
+    @IBAction func onPostNewJob(sender: AnyObject) {
+    }
     /*
     // MARK: - Navigation
 
