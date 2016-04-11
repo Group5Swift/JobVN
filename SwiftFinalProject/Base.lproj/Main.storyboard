@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10116" systemVersion="15B42" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10116" systemVersion="15E65" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="BYZ-38-t0r">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
@@ -96,6 +96,7 @@
                     <connections>
                         <outlet property="emailInput" destination="XWv-8i-A4J" id="ame-gZ-d9R"/>
                         <outlet property="passwordInput" destination="IX1-d6-M6r" id="Wei-dc-41h"/>
+                        <segue destination="72O-cy-BTN" kind="presentation" identifier="GoToMainScreen" id="nKF-aI-tSj"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="IzH-OZ-cPE" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -534,6 +535,7 @@
                         <outlet property="nameInput" destination="TAO-XJ-7Gj" id="fhq-eq-O1a"/>
                         <outlet property="passwordInput" destination="GOu-SN-xha" id="c2O-5D-4ol"/>
                         <outlet property="retypePasswordInput" destination="k4Y-L7-Qcq" id="MzF-Ag-1Sy"/>
+                        <segue destination="72O-cy-BTN" kind="presentation" identifier="GoToMainScreen" id="FaS-yP-eGA"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="qvk-37-r7c" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -560,7 +562,7 @@
                                         <rect key="frame" x="0.0" y="92" width="375" height="83"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="bdy-Nj-49a" id="V5y-rr-Ibw">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="82"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="82.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="sJu-mZ-V1e">
@@ -859,4 +861,7 @@
             <point key="canvasLocation" x="4316.5" y="-330.5"/>
         </scene>
     </scenes>
+    <inferredMetricsTieBreakers>
+        <segue reference="nKF-aI-tSj"/>
+    </inferredMetricsTieBreakers>
 </document>

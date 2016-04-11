@@ -30,9 +30,10 @@ class LoginViewController: UIViewController {
 
     @IBAction func onBack(sender: AnyObject) {
         dismissViewControllerAnimated(true, completion: nil)
-        dismissViewControllerAnimated(true) { 
-        self.welcomeScreen.onLoginComplete()
-        }
+//        dismissViewControllerAnimated(true) {
+//        self.welcomeScreen.onLoginComplete()
+//        }
+        
     }
     
     func login() {
@@ -54,9 +55,9 @@ class LoginViewController: UIViewController {
                         //                    var MainVC : UIViewController = Storyboard.instantiateViewControllerWithIdentifier("MainVC") as! UIViewController
                         //                    self.presentViewController(MainVC, animated: true, completion: nil)
                         //self.performSegueWithIdentifier("successLogin", sender: nil)
-                        self.showErrorAlert("Success", msg: "Login Successful")
+                        //self.showErrorAlert("Success", msg: "Login Successful")
                         
-                        self.onBack(self)
+                        self.performSegueWithIdentifier("GoToMainScreen", sender: nil)
                     })
                 }else {
                     //print ("Error: \(error)")
