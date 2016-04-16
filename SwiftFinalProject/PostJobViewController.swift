@@ -8,6 +8,7 @@
 
 import UIKit
 import Parse
+import AVFoundation
 
 class PostJobViewController: UIViewController {
 
@@ -119,6 +120,17 @@ extension PostJobViewController: RecordVideoCompleteDelegate {
             }, progressBlock: { (percent: Int32) in
                     print("Save percent: \(percent)")
             })
+            
+            let asset = AVURLAsset(URL: NSURL(fileURLWithPath: output.path!), options: nil)
+            let imgGenerator = AVAssetImageGenerator(asset: asset)
+            
+            let cgImage = try imgGenerator.copyCGImageAtTime(CMTimeMake(0, 1), actualTime: nil)
+            let uiImage = UIImage(CGImage: cgImage)
+            let imageData = UIImagePNGRepresentation(uiImage)
+            let thumbnail = PFFile(data: imageData!)
+            thumbnail?.saveInBackground()
+            
+            job.setValue(thumbnail, forKey: Job.THUMBNAIL)
             job.setValue(file, forKey: Job.VIDEO)
         } catch let e as NSError {
             print(e)
