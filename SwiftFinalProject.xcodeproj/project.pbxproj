@@ -12,6 +12,11 @@
 		043C5A701CBAB7BB0087A7D0 /* FBSDKLoginKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 043C5A6D1CBAB7BB0087A7D0 /* FBSDKLoginKit.framework */; };
 		043C5A711CBAB7BB0087A7D0 /* FBSDKShareKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 043C5A6E1CBAB7BB0087A7D0 /* FBSDKShareKit.framework */; };
 		105B494AC92114307AD85863 /* Pods_SwiftFinalProject.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4075E8C8A8B21DFE0BA1FAEA /* Pods_SwiftFinalProject.framework */; };
+		2451D9861CC281D8005923DD /* Card.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2451D9851CC281D8005923DD /* Card.swift */; };
+		2451D9881CC281FA005923DD /* EAVPlayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2451D9871CC281FA005923DD /* EAVPlayer.swift */; };
+		2451D98A1CC2825C005923DD /* PlayerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2451D9891CC2825C005923DD /* PlayerView.swift */; };
+		2451D98C1CC28320005923DD /* Facebook.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2451D98B1CC28320005923DD /* Facebook.swift */; };
+		2451D98F1CC2B04B005923DD /* JobService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2451D98E1CC2B04B005923DD /* JobService.swift */; };
 		94791B841CBA82B00096E020 /* RecordJobViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94791B831CBA82B00096E020 /* RecordJobViewController.swift */; };
 		94791B861CBA89F40096E020 /* JobCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94791B851CBA89F40096E020 /* JobCollectionViewCell.swift */; };
 		94791B881CBA8AFB0096E020 /* CategoryTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94791B871CBA8AFB0096E020 /* CategoryTableViewCell.swift */; };
@@ -25,7 +30,7 @@
 		949879921CB4A6F200219AD4 /* ui.png in Resources */ = {isa = PBXBuildFile; fileRef = 949879901CB4A6F200219AD4 /* ui.png */; };
 		94E4E0D41CB6985A0090061E /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94E4E0D31CB6985A0090061E /* LoginViewController.swift */; };
 		94E4E0D61CB6986E0090061E /* NewUserViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94E4E0D51CB6986E0090061E /* NewUserViewController.swift */; };
-		94E4E0D81CB698960090061E /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94E4E0D71CB698960090061E /* MainViewController.swift */; };
+		94E4E0D81CB698960090061E /* JobsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94E4E0D71CB698960090061E /* JobsViewController.swift */; };
 		94E4E0DA1CB6994A0090061E /* CategoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94E4E0D91CB6994A0090061E /* CategoryViewController.swift */; };
 		94E4E0DC1CB699670090061E /* PostJobViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94E4E0DB1CB699670090061E /* PostJobViewController.swift */; };
 		94E4E0DE1CB699AC0090061E /* JobDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94E4E0DD1CB699AC0090061E /* JobDetailViewController.swift */; };
@@ -40,6 +45,11 @@
 		043C5A6D1CBAB7BB0087A7D0 /* FBSDKLoginKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = FBSDKLoginKit.framework; sourceTree = "<group>"; };
 		043C5A6E1CBAB7BB0087A7D0 /* FBSDKShareKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = FBSDKShareKit.framework; sourceTree = "<group>"; };
 		043C5A731CBAB91D0087A7D0 /* SwiftFinalProject-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "SwiftFinalProject-Bridging-Header.h"; sourceTree = "<group>"; };
+		2451D9851CC281D8005923DD /* Card.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Card.swift; sourceTree = "<group>"; };
+		2451D9871CC281FA005923DD /* EAVPlayer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EAVPlayer.swift; sourceTree = "<group>"; };
+		2451D9891CC2825C005923DD /* PlayerView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlayerView.swift; sourceTree = "<group>"; };
+		2451D98B1CC28320005923DD /* Facebook.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Facebook.swift; sourceTree = "<group>"; };
+		2451D98E1CC2B04B005923DD /* JobService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JobService.swift; sourceTree = "<group>"; };
 		4075E8C8A8B21DFE0BA1FAEA /* Pods_SwiftFinalProject.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SwiftFinalProject.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		94791B831CBA82B00096E020 /* RecordJobViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RecordJobViewController.swift; sourceTree = "<group>"; };
 		94791B851CBA89F40096E020 /* JobCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JobCollectionViewCell.swift; sourceTree = "<group>"; };
@@ -56,7 +66,7 @@
 		949879901CB4A6F200219AD4 /* ui.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ui.png; sourceTree = "<group>"; };
 		94E4E0D31CB6985A0090061E /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		94E4E0D51CB6986E0090061E /* NewUserViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewUserViewController.swift; sourceTree = "<group>"; };
-		94E4E0D71CB698960090061E /* MainViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
+		94E4E0D71CB698960090061E /* JobsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JobsViewController.swift; sourceTree = "<group>"; };
 		94E4E0D91CB6994A0090061E /* CategoryViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CategoryViewController.swift; sourceTree = "<group>"; };
 		94E4E0DB1CB699670090061E /* PostJobViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PostJobViewController.swift; sourceTree = "<group>"; };
 		94E4E0DD1CB699AC0090061E /* JobDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JobDetailViewController.swift; sourceTree = "<group>"; };
@@ -86,6 +96,7 @@
 			isa = PBXGroup;
 			children = (
 				041944A01CBC0872008800FA /* Constants.swift */,
+				2451D98B1CC28320005923DD /* Facebook.swift */,
 			);
 			name = Util;
 			sourceTree = "<group>";
@@ -98,6 +109,14 @@
 				043C5A6E1CBAB7BB0087A7D0 /* FBSDKShareKit.framework */,
 			);
 			name = FrameWork;
+			sourceTree = "<group>";
+		};
+		2451D98D1CC2B03E005923DD /* Services */ = {
+			isa = PBXGroup;
+			children = (
+				2451D98E1CC2B04B005923DD /* JobService.swift */,
+			);
+			name = Services;
 			sourceTree = "<group>";
 		};
 		6986C61973F444583237DEFA /* Frameworks */ = {
@@ -113,6 +132,7 @@
 			children = (
 				94791B851CBA89F40096E020 /* JobCollectionViewCell.swift */,
 				94791B871CBA8AFB0096E020 /* CategoryTableViewCell.swift */,
+				2451D9891CC2825C005923DD /* PlayerView.swift */,
 			);
 			name = View;
 			sourceTree = "<group>";
@@ -140,6 +160,7 @@
 		9498797C1CB4A69300219AD4 /* SwiftFinalProject */ = {
 			isa = PBXGroup;
 			children = (
+				2451D98D1CC2B03E005923DD /* Services */,
 				0419449F1CBC0856008800FA /* Util */,
 				043C5A721CBAB7C20087A7D0 /* FrameWork */,
 				9412D91C1CB7FDEB006049BE /* View */,
@@ -158,10 +179,10 @@
 		94E4E0D21CB698250090061E /* View Controller */ = {
 			isa = PBXGroup;
 			children = (
+				94E4E0D71CB698960090061E /* JobsViewController.swift */,
 				9498797F1CB4A69300219AD4 /* WelcomeViewController.swift */,
 				94E4E0D31CB6985A0090061E /* LoginViewController.swift */,
 				94E4E0D51CB6986E0090061E /* NewUserViewController.swift */,
-				94E4E0D71CB698960090061E /* MainViewController.swift */,
 				94E4E0D91CB6994A0090061E /* CategoryViewController.swift */,
 				94E4E0DB1CB699670090061E /* PostJobViewController.swift */,
 				94E4E0DD1CB699AC0090061E /* JobDetailViewController.swift */,
@@ -177,6 +198,8 @@
 			children = (
 				94E4E0E21CB69F6F0090061E /* User.swift */,
 				94E4E0E41CB6A6240090061E /* Job.swift */,
+				2451D9851CC281D8005923DD /* Card.swift */,
+				2451D9871CC281FA005923DD /* EAVPlayer.swift */,
 			);
 			name = Modal;
 			sourceTree = "<group>";
@@ -225,7 +248,7 @@
 				TargetAttributes = {
 					949879791CB4A69300219AD4 = {
 						CreatedOnToolsVersion = 7.3;
-						DevelopmentTeam = M3984GFJZF;
+						DevelopmentTeam = L9QJG53JJN;
 					};
 				};
 			};
@@ -315,14 +338,19 @@
 			buildActionMask = 2147483647;
 			files = (
 				94E4E0D41CB6985A0090061E /* LoginViewController.swift in Sources */,
+				2451D98F1CC2B04B005923DD /* JobService.swift in Sources */,
+				2451D9861CC281D8005923DD /* Card.swift in Sources */,
 				041944A11CBC0872008800FA /* Constants.swift in Sources */,
+				2451D98A1CC2825C005923DD /* PlayerView.swift in Sources */,
 				949879911CB4A6F200219AD4 /* README.md in Sources */,
 				94E4E0DA1CB6994A0090061E /* CategoryViewController.swift in Sources */,
 				94E4E0D61CB6986E0090061E /* NewUserViewController.swift in Sources */,
-				94E4E0D81CB698960090061E /* MainViewController.swift in Sources */,
+				94E4E0D81CB698960090061E /* JobsViewController.swift in Sources */,
 				94791B881CBA8AFB0096E020 /* CategoryTableViewCell.swift in Sources */,
 				949879801CB4A69300219AD4 /* WelcomeViewController.swift in Sources */,
+				2451D98C1CC28320005923DD /* Facebook.swift in Sources */,
 				94791B861CBA89F40096E020 /* JobCollectionViewCell.swift in Sources */,
+				2451D9881CC281FA005923DD /* EAVPlayer.swift in Sources */,
 				94E4E0E01CB699C60090061E /* UserDetailViewController.swift in Sources */,
 				94791B8A1CBA90FD0096E020 /* ViewVideoViewController.swift in Sources */,
 				94E4E0E51CB6A6240090061E /* Job.swift in Sources */,
@@ -445,14 +473,17 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/SwiftFinalProject",
 				);
 				INFOPLIST_FILE = SwiftFinalProject/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.RStudio.ios.coderschool.SwiftFinalProject;
+				PRODUCT_BUNDLE_IDENTIFIER = com.RStudio.ios.coderschool.SwiftFinalProject.abc;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "SwiftFinalProject/SwiftFinalProject-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 			};
@@ -464,14 +495,17 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/SwiftFinalProject",
 				);
 				INFOPLIST_FILE = SwiftFinalProject/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.RStudio.ios.coderschool.SwiftFinalProject;
+				PRODUCT_BUNDLE_IDENTIFIER = com.RStudio.ios.coderschool.SwiftFinalProject.abc;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "SwiftFinalProject/SwiftFinalProject-Bridging-Header.h";
 			};
 			name = Release;
