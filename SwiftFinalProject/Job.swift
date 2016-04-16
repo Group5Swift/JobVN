@@ -20,12 +20,14 @@ class Job: PFObject, PFSubclassing {
     static let PRICE = "Price"
     static let DUETIME = "DueTime"
     static let VIDEO = "Video"
+    static let EMPLOYER = "Employer"
+    static let THUMBNAIL = "Thumbnail"
     
     static func parseClassName() -> String {
         return CLASS_STRING
     }
     
-    var video: PFFile {
+    var video: PFFile? {
         set (newValue) {
             setValue(newValue, forKey: Job.VIDEO)
             saveInBackgroundWithBlock { (success: Bool, err: NSError?) in
@@ -35,13 +37,13 @@ class Job: PFObject, PFSubclassing {
             }
         }
         get {
-            let data = valueForKey(Job.VIDEO) as! PFFile
+            let data = valueForKey(Job.VIDEO) as? PFFile
             return data
         }
     }
     
-    var name: String {
-        set(newValue) {
+    var name: String? {
+        didSet(newValue) {
 //            self.name = newValue
             setValue(name, forKey: Job.NAME)
             saveInBackgroundWithBlock { (success: Bool, err: NSError?) in
@@ -50,13 +52,9 @@ class Job: PFObject, PFSubclassing {
                 }
             }
         }
-        get {
-            let name = valueForKey(Job.NAME) as! String
-            return name
-        }
     }
     
-    var jobDescription: String {
+    var jobDescription: String? {
         set(newValue) {
 //            self.jobDescription = newValue
             setValue(jobDescription, forKey: Job.DESCRIPTION)
@@ -67,12 +65,12 @@ class Job: PFObject, PFSubclassing {
             }
         }
         get {
-            let jobDescription = valueForKey(Job.DESCRIPTION) as! String
+            let jobDescription = valueForKey(Job.DESCRIPTION) as? String
             return jobDescription
         }
     }
     
-    var location: String {
+    var location: String? {
         set(newValue) {
 //            self.location = newValue
             setValue(location, forKey: Job.LOCATION)
@@ -83,12 +81,12 @@ class Job: PFObject, PFSubclassing {
             }
         }
         get {
-            let location = valueForKey(Job.LOCATION) as! String
+            let location = valueForKey(Job.LOCATION) as? String
             return location
         }
     }
     
-    var longtitue: String {
+    var longtitue: String? {
         set(newValue) {
 //            self.longtitue = newValue
             setValue(longtitue, forKey: Job.LONGTITUDE)
@@ -99,12 +97,12 @@ class Job: PFObject, PFSubclassing {
             }
         }
         get {
-            let longtitue = valueForKey(Job.LONGTITUDE) as! String
+            let longtitue = valueForKey(Job.LONGTITUDE) as? String
             return longtitue
         }
     }
     
-    var latitue: String {
+    var latitue: String? {
         set(newValue) {
 //            self.latitue = newValue
             setValue(latitue, forKey: Job.LATITUDE)
@@ -115,12 +113,12 @@ class Job: PFObject, PFSubclassing {
             }
         }
         get {
-            let latitue = valueForKey(Job.LATITUDE) as! String
+            let latitue = valueForKey(Job.LATITUDE) as? String
             return latitue
         }
     }
     
-    var price: String {
+    var price: String? {
         set(newValue) {
 //            self.price = newValue
             setValue(price, forKey: Job.PRICE)
@@ -131,12 +129,12 @@ class Job: PFObject, PFSubclassing {
             }
         }
         get {
-            let price = valueForKey(Job.PRICE) as! String
+            let price = valueForKey(Job.PRICE) as? String
             return price
         }
     }
     
-    var duetime: String {
+    var duetime: String? {
         set(newValue) {
 //            self.duetime = newValue
             setValue(duetime, forKey: Job.DUETIME)
@@ -147,7 +145,7 @@ class Job: PFObject, PFSubclassing {
             }
         }
         get {
-            let duetime = valueForKey(Job.DUETIME) as! String
+            let duetime = valueForKey(Job.DUETIME) as? String
             return duetime
         }
     }
