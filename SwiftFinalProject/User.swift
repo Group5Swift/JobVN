@@ -18,7 +18,8 @@ class User: PFUser {
     static let LOVEDJOB = "LovedJob"
     static let POSTEDJOB = "PostedJob"
     static let AVATAR = "Avatar"
-    
+    static let SAVES = "Saves"
+    static let TAKES = "Takes"
     var isNeedSaveData = true;
     
 //    override static func parseClassName() -> String {
