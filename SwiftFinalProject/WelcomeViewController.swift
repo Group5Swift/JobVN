@@ -27,6 +27,10 @@ class WelcomeScreenViewController: UIViewController {
         if NSUserDefaults.standardUserDefaults().valueForKey(KEY_UID) != nil {
             self.performSegueWithIdentifier(SEGUE_LOGGED_IN, sender: nil)
         }
+        else if PFUser.currentUser() != nil {
+            print("perform this user")
+            self.performSegueWithIdentifier(SEGUE_LOGGED_IN, sender: nil)
+        }
     }
 
     @IBAction func onLoginWithFacebook(sender: UIButton) {
@@ -40,6 +44,8 @@ class WelcomeScreenViewController: UIViewController {
             }else {
                 let accessToken = FBSDKAccessToken.currentAccessToken().tokenString
                 print("Successfully logged in with facebook. \(accessToken)")
+                
+                
                 
                 FBSDKGraphRequest.init(graphPath: "me", parameters: ["fields":"first_name, last_name, picture.type(large)"]).startWithCompletionHandler { (connection, facebookResult, error) -> Void in
                     let strFirstName: String = (facebookResult.objectForKey("first_name") as? String)!
@@ -71,10 +77,10 @@ class WelcomeScreenViewController: UIViewController {
     
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        if segue.identifier == "LoginWithAccount" {
-            let loginVC = (segue.destinationViewController as! UINavigationController).viewControllers[0] as! LoginViewController
-            loginVC.welcomeScreen = self
-        }
+//        if segue.identifier == "LoginWithAccount" {
+//            let loginVC = (segue.destinationViewController as! UINavigationController).viewControllers[0] as! LoginViewController
+//            loginVC.welcomeScreen = self
+//        }
     }
     
 }

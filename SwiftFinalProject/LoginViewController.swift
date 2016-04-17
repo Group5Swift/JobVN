@@ -10,13 +10,32 @@ import UIKit
 import Parse
 class LoginViewController: UIViewController {
     
+    @IBOutlet weak var backgroundImage: UIImageView!
+    @IBOutlet weak var loginButton: UIButton!
     var welcomeScreen: WelcomeScreenViewController!
     @IBOutlet weak var emailInput: UITextField!
     @IBOutlet weak var passwordInput: UITextField!
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
+        
+        emailInput.layer.cornerRadius = 8
+        passwordInput.layer.cornerRadius = 8
+        loginButton.layer.cornerRadius = loginButton.frame.size.height / 2
+        
+        let blurEffect = UIBlurEffect(style: UIBlurEffectStyle.Dark)
+        let blurEffectView = UIVisualEffectView(effect: blurEffect)
+        blurEffectView.frame = backgroundImage.bounds
+        
+        blurEffectView.autoresizingMask = [.FlexibleWidth, .FlexibleHeight] // for supporting device rotation
+        backgroundImage.addSubview(blurEffectView)
+        
+        self.navigationController?.navigationBar.setBackgroundImage(UIImage(), forBarMetrics: .Default)
+        // Sets shadow (line below the bar) to a blank image
+        self.navigationController?.navigationBar.shadowImage = UIImage()
+        // Sets the translucent background color
+        self.navigationController?.navigationBar.backgroundColor = UIColor(red: 0.0, green: 0.0, blue: 0.0, alpha: 0.0)
+        // Set translucent. (Default value is already true, so this can be removed if desired.)
+        self.navigationController?.navigationBar.translucent = true
     }
 
     override func didReceiveMemoryWarning() {
@@ -57,8 +76,10 @@ class LoginViewController: UIViewController {
                         //self.performSegueWithIdentifier("successLogin", sender: nil)
                         //self.showErrorAlert("Success", msg: "Login Successful")
                         
+                        NSUserDefaults.standardUserDefaults().setValue(nil, forKey: KEY_UID)
                         self.performSegueWithIdentifier("GoToMainScreen", sender: nil)
                     })
+                    
                 }else {
                     //print ("Error: \(error)")
                     self.showErrorAlert("Could not login", msg: "Please check your email and password")
@@ -77,6 +98,12 @@ class LoginViewController: UIViewController {
         alert.addAction(action)
         presentViewController(alert, animated: true, completion: nil)
     }
+    
+    @IBAction func onTapOutside(sender: AnyObject) {
+        view.endEditing(true)
+    }
+    
+    
     /*
     // MARK: - Navigation
 

@@ -11,6 +11,7 @@ import Parse
 import AVFoundation
 
 class PostJobViewController: UIViewController {
+    @IBOutlet weak var createJobButton: UIButton!
 
     @IBOutlet weak var headView: UIView!
     @IBOutlet weak var titleLabel: UITextField!
@@ -22,6 +23,13 @@ class PostJobViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        titleLabel.layer.cornerRadius = 8
+        price.layer.cornerRadius = 8
+        locationLabel.layer.cornerRadius = 8
+        jobDescription.layer.cornerRadius = 8
+        
+        createJobButton.layer.cornerRadius = createJobButton.frame.size.height / 2
         
         // for auto get location suggest
         locationLabel.delegate = self
@@ -103,6 +111,11 @@ extension PostJobViewController: UITextFieldDelegate {
         print("on change text: \(string)")
         
         return true
+    }
+    
+    func textFieldDidEndEditing(textField: UITextField) {
+        let delegate = MapHelperDelegate()
+        MapHelper.inflateMap(headView, address: textField.text!, delegate: delegate)
     }
 }
 

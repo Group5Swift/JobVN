@@ -18,6 +18,14 @@ class CategoryViewController: UIViewController {
         catagoryTable.delegate = self
         catagoryTable.dataSource = self
         // Do any additional setup after loading the view.
+        
+        self.navigationController?.navigationBar.setBackgroundImage(UIImage(), forBarMetrics: .Default)
+        // Sets shadow (line below the bar) to a blank image
+        self.navigationController?.navigationBar.shadowImage = UIImage()
+        // Sets the translucent background color
+        self.navigationController?.navigationBar.backgroundColor = UIColor(red: 0.0, green: 0.0, blue: 0.0, alpha: 0.0)
+        // Set translucent. (Default value is already true, so this can be removed if desired.)
+        self.navigationController?.navigationBar.translucent = true
     }
 
     override func didReceiveMemoryWarning() {
@@ -32,7 +40,6 @@ class CategoryViewController: UIViewController {
     @IBAction func onBack(sender: AnyObject) {
         dismissViewControllerAnimated(true, completion: nil)
     }
-    
     
     /*
     // MARK: - Navigation

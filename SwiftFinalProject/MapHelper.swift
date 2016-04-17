@@ -22,6 +22,7 @@ class MapHelper {
     static func inflateMap(view: UIView, address: String, delegate: MapHelperDelegate) {
         let map = MKMapView()
         map.frame = view.frame
+        map.frame.origin.y -= 64
         let locationDistance : CLLocationDistance = 1000
         getAxisLocation(address) { (data:(Double, Double)) in
             map.delegate = delegate
@@ -72,8 +73,6 @@ class MapHelperDelegate: NSObject, MKMapViewDelegate {
             //centerMapOnLocation(CLLocation(coder: annotation))
             
             annoView.animatesDrop = true
-            
-            
             return annoView
             
         } else if annotation.isKindOfClass(MKUserLocation) {

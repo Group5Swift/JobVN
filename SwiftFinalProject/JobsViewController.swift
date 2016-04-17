@@ -19,17 +19,33 @@ class JobsViewController: UIViewController {
         // Do any additional setup after loading the view.
     }
 
+    override func viewWillAppear(animated: Bool) {
+        super.viewWillAppear(animated)
+        UIApplication.sharedApplication().statusBarStyle = .LightContent
+    }
+    
+    override func viewWillDisappear(animated: Bool) {
+        super.viewWillDisappear(animated)
+        UIApplication.sharedApplication().statusBarStyle = .Default
+    }
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
     
     @IBAction func onLogout(sender: AnyObject) {
-
-        let loginManager: FBSDKLoginManager = FBSDKLoginManager()
-        loginManager.logOut()
-        NSUserDefaults.standardUserDefaults().setValue(nil, forKey: KEY_UID)
-        self.dismissViewControllerAnimated(true, completion: nil)
+        if NSUserDefaults.standardUserDefaults().valueForKey(KEY_UID) != nil {
+            let loginManager: FBSDKLoginManager = FBSDKLoginManager()
+            loginManager.logOut()
+            NSUserDefaults.standardUserDefaults().setValue(nil, forKey: KEY_UID)
+            self.dismissViewControllerAnimated(true, completion: nil)
+        } else {
+            print("perform logout")
+            PFUser.logOut()
+            NSUserDefaults.standardUserDefaults().setValue(nil, forKey: KEY_UID)
+            dismissViewControllerAnimated(true, completion: nil)
+        }
     }
 
     @IBAction func onChooseCategory(sender: AnyObject) {
@@ -37,7 +53,9 @@ class JobsViewController: UIViewController {
     }
     
     @IBAction func onPostNewJob(sender: AnyObject) {
+        performSegueWithIdentifier("PostNewJob", sender: self)
     }
+    
     /*
     // MARK: - Navigation
 

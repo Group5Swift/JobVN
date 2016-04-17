@@ -10,6 +10,8 @@ import UIKit
 import Parse
 class NewUserViewController: UIViewController {
 
+    @IBOutlet weak var createButton: UIButton!
+    @IBOutlet weak var backgroundImage: UIImageView!
     var welcomeScreen: WelcomeScreenViewController!
     
     @IBOutlet weak var emailInput: UITextField!
@@ -19,6 +21,28 @@ class NewUserViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        emailInput.layer.cornerRadius = 8
+        nameInput.layer.cornerRadius = 8
+        passwordInput.layer.cornerRadius = 8
+        retypePasswordInput.layer.cornerRadius = 8
+        createButton.layer.cornerRadius = createButton.frame.size.height / 2
+        
+        let blurEffect = UIBlurEffect(style: UIBlurEffectStyle.Dark)
+        let blurEffectView = UIVisualEffectView(effect: blurEffect)
+        blurEffectView.frame = backgroundImage.bounds
+        
+        blurEffectView.autoresizingMask = [.FlexibleWidth, .FlexibleHeight] // for supporting device rotation
+        backgroundImage.addSubview(blurEffectView)
+        
+        
+        
+        self.navigationController?.navigationBar.setBackgroundImage(UIImage(), forBarMetrics: .Default)
+        // Sets shadow (line below the bar) to a blank image
+        self.navigationController?.navigationBar.shadowImage = UIImage()
+        // Sets the translucent background color
+        self.navigationController?.navigationBar.backgroundColor = UIColor(red: 0.0, green: 0.0, blue: 0.0, alpha: 0.0)
+        // Set translucent. (Default value is already true, so this can be removed if desired.)
+        self.navigationController?.navigationBar.translucent = true
         // Do any additional setup after loading the view.
     }
 
@@ -72,6 +96,9 @@ class NewUserViewController: UIViewController {
     }
     
     
+    @IBAction func onTapOutside(sender: AnyObject) {
+        view.endEditing(true)
+    }
 
     /*
     // MARK: - Navigation
