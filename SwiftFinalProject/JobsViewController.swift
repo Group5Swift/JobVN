@@ -43,9 +43,6 @@ class JobsViewController: UIViewController {
         })
         
         super.viewDidLoad()
-<<<<<<< HEAD
-
-        // Do any additional setup after loading the view.
     }
 
     override func viewWillAppear(animated: Bool) {
@@ -75,37 +72,17 @@ class JobsViewController: UIViewController {
             NSUserDefaults.standardUserDefaults().setValue(nil, forKey: KEY_UID)
             dismissViewControllerAnimated(true, completion: nil)
         }
-=======
-    }
-    
-    @IBAction func onLogout(sender: AnyObject) {
-        Facebook.logout()
-        self.dismissViewControllerAnimated(true, completion: nil)
->>>>>>> origin/master
     }
 
     
     @IBAction func onChooseCategory(sender: AnyObject) {
-<<<<<<< HEAD
-        
-=======
         performSegueWithIdentifier("CategoryView", sender: self)
->>>>>>> c8511a86bb52ece5336efa71d3ddd5d096d155e0
     }
     
     @IBAction func onPostNewJob(sender: AnyObject) {
-<<<<<<< HEAD
         performSegueWithIdentifier("PostNewJob", sender: self)
     }
-    
-    /*
-    // MARK: - Navigation
-=======
-        performSegueWithIdentifier("PostNewJob", sender: nil)
-    }
 }
->>>>>>> origin/master
-
 extension JobsViewController: UICollectionViewDelegate, UICollectionViewDataSource {
     func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
 //        return cards.count
