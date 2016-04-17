@@ -32,6 +32,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         Parse.enableLocalDatastore()
         
         let parseConfiguration = ParseClientConfiguration(block: { (ParseMutableClientConfiguration) -> Void in
+            
+            User.registerSubclass()
+            Job.registerSubclass()
+            
             ParseMutableClientConfiguration.applicationId = "jobvietnamgroup5"
             //ParseMutableClientConfiguration.clientKey = "dfghjnb67854HIHKL"
             ParseMutableClientConfiguration.clientKey = nil

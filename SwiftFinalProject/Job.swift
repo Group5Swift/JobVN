@@ -27,6 +27,20 @@ class Job: PFObject, PFSubclassing {
         return CLASS_STRING
     }
     
+    var thumbnail: PFFile? {
+        set (newValue) {
+            setValue(newValue, forKey: Job.THUMBNAIL)
+            saveInBackgroundWithBlock { (success: Bool, err: NSError?) in
+                if !success {
+                    print(err?.localizedDescription)
+                }
+            }
+        }
+        get {
+            return valueForKey(Job.THUMBNAIL) as? PFFile
+        }
+    }
+    
     var video: PFFile? {
         set (newValue) {
             setValue(newValue, forKey: Job.VIDEO)
