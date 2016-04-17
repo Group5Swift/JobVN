@@ -23,25 +23,19 @@ class MapHelper {
         let map = MKMapView()
         map.frame = view.frame
         let locationDistance : CLLocationDistance = 1000
-        map.delegate = delegate
         getAxisLocation(address) { (data:(Double, Double)) in
             map.delegate = delegate
             var loc = CLLocationCoordinate2D()
             loc.latitude = data.0
             loc.longitude = data.1
             let ano = BootcampAnnotation(coordinate: loc, title: "title")
+            
             map.addAnnotation(ano)
             let coordinateRegion = MKCoordinateRegionMakeWithDistance(loc, locationDistance * 2, locationDistance * 2)
-            
-//            let center = CLLocationCoordinate2D(latitude:loc.latitude, longitude: loc.longitude)
-//            let region = MKCoordinateRegion(center: center, span: MKCoordinateSpan(latitudeDelta: 0.01, longitudeDelta: 0.01))
-//            
-            
-            
             map.setRegion(coordinateRegion, animated: true)
-            //map.setRegion(region, animated: true)
+            view.addSubview(map)
         }
-        view.addSubview(map)
+        
     }
     
 }
