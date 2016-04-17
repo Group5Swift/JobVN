@@ -31,6 +31,7 @@ class JobDetailViewController: UIViewController {
 
     @IBAction func onTakeThisJob(sender: AnyObject) {
     }
+    
     /*
     // MARK: - Navigation
 
