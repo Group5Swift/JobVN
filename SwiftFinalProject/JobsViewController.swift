@@ -52,7 +52,11 @@ class JobsViewController: UIViewController {
 
     
     @IBAction func onChooseCategory(sender: AnyObject) {
+<<<<<<< HEAD
         
+=======
+        performSegueWithIdentifier("CategoryView", sender: self)
+>>>>>>> c8511a86bb52ece5336efa71d3ddd5d096d155e0
     }
     
     @IBAction func onPostNewJob(sender: AnyObject) {
