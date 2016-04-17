@@ -43,6 +43,16 @@ class JobsViewController: UIViewController {
         })
         
         super.viewDidLoad()
+
+        self.navigationController?.navigationBar.setBackgroundImage(UIImage(), forBarMetrics: .Default)
+        // Sets shadow (line below the bar) to a blank image
+        self.navigationController?.navigationBar.shadowImage = UIImage()
+        // Sets the translucent background color
+        self.navigationController?.navigationBar.backgroundColor = UIColor(red: 0.0, green: 0.0, blue: 0.0, alpha: 0.0)
+        // Set translucent. (Default value is already true, so this can be removed if desired.)
+        self.navigationController?.navigationBar.translucent = true
+        
+        // Do any additional setup after loading the view.
     }
 
     override func viewWillAppear(animated: Bool) {
@@ -80,9 +90,10 @@ class JobsViewController: UIViewController {
     }
     
     @IBAction func onPostNewJob(sender: AnyObject) {
-        performSegueWithIdentifier("PostNewJob", sender: self)
+        performSegueWithIdentifier("PostNewJob", sender: nil)
     }
 }
+
 extension JobsViewController: UICollectionViewDelegate, UICollectionViewDataSource {
     func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
 //        return cards.count
@@ -131,7 +142,7 @@ extension JobsViewController: UIScrollViewDelegate {
         let roundedIndex = round(index)
         
         let x = roundedIndex * cellWidthIncludingSpacing - (width - layout.itemSize.width) / 2 + layout.minimumLineSpacing;
-        print(x)
+//        print(x)
         offset = CGPoint(x: x, y: scrollView.contentInset.top)
         if Int(roundedIndex) < self.cards.count {
         

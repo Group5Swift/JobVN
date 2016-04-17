@@ -79,7 +79,7 @@ class JobCollectionViewCell: UICollectionViewCell {
 //                }
                 
                 
-                    print(_job.video?.url)
+//                    print(_job.video?.url)
                 
 //                    _job.video?.getDataInBackgroundWithBlock({ (data: NSData?, error: NSError?) in
 //                        let steamingURL = NSURL(dataRepresentation: data!, relativeToURL: nil)
