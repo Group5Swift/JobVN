@@ -56,7 +56,7 @@ class LoginViewController: UIViewController {
                         //                    self.presentViewController(MainVC, animated: true, completion: nil)
                         //self.performSegueWithIdentifier("successLogin", sender: nil)
                         //self.showErrorAlert("Success", msg: "Login Successful")
-                        
+                        NSUserDefaults.standardUserDefaults().setValue(SEGUE_LOGGED_IN, forKey: KEY_UID)
                         self.performSegueWithIdentifier("GoToMainScreen", sender: nil)
                     })
                 }else {

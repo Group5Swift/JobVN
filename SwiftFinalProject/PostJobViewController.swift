@@ -8,6 +8,7 @@
 
 import UIKit
 import Parse
+import ParseUI
 import AVFoundation
 
 class PostJobViewController: UIViewController {
@@ -110,7 +111,13 @@ extension PostJobViewController: RecordVideoCompleteDelegate {
     func onRecordComplete(output: NSURL) {
         dismissViewControllerAnimated(true, completion: nil)
         do {
-            let file = try PFFile(name: "Video", contentsAtPath: output.path!)
+            
+            
+            let file = try PFFile(name: "Video.mp4", data: NSData(contentsOfURL: output)!, contentType: "video/mp4")
+            
+//            let file = try PFFile(name: "Video", contentsAtPath: output.path!)
+//            let t = PFFile(name: <#T##String?#>, data: <#T##NSData#>, contentType: <#T##String?#>)
+
             file.saveInBackgroundWithBlock({ (success: Bool, err: NSError?) in
                 if err != nil {
                     print(err)
@@ -123,14 +130,17 @@ extension PostJobViewController: RecordVideoCompleteDelegate {
             
             let asset = AVURLAsset(URL: NSURL(fileURLWithPath: output.path!), options: nil)
             let imgGenerator = AVAssetImageGenerator(asset: asset)
-            
             let cgImage = try imgGenerator.copyCGImageAtTime(CMTimeMake(0, 1), actualTime: nil)
             let uiImage = UIImage(CGImage: cgImage)
             let imageData = UIImagePNGRepresentation(uiImage)
             let thumbnail = PFFile(data: imageData!)
+            
             thumbnail?.saveInBackground()
             
+            print(thumbnail?.url)
+            
             job.setValue(thumbnail, forKey: Job.THUMBNAIL)
+            
             job.setValue(file, forKey: Job.VIDEO)
         } catch let e as NSError {
             print(e)

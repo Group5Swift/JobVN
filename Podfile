@@ -5,6 +5,7 @@ use_frameworks!
 
 target 'SwiftFinalProject' do
 pod 'Parse'
+pod 'ParseUI'
 pod 'AFNetworking'
 pod 'SwiftLoader'
 end

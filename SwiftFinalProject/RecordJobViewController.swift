@@ -212,7 +212,8 @@ class RecordJobViewController: UIViewController {
         switch cameraRecordingState {
         case .Free:
             let documentsURL = NSFileManager.defaultManager().URLsForDirectory(.DocumentDirectory, inDomains: .UserDomainMask)[0]
-            let filePath = documentsURL.URLByAppendingPathComponent("temp", isDirectory: false)
+            var filePath = documentsURL.URLByAppendingPathComponent("temp", isDirectory: false)
+            filePath = filePath.URLByAppendingPathExtension("mp4")
             // Do recording and save the output to the `filePath`
             
             let mananger = NSFileManager()
