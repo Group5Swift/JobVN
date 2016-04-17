@@ -7,7 +7,7 @@
 //
 
 import UIKit
-
+import Parse
 class JobsViewController: UIViewController {
 
     @IBOutlet weak var containerView: UIView!
@@ -25,6 +25,11 @@ class JobsViewController: UIViewController {
     }
     
     @IBAction func onLogout(sender: AnyObject) {
+
+        let loginManager: FBSDKLoginManager = FBSDKLoginManager()
+        loginManager.logOut()
+        NSUserDefaults.standardUserDefaults().setValue(nil, forKey: KEY_UID)
+        self.dismissViewControllerAnimated(true, completion: nil)
     }
 
     @IBAction func onChooseCategory(sender: AnyObject) {
