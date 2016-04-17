@@ -42,7 +42,6 @@ class JobsViewController: UIViewController {
             }
         })
         
-        
         super.viewDidLoad()
     }
     

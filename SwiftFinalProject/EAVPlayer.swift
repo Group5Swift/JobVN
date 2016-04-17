@@ -12,6 +12,7 @@ import UIKit
 
 class EAVPlayer: AVPlayer {
     
+    
     func isPlaying() -> Bool {
         return self.rate != 0 && self.error == nil
     }
@@ -26,7 +27,7 @@ class EAVPlayer: AVPlayer {
     }
     
     static func createThumbnailFromVideo(sourceURL: String) -> UIImage? {
-        let asset = AVAsset(URL: NSURL(string: sourceURL)!)
+        let asset = AVAsset(URL: NSURL(fileURLWithPath: sourceURL))
         let imageGenerator = AVAssetImageGenerator(asset: asset)
         
         if let cgImage = try? imageGenerator.copyCGImageAtTime(CMTimeMake(0, 1), actualTime: nil) {

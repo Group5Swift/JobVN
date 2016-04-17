@@ -35,7 +35,7 @@ class JobCollectionViewCell: UICollectionViewCell {
     }
     
     func createAVPlayer(urlString: String) -> EAVPlayer {
-        let steamingURL:NSURL = NSURL(string:urlString)!
+        let steamingURL = NSURL(string: urlString)!
         let player = EAVPlayer(URL: steamingURL)
         
         return player
@@ -60,17 +60,43 @@ class JobCollectionViewCell: UICollectionViewCell {
 //                    defaultImageView.image = image
 //                    defaultImageView.contentMode = UIViewContentMode.ScaleAspectFill
 //                }
-//                AVPlayerItem(
-//                EAVPlayer(playerItem: <#T##AVPlayerItem#>)
                 
-                var url = "http://lzd.hvmark.com/square.mp4"
-                if _job.video != nil {
-                    url = (_job.video?.url)!
-                }
+                
+                    print(_job.video?.url)
+                
+//                    _job.video?.getDataInBackgroundWithBlock({ (data: NSData?, error: NSError?) in
+//                        let steamingURL = NSURL(dataRepresentation: data!, relativeToURL: nil)
+//                        let player = EAVPlayer(URL: steamingURL)
+//                        self.videoView.player = player
+//                        self.videoView.playerLayer.videoGravity = AVLayerVideoGravityResizeAspectFill
+////                        self.playVideo()
+//                        print(123123);
+//                        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(JobCollectionViewCell.playerDidFinishPlaying), name: AVPlayerItemDidPlayToEndTimeNotification, object: self.videoView.player!.currentItem)
+//                    })
+                
+                
+//                    let url = (_job.video?.url)!
+//                    let url = "aaa://lzd.hvmark.com/tour"
+                    let url = "http://lzd.hvmark.com/square.mp4"
+//                    let steamingURL = NSURL(string: url)
+//                    let urlAsset = AVURLAsset(URL: steamingURL!)
+//                    
+//                    urlAsset.resourceLoader.setDelegate(self, queue:dispatch_get_main_queue())
+//                
+////                    print(_job.video)
+////                    print(url)
+////                    let steamingURL = NSURL(string: url)
+//                    let avPlayerItem = AVPlayerItem(asset: urlAsset)
+////                    let player = EAVPlayer(URL: steamingURL!)
+//                    let player = EAVPlayer(playerItem: avPlayerItem)
+//                
+//                    videoView.player = player
                 
                 videoView.player = createAVPlayer(url)
+                
                 videoView.playerLayer.videoGravity = AVLayerVideoGravityResizeAspectFill
-                NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(JobCollectionViewCell.playerDidFinishPlaying), name: AVPlayerItemDidPlayToEndTimeNotification, object: videoView.player!.currentItem)
+                NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(JobCollectionViewCell.playerDidFinishPlaying), name: AVPlayerItemDidPlayToEndTimeNotification, object: self.videoView.player!.currentItem)
+                
             }
         }
     }
@@ -104,4 +130,16 @@ class JobCollectionViewCell: UICollectionViewCell {
         self.layer.cornerRadius = 5.0
         self.clipsToBounds = true
     }
+}
+
+extension JobCollectionViewCell: AVAssetResourceLoaderDelegate {
+    
+    func resourceLoader(resourceLoader: AVAssetResourceLoader, shouldWaitForLoadingOfRequestedResource loadingRequest: AVAssetResourceLoadingRequest) -> Bool {
+//        loadingRequest.request = NSMutableURLRequest()
+        loadingRequest.contentInformationRequest?.contentType = "video/mp4"
+//        loadingRequest.request.setValue("video/mp4", forKey: "Content-Type")
+        
+        return true
+    }
+    
 }
