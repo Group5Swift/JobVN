@@ -35,35 +35,53 @@ class JobCollectionViewCell: UICollectionViewCell {
     
     var job: Job? {
         didSet {
-            if let _job = job {
-                _job.thumbnail?.getDataInBackgroundWithBlock({ (data: NSData?, error: NSError?) in
-                    if error == nil {
-                        let image = UIImage(data: data!)
-                        self.defaultImageView.image = image
-                        self.defaultImageView.contentMode = UIViewContentMode.ScaleAspectFill
-                    }
-                    
-                })
-            
-                _job.video?.getDataInBackgroundWithBlock({ (data: NSData?, error: NSError?) in
-                    let documentsURL = NSFileManager.defaultManager().URLsForDirectory(.DocumentDirectory, inDomains: .UserDomainMask)[0]
-                    let fileName = NSURL(fileURLWithPath: _job.video!.url!).lastPathComponent ?? "temp_video.mp4"
-                    let filePath = documentsURL.URLByAppendingPathComponent(fileName, isDirectory: false)
-                    
-                    if !NSFileManager().fileExistsAtPath(filePath.path!) {
-                        data?.writeToURL(filePath, atomically: true)
-                        //try! mananger.removeItemAtPath(filePath.path!)
-                    }
-                    
-                    self.videoView.player = EAVPlayer(URL: filePath)
-                    self.videoView.playerLayer.videoGravity = AVLayerVideoGravityResizeAspectFill
-
-                    NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(JobCollectionViewCell.playerDidFinishPlaying), name: AVPlayerItemDidPlayToEndTimeNotification, object: self.videoView.player!.currentItem)
-                })
-                
-                videoView.hidden = true
+            if job != nil {
+                setupThumbnail()
+                setupVideo()
             }
         }
+    }
+    
+    func setupVideoPlayer(filePath: NSURL) {
+        videoView.player = EAVPlayer(URL: filePath)
+        videoView.playerLayer.videoGravity = AVLayerVideoGravityResizeAspectFill
+        
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(JobCollectionViewCell.playerDidFinishPlaying), name: AVPlayerItemDidPlayToEndTimeNotification, object: self.videoView.player!.currentItem)
+    }
+    
+    func setupThumbnail() {
+        job!.thumbnail?.getDataInBackgroundWithBlock({ (data: NSData?, error: NSError?) in
+            if error == nil {
+                let image = UIImage(data: data!)
+                self.defaultImageView.image = image
+                self.defaultImageView.contentMode = UIViewContentMode.ScaleAspectFill
+            }
+            
+        })
+    }
+    
+    func setupVideo() {
+        if job!.video != nil {
+            let documentsURL = NSFileManager.defaultManager().URLsForDirectory(.DocumentDirectory, inDomains: .UserDomainMask)[0]
+            let fileName = NSURL(fileURLWithPath: job!.video!.url!).lastPathComponent ?? "temp_video.mp4"
+            let filePath = documentsURL.URLByAppendingPathComponent(fileName, isDirectory: false)
+            
+            if !NSFileManager().fileExistsAtPath(filePath.path!) {
+                job!.video?.getDataInBackgroundWithBlock({ (data: NSData?, error: NSError?) in
+                    print(1111);
+                    data?.writeToURL(filePath, atomically: true)
+                    self.setupVideoPlayer(filePath)
+                })
+            } else {
+                self.setupVideoPlayer(filePath)
+            }
+            
+            videoView.hidden = true
+        }
+    }
+    
+    func setupDetailView() {
+        
     }
     
     @IBAction
