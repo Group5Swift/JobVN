@@ -70,12 +70,7 @@ class LoginViewController: UIViewController {
                 if error == nil {
                     dispatch_async(dispatch_get_main_queue(), {
                         
-                        //                    var Storyboard = UIStoryboard(name: "Main", bundle: nil)
-                        //                    var MainVC : UIViewController = Storyboard.instantiateViewControllerWithIdentifier("MainVC") as! UIViewController
-                        //                    self.presentViewController(MainVC, animated: true, completion: nil)
-                        //self.performSegueWithIdentifier("successLogin", sender: nil)
-                        //self.showErrorAlert("Success", msg: "Login Successful")
-                        NSUserDefaults.standardUserDefaults().setValue(nil, forKey: KEY_UID)
+                        NSUserDefaults.standardUserDefaults().setValue(SEGUE_LOGGED_IN, forKey: KEY_UID)
                         self.performSegueWithIdentifier("GoToMainScreen", sender: nil)
                     })
                     

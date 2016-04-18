@@ -27,8 +27,7 @@ class WelcomeScreenViewController: UIViewController {
         if NSUserDefaults.standardUserDefaults().valueForKey(KEY_UID) != nil {
             self.performSegueWithIdentifier(SEGUE_LOGGED_IN, sender: nil)
         }
-        else if PFUser.currentUser() != nil {
-            print("perform this user")
+        else if PFUser.currentUser()?.username != nil {
             self.performSegueWithIdentifier(SEGUE_LOGGED_IN, sender: nil)
         }
     }

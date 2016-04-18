@@ -25,6 +25,7 @@ class JobsViewController: UIViewController {
         mainCollectionView.delegate = self
         mainCollectionView.dataSource = self
 
+        print("Current user \(PFUser.currentUser()!)")
         JobService.getJobs({(objects: [PFObject]?, error: NSError?) -> Void in
             if error == nil {
                 if let objects = objects as? [Job] {
@@ -44,8 +45,25 @@ class JobsViewController: UIViewController {
     }
     
     @IBAction func onLogout(sender: AnyObject) {
-        Facebook.logout()
-        self.dismissViewControllerAnimated(true, completion: nil)
+        
+
+        
+        if PFUser.currentUser() != nil {
+            PFUser.logOutInBackgroundWithBlock() { (error: NSError?) -> Void in if error != nil {
+                print("logout fail \(error)")
+            } else {
+                NSUserDefaults.standardUserDefaults().setValue(nil, forKey: KEY_UID)
+                
+                self.dismissViewControllerAnimated(true, completion: nil)
+                }
+            }
+            
+        }else {
+            Facebook.logout()
+            self.dismissViewControllerAnimated(true, completion: nil)
+        }
+        
+        
     }
 
 
