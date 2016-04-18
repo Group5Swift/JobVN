@@ -19,14 +19,6 @@ class JobsViewController: UIViewController {
 
     var selectedCell: JobCollectionViewCell?
     
-    var cards: [Card] = [
-        Card(mainImageUrl: "r1", videoUrl: "http://lzd.hvmark.com/test.mp4"),
-        Card(mainImageUrl: "r2", videoUrl: "http://lzd.hvmark.com/square.mp4"),
-        Card(mainImageUrl: "r3", videoUrl: "http://lzd.hvmark.com/food.mp4"),
-        Card(mainImageUrl: "r4", videoUrl: "http://lzd.hvmark.com/tour.mp4"),
-        Card(mainImageUrl: "r5", videoUrl: "http://lzd.hvmark.com/test.mp4")
-    ]
-    
     var jobs: [Job] = []
     
     override func viewDidLoad() {
@@ -38,6 +30,12 @@ class JobsViewController: UIViewController {
                 if let objects = objects as? [Job] {
                     self.jobs = objects
                     self.mainCollectionView.reloadData()
+                    
+                    // load thumbnail of first job
+                    self.jobs[0].thumbnail?.getDataInBackgroundWithBlock({ (data: NSData?, error: NSError?) in
+                        self.setThumbnailBackgroundImage(0)
+                    })
+                    
                 }
             }
         })
@@ -58,11 +56,14 @@ class JobsViewController: UIViewController {
     @IBAction func onPostNewJob(sender: AnyObject) {
         performSegueWithIdentifier("PostNewJob", sender: nil)
     }
+    
+    func setThumbnailBackgroundImage(index: Int) {
+        backgroundImage.image = try! UIImage(data: (self.jobs[index].thumbnail?.getData())!)
+    }
 }
 
 extension JobsViewController: UICollectionViewDelegate, UICollectionViewDataSource {
     func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-//        return cards.count
         return jobs.count
     }
     
@@ -108,10 +109,10 @@ extension JobsViewController: UIScrollViewDelegate {
         let roundedIndex = round(index)
         
         let x = roundedIndex * cellWidthIncludingSpacing - (width - layout.itemSize.width) / 2 + layout.minimumLineSpacing;
-        print(x)
+        
         offset = CGPoint(x: x, y: scrollView.contentInset.top)
         
-        backgroundImage.image = UIImage(named: (self.cards[Int(roundedIndex)].mainImageUrl)!)
+        setThumbnailBackgroundImage(Int(roundedIndex))
         
         targetContentOffset.memory = offset
     }
