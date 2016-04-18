@@ -10,6 +10,7 @@
 		043C5A6F1CBAB7BB0087A7D0 /* FBSDKCoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 043C5A6C1CBAB7BB0087A7D0 /* FBSDKCoreKit.framework */; };
 		043C5A701CBAB7BB0087A7D0 /* FBSDKLoginKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 043C5A6D1CBAB7BB0087A7D0 /* FBSDKLoginKit.framework */; };
 		043C5A711CBAB7BB0087A7D0 /* FBSDKShareKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 043C5A6E1CBAB7BB0087A7D0 /* FBSDKShareKit.framework */; };
+		2451D9941CC4FC61005923DD /* EUILabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2451D9931CC4FC61005923DD /* EUILabel.swift */; };
 		8EA3974BDE01C99028FE3F29 /* Pods_SwiftFinalProject.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 765AA72A8CC9868837D9134D /* Pods_SwiftFinalProject.framework */; };
 		9444B5711CC413B20058B2CB /* PlayerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9444B5701CC413B20058B2CB /* PlayerView.swift */; };
 		9444B5731CC413B90058B2CB /* MapHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9444B5721CC413B90058B2CB /* MapHelper.swift */; };
@@ -47,6 +48,7 @@
 		043C5A6E1CBAB7BB0087A7D0 /* FBSDKShareKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = FBSDKShareKit.framework; sourceTree = "<group>"; };
 		043C5A731CBAB91D0087A7D0 /* SwiftFinalProject-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "SwiftFinalProject-Bridging-Header.h"; sourceTree = "<group>"; };
 		111BB97AF0E4F4EFEB1D14F5 /* Pods-SwiftFinalProject.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SwiftFinalProject.debug.xcconfig"; path = "Pods/Target Support Files/Pods-SwiftFinalProject/Pods-SwiftFinalProject.debug.xcconfig"; sourceTree = "<group>"; };
+		2451D9931CC4FC61005923DD /* EUILabel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EUILabel.swift; sourceTree = "<group>"; };
 		6DB6FD1FE33E0A1E30081F16 /* Pods-SwiftFinalProject.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SwiftFinalProject.release.xcconfig"; path = "Pods/Target Support Files/Pods-SwiftFinalProject/Pods-SwiftFinalProject.release.xcconfig"; sourceTree = "<group>"; };
 		765AA72A8CC9868837D9134D /* Pods_SwiftFinalProject.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SwiftFinalProject.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		9444B5701CC413B20058B2CB /* PlayerView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlayerView.swift; sourceTree = "<group>"; };
@@ -212,6 +214,7 @@
 		94E4E0E11CB69F450090061E /* Modal */ = {
 			isa = PBXGroup;
 			children = (
+				2451D9931CC4FC61005923DD /* EUILabel.swift */,
 				94E4E0E21CB69F6F0090061E /* User.swift */,
 				94E4E0E41CB6A6240090061E /* Job.swift */,
 				9444B5761CC413CB0058B2CB /* BootcampAnnotation.swift */,
@@ -345,6 +348,7 @@
 			files = (
 				947E03D01CC4127C0081682A /* JobsViewController.swift in Sources */,
 				9444B57B1CC414430058B2CB /* Constants.swift in Sources */,
+				2451D9941CC4FC61005923DD /* EUILabel.swift in Sources */,
 				94E4E0D41CB6985A0090061E /* LoginViewController.swift in Sources */,
 				949879911CB4A6F200219AD4 /* README.md in Sources */,
 				9444B5771CC413CB0058B2CB /* BootcampAnnotation.swift in Sources */,

@@ -14,11 +14,13 @@ class JobCollectionViewCell: UICollectionViewCell {
     
     @IBOutlet weak var title: UILabel!
     @IBOutlet weak var byUser: UILabel!
-    @IBOutlet weak var byUserValue: UILabel!
     @IBOutlet weak var price: UILabel!
-    @IBOutlet weak var priceValue: UILabel!
     @IBOutlet weak var time: UILabel!
+    
+    @IBOutlet weak var byUserValue: UILabel!
     @IBOutlet weak var timeValue: UILabel!
+    @IBOutlet weak var priceValue: UILabel!
+    
     @IBOutlet weak var defaultImageView: UIImageView!
     @IBOutlet weak var videoView: PlayerView!
     @IBOutlet weak var detailView: UIView!
@@ -72,7 +74,6 @@ class JobCollectionViewCell: UICollectionViewCell {
             
             if !NSFileManager().fileExistsAtPath(filePath.path!) {
                 job!.video?.getDataInBackgroundWithBlock({ (data: NSData?, error: NSError?) in
-                    print(1111);
                     data?.writeToURL(filePath, atomically: true)
                     self.setupVideoPlayer(filePath)
                 })
