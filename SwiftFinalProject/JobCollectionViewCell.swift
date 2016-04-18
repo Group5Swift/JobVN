@@ -14,8 +14,11 @@ class JobCollectionViewCell: UICollectionViewCell {
     
     @IBOutlet weak var title: UILabel!
     @IBOutlet weak var byUser: UILabel!
+    @IBOutlet weak var byUserValue: UILabel!
     @IBOutlet weak var price: UILabel!
+    @IBOutlet weak var priceValue: UILabel!
     @IBOutlet weak var time: UILabel!
+    @IBOutlet weak var timeValue: UILabel!
     @IBOutlet weak var defaultImageView: UIImageView!
     @IBOutlet weak var videoView: PlayerView!
     @IBOutlet weak var detailView: UIView!
@@ -38,6 +41,7 @@ class JobCollectionViewCell: UICollectionViewCell {
             if job != nil {
                 setupThumbnail()
                 setupVideo()
+                setupDetailView()
             }
         }
     }
@@ -81,7 +85,19 @@ class JobCollectionViewCell: UICollectionViewCell {
     }
     
     func setupDetailView() {
-        
+        if let job = job {
+            self.title.text = job.name ?? "Baby sitter"
+            self.byUserValue.text = "Anonymous"
+            self.priceValue.text = job.price ?? "infinite"
+            self.timeValue.text = job.duetime ?? "30 April"
+            
+            self.priceValue.sizeToFit()
+            self.priceValue.layer.cornerRadius = 5.0
+            self.priceValue.backgroundColor = UIColor(red: 20/255, green: 206/255, blue: 104/255, alpha: 1)
+            self.priceValue.clipsToBounds = true
+            self.priceValue.textAlignment = NSTextAlignment.Center
+            self.priceValue.layoutIfNeeded()
+        }
     }
     
     @IBAction

@@ -17,6 +17,7 @@
 		2451D98A1CC2825C005923DD /* PlayerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2451D9891CC2825C005923DD /* PlayerView.swift */; };
 		2451D98C1CC28320005923DD /* Facebook.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2451D98B1CC28320005923DD /* Facebook.swift */; };
 		2451D98F1CC2B04B005923DD /* JobService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2451D98E1CC2B04B005923DD /* JobService.swift */; };
+		2451D9921CC4F570005923DD /* EUILabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2451D9911CC4F570005923DD /* EUILabel.swift */; };
 		94791B841CBA82B00096E020 /* RecordJobViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94791B831CBA82B00096E020 /* RecordJobViewController.swift */; };
 		94791B861CBA89F40096E020 /* JobCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94791B851CBA89F40096E020 /* JobCollectionViewCell.swift */; };
 		94791B881CBA8AFB0096E020 /* CategoryTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94791B871CBA8AFB0096E020 /* CategoryTableViewCell.swift */; };
@@ -50,6 +51,7 @@
 		2451D9891CC2825C005923DD /* PlayerView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlayerView.swift; sourceTree = "<group>"; };
 		2451D98B1CC28320005923DD /* Facebook.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Facebook.swift; sourceTree = "<group>"; };
 		2451D98E1CC2B04B005923DD /* JobService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JobService.swift; sourceTree = "<group>"; };
+		2451D9911CC4F570005923DD /* EUILabel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EUILabel.swift; sourceTree = "<group>"; };
 		4075E8C8A8B21DFE0BA1FAEA /* Pods_SwiftFinalProject.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SwiftFinalProject.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		94791B831CBA82B00096E020 /* RecordJobViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RecordJobViewController.swift; sourceTree = "<group>"; };
 		94791B851CBA89F40096E020 /* JobCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JobCollectionViewCell.swift; sourceTree = "<group>"; };
@@ -200,6 +202,7 @@
 				94E4E0E41CB6A6240090061E /* Job.swift */,
 				2451D9851CC281D8005923DD /* Card.swift */,
 				2451D9871CC281FA005923DD /* EAVPlayer.swift */,
+				2451D9911CC4F570005923DD /* EUILabel.swift */,
 			);
 			name = Modal;
 			sourceTree = "<group>";
@@ -343,6 +346,7 @@
 				041944A11CBC0872008800FA /* Constants.swift in Sources */,
 				2451D98A1CC2825C005923DD /* PlayerView.swift in Sources */,
 				949879911CB4A6F200219AD4 /* README.md in Sources */,
+				2451D9921CC4F570005923DD /* EUILabel.swift in Sources */,
 				94E4E0DA1CB6994A0090061E /* CategoryViewController.swift in Sources */,
 				94E4E0D61CB6986E0090061E /* NewUserViewController.swift in Sources */,
 				94E4E0D81CB698960090061E /* JobsViewController.swift in Sources */,
