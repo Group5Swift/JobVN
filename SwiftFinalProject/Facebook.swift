@@ -8,6 +8,7 @@
 
 import Foundation
 import Parse
+
 class Facebook {
     static func logout() {
         let loginManager: FBSDKLoginManager = FBSDKLoginManager()

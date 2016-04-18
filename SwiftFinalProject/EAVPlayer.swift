@@ -37,4 +37,11 @@ class EAVPlayer: AVPlayer {
         
         return nil
     }
+
+    static func createAVPlayer(urlString: String) -> EAVPlayer {
+        let steamingURL = NSURL(string: urlString)!
+        let player = EAVPlayer(URL: steamingURL)
+
+        return player
+    }
 }
