@@ -68,6 +68,14 @@ extension CategoryViewController: UITableViewDelegate, UITableViewDataSource {
             cell.cellMode = CheckCellState.Uncheck
         }
         cell.contentLabel.text = categories[indexPath.row]["name"]
+        cell.layer.transform = CATransform3DMakeScale(0.1,0.1,1)
+        UIView.animateWithDuration(1, animations: {
+            cell.layer.transform = CATransform3DMakeScale(1.05,1.05,1)
+            },completion: { finished in
+                UIView.animateWithDuration(0.5, animations: {
+                    cell.layer.transform = CATransform3DMakeScale(1,1,1)
+                })
+        })
         return cell
     }
     
@@ -98,6 +106,7 @@ extension CategoryViewController: UITableViewDelegate, UITableViewDataSource {
 }
 
 let categories = [["name" : "Baby Keeper", "code": "babykeeper"],
+                  ["name" : "Love", "code": "love"],
                   ["name": "Homework", "code": "homework"],
                   ["name": "Part-time", "code": "partime"],
                   ["name": "Carrier", "code": "carrier"],

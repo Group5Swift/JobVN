@@ -22,9 +22,40 @@ class Job: PFObject, PFSubclassing {
     static let VIDEO = "Video"
     static let EMPLOYER = "Employer"
     static let THUMBNAIL = "Thumbnail"
-    
+    static let DATETIME = "date"
+    static let ESTIMATE = "estimate"
     static func parseClassName() -> String {
         return CLASS_STRING
+    }
+    
+    var estimate: String? {
+        set(newValue) {
+            setValue(estimate, forKey: Job.ESTIMATE)
+            saveInBackgroundWithBlock { (success:Bool, err: NSError?) in
+                if !success {
+                    print(err?.localizedDescription)
+                }
+            }
+        }
+        get {
+            let estimate = valueForKey(Job.ESTIMATE) as? String
+            return estimate
+        }
+    }
+    
+    var date: String? {
+        set(newValue) {
+            setValue(date, forKey: Job.DATETIME)
+            saveInBackgroundWithBlock { (success: Bool, err: NSError?) in
+                if !success {
+                    print(err?.localizedDescription)
+                }
+            }
+        }
+        get {
+            let date = valueForKey(Job.DATETIME) as? String
+            return date
+        }
     }
     
     var thumbnail: PFFile? {

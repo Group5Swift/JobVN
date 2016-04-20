@@ -19,6 +19,13 @@ class PostJobViewController: UIViewController {
     @IBOutlet weak var price: UITextField!
     @IBOutlet weak var locationLabel: UITextField!
     @IBOutlet weak var jobDescription: UITextView!
+    @IBOutlet weak var datePicker: UIDatePicker!
+    @IBOutlet weak var estimate: UITextField!
+    
+    @IBOutlet weak var scrollChild: UIView!
+    
+    @IBOutlet weak var scrollView: UIScrollView!
+    
     
     let job = PFObject(className: Job.CLASS_STRING)
     
@@ -39,6 +46,10 @@ class PostJobViewController: UIViewController {
         
         let tapGesture = UITapGestureRecognizer(target: self, action: #selector(PostJobViewController.onTapAnywhere(_:)))
         self.view.addGestureRecognizer(tapGesture)
+        
+        print(scrollChild.frame.size)
+        
+        scrollView.contentSize = CGSize(width: scrollChild.frame.width, height: scrollChild.frame.height)
     }
 
     override func didReceiveMemoryWarning() {
@@ -54,25 +65,31 @@ class PostJobViewController: UIViewController {
         performSegueWithIdentifier("RecordNewVideo", sender: self)
     }
     
+
     @IBAction func onPost(sender: AnyObject) {
         let title = self.titleLabel.text
         let price = self.price.text
         let location = self.locationLabel.text
         let description = self.jobDescription.text
         let owner = PFUser.currentUser()
-        
+        let formatter = NSDateFormatter()
+        formatter.dateFormat = "dd-MM-yyyy HH:mm"
+        let dateTime = formatter.stringFromDate(datePicker.date)
+        let estimateTime = self.estimate.text
         job.setValue(title!, forKey: Job.NAME)
         job.setValue(price!, forKey: Job.PRICE)
         job.setValue(location!, forKey: Job.LOCATION)
         job.setValue(description!, forKey: Job.DESCRIPTION)
         job.setValue(owner!, forKey: Job.OWNER)
+        job.setValue(dateTime, forKey: Job.DATETIME)
+        job.setValue(estimateTime!, forKey: Job.ESTIMATE)
         
         job.saveInBackgroundWithBlock { (success: Bool, err: NSError?) in
             if err != nil {
                 self.showErrLog(err!)
             }
             else {
-                print("New JOB posted with title: \(title!), price: \(price!), location: \(location!), description: \(description!)")
+                print("New JOB posted with title: \(title!), price: \(price!), location: \(location!), description: \(description!), dateTime: \(dateTime), estimate: \(estimateTime!)")
                 self.dismissViewControllerAnimated(true, completion: nil)
             }
         }
