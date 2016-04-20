@@ -22,15 +22,6 @@ class WelcomeScreenViewController: UIViewController {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-    
-    override func viewDidAppear(animated: Bool) {
-        if NSUserDefaults.standardUserDefaults().valueForKey(KEY_UID) != nil {
-            self.performSegueWithIdentifier(SEGUE_LOGGED_IN, sender: nil)
-        }
-        else if PFUser.currentUser()?.username != nil {
-            self.performSegueWithIdentifier(SEGUE_LOGGED_IN, sender: nil)
-        }
-    }
 
     @IBAction func onLoginWithFacebook(sender: UIButton) {
         let facebookLogin = FBSDKLoginManager()
