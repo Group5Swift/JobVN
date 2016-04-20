@@ -26,7 +26,7 @@ class User: PFUser {
 //        return CLASS_STRING
 //    }
     
-    var avatar: PFFile {
+    var avatar: PFFile? {
         set (newValue) {
             setValue(newValue, forKey: User.AVATAR)
             saveInBackgroundWithBlock { (success: Bool, err: NSError?) in
@@ -36,8 +36,7 @@ class User: PFUser {
             }
         }
         get {
-            let file = valueForKey(User.AVATAR) as! PFFile
-            return file
+            return valueForKey(User.AVATAR) as? PFFile
         }
     }
     

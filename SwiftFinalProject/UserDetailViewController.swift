@@ -9,7 +9,7 @@
 import UIKit
 import Parse
 
-class UserDetailViewController: UIViewController {
+class UserDetailViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
 
     @IBOutlet weak var userAvatar: UIImageView!
     @IBOutlet weak var username: UILabel!
@@ -97,6 +97,62 @@ class UserDetailViewController: UIViewController {
         dismissViewControllerAnimated(true, completion: nil)
     }
 
+    @IBAction func changeAvatarFromSource(sender: UIButton) {
+        let imagePicker = UIImagePickerController()
+        imagePicker.delegate = self
+        imagePicker.sourceType = UIImagePickerControllerSourceType.PhotoLibrary
+        imagePicker.allowsEditing = false
+        self.presentViewController(imagePicker, animated: true, completion: nil)
+    }
+    
+    func imagePickerController(picker: UIImagePickerController, didFinishPickingImage image: UIImage, editingInfo: [String : AnyObject]?) {
+        userAvatar.image = image
+        self.dismissViewControllerAnimated(true, completion: nil)
+    }
+    @IBAction func saveChanged(sender: UIBarButtonItem) {
+        
+        if userAvatar.image == nil {
+            print ("Image not uploaded")
+        }else {
+            let imageData = UIImagePNGRepresentation(self.userAvatar.image!)
+            let avatar = PFFile(data: imageData!)
+            
+            avatar?.saveInBackground()
+            
+//            avatar?.saveInBackground()
+//            avatar?.saveInBackgroundWithBlock({ (success: Bool,error: NSError?) in
+//                if error == nil {
+//                    print("Image uploaded")
+//                }else {
+//                    print("error: \(error)")
+//                }
+//            })
+            user.setValue(avatar, forKey: User.AVATAR)
+            
+            
+            
+//            
+//            var uploadImage = PFObject(className: "Avatar")
+//            uploadImage["uploader"] = PFUser.currentUser()
+//            uploadImage.saveInBackgroundWithBlock({ (success,err: NSError?) in
+//                if err == nil {
+//                    var imageData = UIImagePNGRepresentation(self.userAvatar.image!)
+//                    var parseImageFile = PFFile(name: "uploaded_image.png", data: imageData!)
+//                    uploadImage["imageFile"] = parseImageFile
+//                    uploadImage.saveInBackgroundWithBlock({ (success,error: NSError?) in
+//                        if error == nil {
+//                            print ("Image uploaded")
+//                        }else {
+//                            print ("error:\(error)")
+//                        }
+//                    })
+//                }else {
+//                    print("error: \(err)")
+//                }
+//            })
+        }
+        
+    }
     /*
     // MARK: - Navigation
 
