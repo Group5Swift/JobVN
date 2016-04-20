@@ -16,18 +16,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
 
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
-        // Override point for customization after application launch.
-        
-//        Parse.initializeWithConfiguration(
-//            ParseClientConfiguration(block: { (config: ParseMutableClientConfiguration) in
-//                User.registerSubclass()
-//                Job.registerSubclass()
-//                config.applicationId = "jobvietnamgroup5"
-//                config.clientKey = nil
-//                config.server = "htpps://jobvietnam.herokuapp.com/parse"
-//        }))
-//        
-//        return true
         
         Parse.enableLocalDatastore()
         
@@ -53,23 +41,51 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         PFACL.setDefaultACL(defaultACL, withAccessForCurrentUser: true)
         
-        if application.applicationState != UIApplicationState.Background {
-            // Track an app open here if we launch with a push, unless
-            // "content_available" was used to trigger a background push (introduced in iOS 7).
-            // In that case, we skip tracking here to avoid double counting the app-open.
+        if NSUserDefaults.standardUserDefaults().valueForKey(KEY_UID) != nil
+            || PFUser.currentUser()?.username != nil{
             
-            let preBackgroundPush = !application.respondsToSelector("backgroundRefreshStatus")
-            let oldPushHandlerOnly = !self.respondsToSelector("application:didReceiveRemoteNotification:fetchCompletionHandler:")
-            var noPushPayload = false;
-            if let options = launchOptions {
-                noPushPayload = options[UIApplicationLaunchOptionsRemoteNotificationKey] != nil;
-            }
-            if (preBackgroundPush || oldPushHandlerOnly || noPushPayload) {
-                PFAnalytics.trackAppOpenedWithLaunchOptions(launchOptions)
-            }
+            let storyboard = UIStoryboard(name: "Main", bundle: nil)
+            
+            let mainJobsView = storyboard.instantiateViewControllerWithIdentifier("JobViewController") as! UINavigationController
+            mainJobsView.tabBarItem.title = "Recent"
+            mainJobsView.tabBarItem.image = UIImage(named: "recent")
+            
+            let savedJobsView = storyboard.instantiateViewControllerWithIdentifier("JobViewController") as! UINavigationController
+            savedJobsView.tabBarItem.title = "Saved"
+            savedJobsView.tabBarItem.image = UIImage(named: "love")
+            
+            
+            let userDetail = storyboard.instantiateViewControllerWithIdentifier("UserDetailController") as! UINavigationController
+            userDetail.tabBarItem.title = "Profile"
+            userDetail.tabBarItem.image = UIImage(named: "info")
+            
+            (userDetail.viewControllers[0] as! UserDetailViewController).user = PFUser.currentUser()
+            
+            let tabbar = UITabBarController()
+            tabbar.viewControllers = [mainJobsView, savedJobsView, userDetail]
+            
+            tabbar.tabBar.barTintColor = UIColor.blackColor()
+            tabbar.tabBar.tintColor = UIColor.grayColor()
+            
+            window?.rootViewController = tabbar
+            
+            return true
         }
-        
-        return FBSDKApplicationDelegate.sharedInstance().application(application, didFinishLaunchingWithOptions: launchOptions)
+        else {
+            if application.applicationState != UIApplicationState.Background {
+                let preBackgroundPush = !application.respondsToSelector(Selector("backgroundRefreshStatus"))
+                let oldPushHandlerOnly = !self.respondsToSelector(#selector(UIApplicationDelegate.application(_:didReceiveRemoteNotification:fetchCompletionHandler:)))
+                var noPushPayload = false;
+                if let options = launchOptions {
+                    noPushPayload = options[UIApplicationLaunchOptionsRemoteNotificationKey] != nil;
+                }
+                if (preBackgroundPush || oldPushHandlerOnly || noPushPayload) {
+                    PFAnalytics.trackAppOpenedWithLaunchOptions(launchOptions)
+                }
+            }
+            
+            return FBSDKApplicationDelegate.sharedInstance().application(application, didFinishLaunchingWithOptions: launchOptions)
+        }
     }
 
     func applicationWillResignActive(application: UIApplication) {

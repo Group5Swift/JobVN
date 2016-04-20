@@ -41,7 +41,25 @@ class JobsViewController: UIViewController {
             }
         })
 
+        self.navigationController?.navigationBar.setBackgroundImage(UIImage(), forBarMetrics: .Default)
+        // Sets shadow (line below the bar) to a blank image
+        self.navigationController?.navigationBar.shadowImage = UIImage()
+        // Sets the translucent background color
+        self.navigationController?.navigationBar.backgroundColor = UIColor(red: 0.0, green: 0.0, blue: 0.0, alpha: 0.0)
+        // Set translucent. (Default value is already true, so this can be removed if desired.)
+        self.navigationController?.navigationBar.translucent = true
+        
         super.viewDidLoad()
+    }
+    
+    override func viewWillAppear(animated: Bool) {
+        super.viewWillAppear(animated)
+        UIApplication.sharedApplication().statusBarStyle = .LightContent
+    }
+    
+    override func viewDidDisappear(animated: Bool) {
+        super.viewDidDisappear(animated)
+        UIApplication.sharedApplication().statusBarStyle = .Default
     }
     
     @IBAction func onLogout(sender: AnyObject) {
@@ -76,7 +94,11 @@ class JobsViewController: UIViewController {
     }
 
     func setThumbnailBackgroundImage(index: Int) {
-        backgroundImage.image = try! UIImage(data: (self.jobs[index].thumbnail?.getData())!)
+        do {
+            backgroundImage.image = try UIImage(data: (self.jobs[index].thumbnail?.getData())!)
+        } catch let e as NSError {
+            print(e.localizedDescription)
+        }
     }
 }
 
@@ -130,7 +152,9 @@ extension JobsViewController: UIScrollViewDelegate {
 
         offset = CGPoint(x: x, y: scrollView.contentInset.top)
 
-        setThumbnailBackgroundImage(Int(roundedIndex))
+//        if Int(roundedIndex) < self.jobs.count {
+//            setThumbnailBackgroundImage(Int(roundedIndex))
+//        }
 
         targetContentOffset.memory = offset
     }

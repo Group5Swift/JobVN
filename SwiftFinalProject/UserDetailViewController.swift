@@ -27,6 +27,8 @@ class UserDetailViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        userAvatar.layer.cornerRadius = userAvatar.frame.size.height / 2
+        
         userDescription.text = user.valueForKey(User.DESCRIPTION) as? String
         rating.text = "\(user.valueForKey(User.RATING) as? Float)"
         
@@ -70,8 +72,8 @@ class UserDetailViewController: UIViewController {
             }
         }
         
-        let avatar = user.valueForKey(User.AVATAR) as! PFFile
-        avatar.getDataInBackgroundWithBlock { (data: NSData?, err: NSError?) in
+        let avatar = user.valueForKey(User.AVATAR) as? PFFile
+        avatar?.getDataInBackgroundWithBlock { (data: NSData?, err: NSError?) in
             if err == nil {
                 if data == nil {
                     return
