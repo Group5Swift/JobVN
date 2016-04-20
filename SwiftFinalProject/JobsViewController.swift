@@ -9,6 +9,8 @@
 import UIKit
 import Parse
 
+
+
 class JobsViewController: UIViewController {
 
     @IBOutlet weak var containerView: UIView!
@@ -31,7 +33,6 @@ class JobsViewController: UIViewController {
                 if let objects = objects as? [Job] {
                     self.jobs = objects
                     self.mainCollectionView.reloadData()
-
                     // load thumbnail of first job
                     self.jobs[0].thumbnail?.getDataInBackgroundWithBlock({ (data: NSData?, error: NSError?) in
                         self.setThumbnailBackgroundImage(0)
@@ -41,13 +42,13 @@ class JobsViewController: UIViewController {
             }
         })
 
-        self.navigationController?.navigationBar.setBackgroundImage(UIImage(), forBarMetrics: .Default)
-        // Sets shadow (line below the bar) to a blank image
-        self.navigationController?.navigationBar.shadowImage = UIImage()
-        // Sets the translucent background color
-        self.navigationController?.navigationBar.backgroundColor = UIColor(red: 0.0, green: 0.0, blue: 0.0, alpha: 0.0)
-        // Set translucent. (Default value is already true, so this can be removed if desired.)
-        self.navigationController?.navigationBar.translucent = true
+//        self.navigationController?.navigationBar.setBackgroundImage(UIImage(), forBarMetrics: .Default)
+//        // Sets shadow (line below the bar) to a blank image
+//        self.navigationController?.navigationBar.shadowImage = UIImage()
+//        // Sets the translucent background color
+//        self.navigationController?.navigationBar.backgroundColor = UIColor(red: 0.0, green: 0.0, blue: 0.0, alpha: 0.0)
+//        // Set translucent. (Default value is already true, so this can be removed if desired.)
+//        self.navigationController?.navigationBar.translucent = true
         
         super.viewDidLoad()
     }
@@ -63,25 +64,21 @@ class JobsViewController: UIViewController {
     }
     
     @IBAction func onLogout(sender: AnyObject) {
-        
-
-        
-        if PFUser.currentUser() != nil {
-            PFUser.logOutInBackgroundWithBlock() { (error: NSError?) -> Void in if error != nil {
-                print("logout fail \(error)")
-            } else {
-                NSUserDefaults.standardUserDefaults().setValue(nil, forKey: KEY_UID)
-                
-                self.dismissViewControllerAnimated(true, completion: nil)
-                }
-            }
-            
-        }else {
-            Facebook.logout()
-            self.dismissViewControllerAnimated(true, completion: nil)
-        }
-        
-        
+//        if PFUser.currentUser() != nil {
+//            PFUser.logOutInBackgroundWithBlock() { (error: NSError?) -> Void in if error != nil {
+//                print("logout fail \(error)")
+//            } else {
+//                NSUserDefaults.standardUserDefaults().setValue(nil, forKey: KEY_UID)
+//                
+//                self.dismissViewControllerAnimated(true, completion: nil)
+//                }
+//            }
+//            
+//        }else {
+//            Facebook.logout()
+//            self.dismissViewControllerAnimated(true, completion: nil)
+//        }
+        NSNotificationCenter.defaultCenter().postNotificationName(User.USER_DID_LOGOUT_NOTIFICATION, object: nil)
     }
 
 
@@ -95,7 +92,9 @@ class JobsViewController: UIViewController {
 
     func setThumbnailBackgroundImage(index: Int) {
         do {
-            backgroundImage.image = try UIImage(data: (self.jobs[index].thumbnail?.getData())!)
+            if let data = try self.jobs[index].thumbnail?.getData() {
+                backgroundImage.image = UIImage(data: data)
+            }
         } catch let e as NSError {
             print(e.localizedDescription)
         }
@@ -152,9 +151,9 @@ extension JobsViewController: UIScrollViewDelegate {
 
         offset = CGPoint(x: x, y: scrollView.contentInset.top)
 
-//        if Int(roundedIndex) < self.jobs.count {
-//            setThumbnailBackgroundImage(Int(roundedIndex))
-//        }
+        if Int(roundedIndex) < self.jobs.count {
+            setThumbnailBackgroundImage(Int(roundedIndex))
+        }
 
         targetContentOffset.memory = offset
     }

@@ -26,6 +26,8 @@ class User: PFUser {
 //        return CLASS_STRING
 //    }
     
+    static let USER_DID_LOGOUT_NOTIFICATION = "UserDidLogout"
+    
     var avatar: PFFile {
         set (newValue) {
             setValue(newValue, forKey: User.AVATAR)

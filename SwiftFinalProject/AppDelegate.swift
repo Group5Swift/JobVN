@@ -41,6 +41,22 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         PFACL.setDefaultACL(defaultACL, withAccessForCurrentUser: true)
         
+        NSNotificationCenter.defaultCenter().addObserverForName(User.USER_DID_LOGOUT_NOTIFICATION, object: nil, queue: NSOperationQueue.mainQueue()) { (noti: NSNotification) in
+            if PFUser.currentUser() != nil {
+                PFUser.logOutInBackgroundWithBlock() { (error: NSError?) -> Void in
+                    if error != nil {
+                        print("logout fail \(error)")
+                    } else {
+                        NSUserDefaults.standardUserDefaults().setValue(nil, forKey: KEY_UID)
+                        }
+                }
+            } else {
+                Facebook.logout()
+            }
+            let vc = UIStoryboard(name: "Main", bundle: nil).instantiateInitialViewController()
+            self.window?.rootViewController = vc
+        }
+        
         if NSUserDefaults.standardUserDefaults().valueForKey(KEY_UID) != nil
             || PFUser.currentUser()?.username != nil{
             
@@ -50,10 +66,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             mainJobsView.tabBarItem.title = "Recent"
             mainJobsView.tabBarItem.image = UIImage(named: "recent")
             
+            let nearby = storyboard.instantiateViewControllerWithIdentifier("JobViewController") as! UINavigationController
+            nearby.tabBarItem.title = "Near you"
+            nearby.tabBarItem.image = UIImage(named: "recent")
+            
             let savedJobsView = storyboard.instantiateViewControllerWithIdentifier("JobViewController") as! UINavigationController
             savedJobsView.tabBarItem.title = "Saved"
             savedJobsView.tabBarItem.image = UIImage(named: "love")
-            
             
             let userDetail = storyboard.instantiateViewControllerWithIdentifier("UserDetailController") as! UINavigationController
             userDetail.tabBarItem.title = "Profile"
@@ -62,7 +81,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             (userDetail.viewControllers[0] as! UserDetailViewController).user = PFUser.currentUser()
             
             let tabbar = UITabBarController()
-            tabbar.viewControllers = [mainJobsView, savedJobsView, userDetail]
+            tabbar.viewControllers = [mainJobsView, nearby, savedJobsView, userDetail]
             
             tabbar.tabBar.barTintColor = UIColor.blackColor()
             tabbar.tabBar.tintColor = UIColor.grayColor()

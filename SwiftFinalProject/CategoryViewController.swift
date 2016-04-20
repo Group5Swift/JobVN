@@ -69,7 +69,7 @@ extension CategoryViewController: UITableViewDelegate, UITableViewDataSource {
         }
         cell.contentLabel.text = categories[indexPath.row]["name"]
         cell.layer.transform = CATransform3DMakeScale(0.1,0.1,1)
-        UIView.animateWithDuration(1, animations: {
+        UIView.animateWithDuration(0.3, animations: {
             cell.layer.transform = CATransform3DMakeScale(1.05,1.05,1)
             },completion: { finished in
                 UIView.animateWithDuration(0.5, animations: {

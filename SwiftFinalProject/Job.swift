@@ -88,7 +88,7 @@ class Job: PFObject, PFSubclassing {
     }
     
     var name: String? {
-        didSet(newValue) {
+        set(newValue) {
 //            self.name = newValue
             setValue(name, forKey: Job.NAME)
             saveInBackgroundWithBlock { (success: Bool, err: NSError?) in
@@ -96,6 +96,10 @@ class Job: PFObject, PFSubclassing {
                     print(err?.localizedDescription)
                 }
             }
+        }
+        get {
+            let name = valueForKey(Job.NAME) as? String
+            return name
         }
     }
     

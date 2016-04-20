@@ -36,6 +36,27 @@ class MapHelper {
             map.setRegion(coordinateRegion, animated: true)
             view.addSubview(map)
         }
+    }
+    
+    static func inflateMap(view: UIView, delegate: MapHelperDelegate) {
+        let map = MKMapView()
+        map.frame = view.frame
+        map.frame.origin.y -= 64
+        map.delegate = delegate
+        view.addSubview(map)
+//        let locationDistance : CLLocationDistance = 1000
+//        getAxisLocation(address) { (data:(Double, Double)) in
+//            map.delegate = delegate
+//            var loc = CLLocationCoordinate2D()
+//            loc.latitude = data.0
+//            loc.longitude = data.1
+//            let ano = BootcampAnnotation(coordinate: loc, title: "title")
+//            
+//            map.addAnnotation(ano)
+//            let coordinateRegion = MKCoordinateRegionMakeWithDistance(loc, locationDistance * 2, locationDistance * 2)
+//            map.setRegion(coordinateRegion, animated: true)
+//            view.addSubview(map)
+//        }
         
     }
     
