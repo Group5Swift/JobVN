@@ -1,4 +1,4 @@
-## 'Hope' app
+## 'JobVN' app
 
 The app's idea is to help people to find short term job (part time job) quickly.
 
