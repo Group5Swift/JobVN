@@ -38,10 +38,10 @@ class WelcomeScreenViewController: UIViewController {
                 
                 
                 FBSDKGraphRequest.init(graphPath: "me", parameters: ["fields":"first_name, last_name, picture.type(large)"]).startWithCompletionHandler { (connection, facebookResult, error) -> Void in
-                    let strFirstName: String = (facebookResult.objectForKey("first_name") as? String)!
-                    let strLastName: String = (facebookResult.objectForKey("last_name") as? String)!
-                    let strPictureURL: String = (facebookResult.objectForKey("picture")?.objectForKey("data")?.objectForKey("url") as? String)!
-                    let name = "Welcome, \(strFirstName) \(strLastName)"
+//                    let strFirstName: String = (facebookResult.objectForKey("first_name") as? String)!
+//                    let strLastName: String = (facebookResult.objectForKey("last_name") as? String)!
+//                    let strPictureURL: String = (facebookResult.objectForKey("picture")?.objectForKey("data")?.objectForKey("url") as? String)!
+//                    let name = "Welcome, \(strFirstName) \(strLastName)"
                     //self.ivUserProfileImage.image = UIImage(data: NSData(contentsOfURL: NSURL(string: strPictureURL)!)!)
                     }
                 
