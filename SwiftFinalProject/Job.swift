@@ -24,8 +24,24 @@ class Job: PFObject, PFSubclassing {
     static let THUMBNAIL = "Thumbnail"
     static let DATETIME = "date"
     static let ESTIMATE = "estimate"
+    static let SELECTEDCATEGORY = "Category"
     static func parseClassName() -> String {
         return CLASS_STRING
+    }
+    
+    var selectedCategory: String? {
+        set(newValue) {
+            setValue(selectedCategory, forKey: Job.SELECTEDCATEGORY)
+            saveInBackgroundWithBlock { (success:Bool,err: NSError?) in
+                if !success {
+                    print(err?.localizedDescription)
+                }
+            }
+        }
+        get {
+            let selectedCategory = valueForKey(Job.SELECTEDCATEGORY) as? String
+            return selectedCategory
+        }
     }
     
     var estimate: String? {
