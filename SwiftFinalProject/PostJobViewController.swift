@@ -10,6 +10,7 @@ import UIKit
 import Parse
 import ParseUI
 import AVFoundation
+import MapKit
 
 class PostJobViewController: UIViewController {
     @IBOutlet weak var createJobButton: UIButton!
@@ -26,6 +27,12 @@ class PostJobViewController: UIViewController {
     @IBOutlet weak var scrollChild: UIView!
     
     @IBOutlet weak var scrollView: UIScrollView!
+    
+    var map: MKMapView?
+    
+    // this is to prevent flicker when key board is hide
+    var isKeyboardShow = false
+    var _currentKeyboardHeight:CGFloat = 0
     
     let categories = ["Baby Keeper","Love" ,"Homework","Part-time", "Carrier","Hospital", "Restaurant", "Retail", "Hotel",  "Health Care", "Office", "Art work", "Deliver"]
     
@@ -56,35 +63,52 @@ class PostJobViewController: UIViewController {
         
         scrollView.contentSize = CGSize(width: scrollChild.frame.width, height: scrollChild.frame.height)
         
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(PostJobViewController.keyboardWillShow(_:)), name:UIKeyboardWillShowNotification, object: nil);
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: Selector("keyboardWillHide:"), name:UIKeyboardWillHideNotification, object: nil);
+        NSNotificationCenter.defaultCenter().addObserver(self
+            , selector: #selector(PostJobViewController.keyboardWillShow(_:))
+            , name: UIKeyboardWillShowNotification
+            , object: nil)
+        
+        NSNotificationCenter.defaultCenter().addObserver(self
+            , selector: #selector(PostJobViewController.keyboardWillHide(_:))
+            , name:UIKeyboardWillHideNotification
+            , object: nil)
+        
+        NSNotificationCenter.defaultCenter().addObserver(self
+            , selector: #selector(PostJobViewController.keyboardWillChangeLanguage(_:))
+            , name: UIKeyboardWillChangeFrameNotification
+            , object: nil)
     }
     
     deinit {
         NSNotificationCenter.defaultCenter().removeObserver(self);
     }
     
-    func keyboardWillShow(notification: NSNotification) {
-        if let keyboardSize = (notification.userInfo?[UIKeyboardFrameBeginUserInfoKey] as? NSValue)?.CGRectValue() {
-            //let contentInsets = UIEdgeInsets(top: 0, left: 0, bottom: keyboardSize.height, right: 0)
-            
-            var frame = self.view.frame
-            frame.origin.y = frame.origin.y - keyboardSize.height + 67
-            self.view.frame = frame
-            //println("asdasd")
-        }
-    }
+    var keyboardIsShowing = false
     
-    func keyboardWillHide(notification: NSNotification) {
-        if let keyboardSize = (notification.userInfo?[UIKeyboardFrameBeginUserInfoKey] as? NSValue)?.CGRectValue() {
-            //let contentInsets = UIEdgeInsets(top: 0, left: 0, bottom: keyboardSize.height, right: 0)
-            
-            var frame = self.view.frame
-            frame.origin.y = frame.origin.y + keyboardSize.height - 67
-            self.view.frame = frame
-            //println("asdasd")
-        }
-    }
+//    func keyboardWillShow(notification: NSNotification) {
+//        if !keyboardIsShowing {
+//            if let keyboardSize = (notification.userInfo?[UIKeyboardFrameBeginUserInfoKey] as? NSValue)?.CGRectValue() {
+//                var frame = self.view.frame
+//                frame.origin.y = frame.origin.y - keyboardSize.height
+//                self.view.frame = frame
+//                keyboardIsShowing = !keyboardIsShowing
+//            }
+//            
+//        }
+//    }
+    
+//    func keyboardWillHide(notification: NSNotification) {
+//        if keyboardIsShowing {
+//            if let keyboardSize = (notification.userInfo?[UIKeyboardFrameBeginUserInfoKey] as? NSValue)?.CGRectValue() {
+//                var frame = self.view.frame
+//                frame.origin.y = frame.origin.y + keyboardSize.height
+//                self.view.frame = frame
+//                keyboardIsShowing = !keyboardIsShowing
+//            }
+//        }
+//    }
+    
+    
     
     @IBAction func onBack(sender: AnyObject) {
         dismissViewControllerAnimated(true, completion: nil)
@@ -119,7 +143,6 @@ class PostJobViewController: UIViewController {
             job.setValue(owner!, forKey: Job.OWNER)
             job.setValue(dateTime, forKey: Job.DATETIME)
             job.setValue(selectedcategory, forKey: Job.SELECTEDCATEGORY)
-            
             job.saveInBackgroundWithBlock { (success: Bool, err: NSError?) in
                 if err != nil {
                     self.showErrLog(err!)
@@ -166,18 +189,68 @@ class PostJobViewController: UIViewController {
 
 }
 
+extension PostJobViewController {
+    func keyboardWillChangeLanguage(sender: NSNotification) {
+        
+        if !isKeyboardShow { return }
+        
+        let info = sender.userInfo!
+        let keyboardFrame: CGRect = (info[UIKeyboardFrameEndUserInfoKey] as! NSValue).CGRectValue()
+        let newKeyboardHeight = keyboardFrame.size.height
+        if newKeyboardHeight != _currentKeyboardHeight {
+            let gap = newKeyboardHeight - _currentKeyboardHeight
+            UIView.animateWithDuration(0.1, animations: { () -> Void in
+                self.view.frame.size.height -= gap
+            })
+        }
+    }
+    
+    func keyboardWillShow(sender: NSNotification) {
+        let info = sender.userInfo!
+        let keyboardFrame: CGRect = (info[UIKeyboardFrameEndUserInfoKey] as! NSValue).CGRectValue()
+        _currentKeyboardHeight = keyboardFrame.size.height
+        
+        // this will prevent this method is called twice
+        if _currentKeyboardHeight == 0 { return }
+        
+        if isKeyboardShow { return }
+        isKeyboardShow = true
+        
+        UIView.animateWithDuration(0.1, animations:  { () -> Void in
+            self.view.frame.size.height -= self._currentKeyboardHeight
+        })
+    }
+    
+    func keyboardWillHide(sender: NSNotification) {
+        
+        let info = sender.userInfo!
+        let keyboardFrame: CGRect = (info[UIKeyboardFrameEndUserInfoKey] as! NSValue).CGRectValue()
+        _currentKeyboardHeight = keyboardFrame.size.height
+        
+        if !isKeyboardShow { return }
+        isKeyboardShow = false
+        
+        UIView.animateWithDuration(0.1, animations:  { () -> Void in
+            self.view.frame.size.height += self._currentKeyboardHeight
+        })
+    }
+}
+
 extension PostJobViewController: UITextFieldDelegate {
     func textField(textField: UITextField, shouldChangeCharactersInRange range: NSRange, replacementString string: String) -> Bool {
-        
-        print("on change text: \(string)")
-        //adjustForKeyboard(NSNotification)
-        
         return true
     }
     
     func textFieldDidEndEditing(textField: UITextField) {
         let delegate = MapHelperDelegate()
-        MapHelper.inflateMap(headView, address: textField.text!, delegate: delegate)
+        
+        print ("inflate map")
+        
+        MapHelper.inflateMap(scrollView, frame: headView.frame, address: textField.text!, delegate: delegate) { (map) in
+            self.map = map
+//            map.frame.origin.y += self.scrollView.contentOffset.y
+            self.view.layoutIfNeeded()
+        }
     }
 }
 

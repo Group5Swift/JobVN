@@ -61,7 +61,7 @@ class Job: PFObject, PFSubclassing {
     
     var date: String? {
         set(newValue) {
-            setValue(date, forKey: Job.DATETIME)
+            setValue(date, forKey: Job.DUETIME)
             saveInBackgroundWithBlock { (success: Bool, err: NSError?) in
                 if !success {
                     print(err?.localizedDescription)
@@ -69,7 +69,7 @@ class Job: PFObject, PFSubclassing {
             }
         }
         get {
-            let date = valueForKey(Job.DATETIME) as? String
+            let date = valueForKey(Job.DUETIME) as? String
             return date
         }
     }
@@ -104,7 +104,7 @@ class Job: PFObject, PFSubclassing {
     }
     
     var name: String? {
-        didSet(newValue) {
+        set(newValue) {
 //            self.name = newValue
             setValue(name, forKey: Job.NAME)
             saveInBackgroundWithBlock { (success: Bool, err: NSError?) in
@@ -112,6 +112,10 @@ class Job: PFObject, PFSubclassing {
                     print(err?.localizedDescription)
                 }
             }
+        }
+        get{
+            let name = valueForKey(Job.NAME) as? String
+            return name
         }
     }
     
@@ -198,7 +202,7 @@ class Job: PFObject, PFSubclassing {
     var duetime: String? {
         set(newValue) {
 //            self.duetime = newValue
-            setValue(duetime, forKey: Job.DUETIME)
+            setValue(duetime, forKey: Job.DATETIME)
             saveInBackgroundWithBlock { (success: Bool, err: NSError?) in
                 if !success {
                     print(err?.localizedDescription)
@@ -206,7 +210,7 @@ class Job: PFObject, PFSubclassing {
             }
         }
         get {
-            let duetime = valueForKey(Job.DUETIME) as? String
+            let duetime = valueForKey(Job.DATETIME) as? String
             return duetime
         }
     }

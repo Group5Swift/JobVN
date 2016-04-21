@@ -10,6 +10,9 @@ import UIKit
 import Parse
 
 class User: PFUser {
+    
+    static let USER_DID_LOGOUT_NOTIFICATION = "UserDidLogout"
+    
     static let CLASS_STRING = "User"
     static let NAME = "UserName"
     static let PHONE = "Phone"

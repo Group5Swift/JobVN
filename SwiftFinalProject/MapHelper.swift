@@ -19,12 +19,18 @@ class MapHelper {
         }
     }
     
-    static func inflateMap(view: UIView, address: String, delegate: MapHelperDelegate) {
-        let map = MKMapView()
-        map.frame = view.frame
-        map.frame.origin.y -= 64
-        let locationDistance : CLLocationDistance = 1000
+    static func inflateMap(view: UIView, address: String, delegate: MapHelperDelegate, onComplete: ((map: MKMapView) -> Void)?) {
+        inflateMap(view, frame: view.frame, address: address, delegate: delegate, onComplete: onComplete)
+    }
+    
+    static func inflateMap(view: UIView, frame: CGRect, address: String, delegate: MapHelperDelegate, onComplete: ((map: MKMapView) -> Void)?) {
         getAxisLocation(address) { (data:(Double, Double)) in
+            let map = MKMapView()
+            
+            map.frame = frame
+            
+            let locationDistance : CLLocationDistance = 1000
+            
             map.delegate = delegate
             var loc = CLLocationCoordinate2D()
             loc.latitude = data.0
@@ -34,21 +40,22 @@ class MapHelper {
             map.addAnnotation(ano)
             let coordinateRegion = MKCoordinateRegionMakeWithDistance(loc, locationDistance * 2, locationDistance * 2)
             map.setRegion(coordinateRegion, animated: true)
+            
             view.addSubview(map)
+            
+            onComplete?(map: map)
+            
         }
-        
     }
     
 }
 
 class MapHelperDelegate: NSObject, MKMapViewDelegate {
     func mapView(mapView: MKMapView, viewForAnnotation annotation: MKAnnotation) -> MKAnnotationView? {
-        print ("bbb")
         if annotation.isKindOfClass(BootcampAnnotation) {
             //var title: String?
             let annoView = MKPinAnnotationView(annotation: annotation, reuseIdentifier: "Default")
             annoView.pinTintColor = UIColor.blueColor()
-            print ("AAAa")
             annoView.canShowCallout = true
             annoView.leftCalloutAccessoryView = UIImageView(frame: CGRect(x:0, y:0, width: 50, height:50))
             
@@ -63,7 +70,7 @@ class MapHelperDelegate: NSObject, MKMapViewDelegate {
             
             UIGraphicsBeginImageContext(imageView.frame.size)
             imageView.layer.renderInContext(UIGraphicsGetCurrentContext()!)
-            var thumbnail = UIGraphicsGetImageFromCurrentImageContext()
+//            var thumbnail = UIGraphicsGetImageFromCurrentImageContext()
             UIGraphicsEndImageContext()
             //xx
             

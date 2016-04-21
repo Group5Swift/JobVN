@@ -116,17 +116,15 @@ class UserDetailViewController: UIViewController, UIImagePickerControllerDelegat
         }else {
             let imageData = UIImagePNGRepresentation(self.userAvatar.image!)
             let avatar = PFFile(data: imageData!)
-            
-            avatar?.saveInBackground()
-            
-//            avatar?.saveInBackground()
-//            avatar?.saveInBackgroundWithBlock({ (success: Bool,error: NSError?) in
-//                if error == nil {
-//                    print("Image uploaded")
-//                }else {
-//                    print("error: \(error)")
-//                }
-//            })
+            avatar?.saveInBackgroundWithBlock({ (success: Bool, err: NSError?) in
+                if err == nil {
+                    print("Image uploaded")
+                }else {
+                    print("error: \(err)")
+                }
+                }, progressBlock: { (percent: Int32) in
+                    print("Percent \(percent)")
+            })
             user.setValue(avatar, forKey: User.AVATAR)
             
             

@@ -9,6 +9,12 @@
 import UIKit
 import Parse
 
+enum FetchDataMode {
+    case Job // job posted
+    case Seeker // who looking for job
+    case Saved // saved job
+}
+
 class JobsViewController: UIViewController {
 
     @IBOutlet weak var containerView: UIView!
@@ -16,7 +22,8 @@ class JobsViewController: UIViewController {
     @IBOutlet weak var mainTabar: UITabBar!
     @IBOutlet weak var backgroundImage: UIImageView!
 
-
+    var dataMode: FetchDataMode = .Job
+    
     var selectedCell: JobCollectionViewCell?
 
     var jobs: [Job] = []
@@ -63,25 +70,7 @@ class JobsViewController: UIViewController {
     }
     
     @IBAction func onLogout(sender: AnyObject) {
-        
-
-        
-        if PFUser.currentUser() != nil {
-            PFUser.logOutInBackgroundWithBlock() { (error: NSError?) -> Void in if error != nil {
-                print("logout fail \(error)")
-            } else {
-                NSUserDefaults.standardUserDefaults().setValue(nil, forKey: KEY_UID)
-                
-                self.dismissViewControllerAnimated(true, completion: nil)
-                }
-            }
-            
-        }else {
-            Facebook.logout()
-            self.dismissViewControllerAnimated(true, completion: nil)
-        }
-        
-        
+        NSNotificationCenter.defaultCenter().postNotificationName(User.USER_DID_LOGOUT_NOTIFICATION, object: nil)
     }
 
 
