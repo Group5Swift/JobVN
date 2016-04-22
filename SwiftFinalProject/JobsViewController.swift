@@ -23,30 +23,35 @@ class JobsViewController: UIViewController {
     @IBOutlet weak var backgroundImage: UIImageView!
 
     var dataMode: FetchDataMode = .Job
-    
+
     var selectedCell: JobCollectionViewCell?
 
     var jobs: [Job] = []
+
+
 
     override func viewDidLoad() {
         mainCollectionView.delegate = self
         mainCollectionView.dataSource = self
 
         print("Current user \(PFUser.currentUser()!)")
-        JobService.getJobs({(objects: [PFObject]?, error: NSError?) -> Void in
-            if error == nil {
-                if let objects = objects as? [Job] {
-                    self.jobs = objects
-                    self.mainCollectionView.reloadData()
 
-                    // load thumbnail of first job
-                    self.jobs[0].thumbnail?.getDataInBackgroundWithBlock({ (data: NSData?, error: NSError?) in
-                        self.setThumbnailBackgroundImage(0)
-                    })
+        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0)) {
+            JobService.getJobs({(objects: [PFObject]?, error: NSError?) -> Void in
+                if error == nil {
+                    if let objects = objects as? [Job] {
+                        self.jobs = objects
+                        self.mainCollectionView.reloadData()
 
+                        // load thumbnail of first job
+                        self.jobs[0].thumbnail?.getDataInBackgroundWithBlock({ (data: NSData?, error: NSError?) in
+                            self.setThumbnailBackgroundImage(0)
+                        })
+
+                    }
                 }
-            }
-        })
+            })
+        }
 
         self.navigationController?.navigationBar.setBackgroundImage(UIImage(), forBarMetrics: .Default)
         // Sets shadow (line below the bar) to a blank image

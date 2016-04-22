@@ -61,35 +61,45 @@ class JobCollectionViewCell: UICollectionViewCell {
                 let image = UIImage(data: data!)
                 self.defaultImageView.image = image
                 self.defaultImageView.contentMode = UIViewContentMode.ScaleAspectFill
+                self.defaultImageView.transform = CGAffineTransformMakeRotation(CGFloat(M_PI_2))
             }
             
         })
     }
     
     func setupVideo() {
+
         if job!.video != nil {
             let documentsURL = NSFileManager.defaultManager().URLsForDirectory(.DocumentDirectory, inDomains: .UserDomainMask)[0]
             let fileName = NSURL(fileURLWithPath: job!.video!.url!).lastPathComponent ?? "temp_video.mp4"
             let filePath = documentsURL.URLByAppendingPathComponent(fileName, isDirectory: false)
             
             if !NSFileManager().fileExistsAtPath(filePath.path!) {
-                job!.video?.getDataInBackgroundWithBlock({ (data: NSData?, error: NSError?) in
-                    data?.writeToURL(filePath, atomically: true)
-                    self.setupVideoPlayer(filePath)
+                dispatch_async(dispatch_get_main_queue(), { 
+                    self.job!.video?.getDataInBackgroundWithBlock({ (data: NSData?, error: NSError?) in
+                        data?.writeToURL(filePath, atomically: true)
+                        self.setupVideoPlayer(filePath)
+                    })
                 })
             } else {
                 self.setupVideoPlayer(filePath)
             }
-            
+
             videoView.hidden = true
+        } else {
+            setupMap()
         }
     }
-    
+
+    func setupMap() {
+
+    }
+
     func setupDetailView() {
         if let job = job {
-            
+
             self.title.text = job.name ?? "Baby sitter"
-            
+
             if let owner = job.owner {
                 do {
                     try owner.fetchIfNeeded()
@@ -109,7 +119,7 @@ class JobCollectionViewCell: UICollectionViewCell {
             self.timeValue.text = job.duetime ?? "30 April"
             
             self.priceValue.sizeToFit()
-            self.priceValue.layer.cornerRadius = 5.0
+            self.priceValue.layer.cornerRadius = 10.0
             self.priceValue.backgroundColor = UIColor(red: 20/255, green: 206/255, blue: 104/255, alpha: 1)
             self.priceValue.clipsToBounds = true
             self.priceValue.textAlignment = NSTextAlignment.Center
