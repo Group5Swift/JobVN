@@ -28,6 +28,7 @@ class PostJobViewController: UIViewController {
     
     @IBOutlet weak var scrollView: UIScrollView!
     
+    @IBOutlet weak var jobModeSegment: UISegmentedControl!
     var map: MKMapView?
     
     // this is to prevent flicker when key board is hide
@@ -135,7 +136,12 @@ class PostJobViewController: UIViewController {
         
         if title == "" || price == "" || location == "" || description == ""{
             showErrorAlert("Error", msg: "Please input required fields")
-        }else {
+        } else {
+            if jobModeSegment.selectedSegmentIndex == 0 {
+                job.setValue(Job.MODEJOB, forKey: Job.JOBMODE)
+            } else {
+                job.setValue(Job.MODESEEKER, forKey: Job.JOBMODE)
+            }
             job.setValue(title!, forKey: Job.NAME)
             job.setValue(price!, forKey: Job.PRICE)
             job.setValue(location!, forKey: Job.LOCATION)
@@ -154,9 +160,6 @@ class PostJobViewController: UIViewController {
             }
         }
     }
-    
-    
-    
     func showErrorAlert(title: String, msg: String) {
         let alert = UIAlertController(title: title, message: msg, preferredStyle: .Alert)
         let action = UIAlertAction(title: "OK", style: .Default, handler: nil)

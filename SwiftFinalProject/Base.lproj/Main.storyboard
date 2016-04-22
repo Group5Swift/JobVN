@@ -854,6 +854,7 @@
                         <outlet property="datePicker" destination="bv1-oT-Fn1" id="sMv-iC-oal"/>
                         <outlet property="headView" destination="Ehb-Gh-Ith" id="7PK-sK-x3D"/>
                         <outlet property="jobDescription" destination="kh7-m1-nwM" id="LdC-Bl-nkI"/>
+                        <outlet property="jobModeSegment" destination="oCq-YL-Vdt" id="ltd-fV-zvv"/>
                         <outlet property="locationLabel" destination="Ruj-m9-eRC" id="zwg-oh-OfB"/>
                         <outlet property="myCategoryPickerView" destination="IXJ-Ij-PPm" id="pgs-PI-umh"/>
                         <outlet property="price" destination="j80-oJ-CsW" id="G1l-B8-oTJ"/>
@@ -1123,7 +1124,7 @@
                                         <rect key="frame" x="0.0" y="28" width="375" height="54"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="bdy-Nj-49a" id="V5y-rr-Ibw">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="53"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="53.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="sJu-mZ-V1e">

@@ -25,6 +25,12 @@ class Job: PFObject, PFSubclassing {
     static let DATETIME = "date"
     static let ESTIMATE = "estimate"
     static let SELECTEDCATEGORY = "Category"
+    
+    static let JOBMODE = "JobMode"
+    
+    static let MODEJOB = 1
+    static let MODESEEKER = 2
+    
     static func parseClassName() -> String {
         return CLASS_STRING
     }
