@@ -8,6 +8,7 @@
 
 import UIKit
 import MapKit
+import Parse
 
 class JobDetailViewController: UIViewController {
 
@@ -41,6 +42,7 @@ class JobDetailViewController: UIViewController {
             else {
                 byUserLabel.text = "Anonymus"
             }
+
             priceLabel.text = job.price ?? "infinite"
             descriptionLabel.text = job.jobDescription ?? ""
             locationLabel.text = job.location ?? ""
@@ -61,6 +63,19 @@ class JobDetailViewController: UIViewController {
     }
 
     @IBAction func onTakeThisJob(sender: AnyObject) {
+        if let currentUser = PFUser.currentUser() {
+            let relation = currentUser.relationForKey("savedJobs")
+            relation.addObject(job!)
+            currentUser.saveInBackground()
+        }
+    }
+    
+    @IBAction func onFavorite(sender: AnyObject) {
+        if let currentUser = PFUser.currentUser() {
+            let relation = currentUser.relationForKey("favoritedJobs")
+            relation.addObject(job!)
+            currentUser.saveInBackground()
+        }
     }
 }
 

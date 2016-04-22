@@ -99,7 +99,7 @@ class JobCollectionViewCell: UICollectionViewCell {
 
     }
 
-    @IBAction func onDetail(sender: AnyObject) {
+    @IBAction func onDetailButton(sender: AnyObject) {
         if let job = job {
             jobsView?.openJobDetailView(job)
         }

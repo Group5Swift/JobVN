@@ -14,4 +14,11 @@ class JobService {
         let query = Job.query()!
         query.findObjectsInBackgroundWithBlock(complete)
     }
+    
+    static func getSavedJobs(complete: (objects: [PFObject]?, error: NSError?) -> ()) {
+        let currentUser = PFUser.currentUser()
+        if let savedJobRelation = currentUser?.relationForKey("savedJobs") {
+            savedJobRelation.query().findObjectsInBackgroundWithBlock(complete)
+        }
+    }
 }

@@ -10,9 +10,10 @@ import UIKit
 import Parse
 
 enum FetchDataMode {
-    case Job // job posted
-    case Seeker // who looking for job
-    case Saved // saved job
+    case Job // job created by employer
+    case Seeker // job created by employee
+    case Saved // saved jobs
+    case Favorited // favorited jobs
 }
 
 class JobsViewController: UIViewController {
@@ -35,20 +36,7 @@ class JobsViewController: UIViewController {
         print("Current user \(PFUser.currentUser()!)")
 
         dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0)) {
-            JobService.getJobs({(objects: [PFObject]?, error: NSError?) -> Void in
-                if error == nil {
-                    if let objects = objects as? [Job] {
-                        self.jobs = objects
-                        self.mainCollectionView.reloadData()
-
-                        // load thumbnail of first job
-                        self.jobs[0].thumbnail?.getDataInBackgroundWithBlock({ (data: NSData?, error: NSError?) in
-                            self.setThumbnailBackgroundImage(0)
-                        })
-
-                    }
-                }
-            })
+            self.getJobs()
         }
 
         self.navigationController?.navigationBar.setBackgroundImage(UIImage(), forBarMetrics: .Default)
@@ -60,6 +48,33 @@ class JobsViewController: UIViewController {
         self.navigationController?.navigationBar.translucent = true
         
         super.viewDidLoad()
+    }
+    
+    func getJobs() {
+        let completeHandler = {(objects: [PFObject]?, error: NSError?) -> Void in
+            if error == nil {
+                if let objects = objects as? [Job] {
+                    self.jobs = objects
+                    self.mainCollectionView.reloadData()
+                    
+                    // load thumbnail of first job
+                    self.jobs[0].thumbnail?.getDataInBackgroundWithBlock({ (data: NSData?, error: NSError?) in
+                        self.setThumbnailBackgroundImage(0)
+                    })
+                    
+                }
+            }
+        }
+        
+        switch dataMode {
+        case .Job:
+            JobService.getJobs(completeHandler)
+        case .Saved:
+            JobService.getSavedJobs(completeHandler)
+        default:
+            JobService.getJobs(completeHandler)
+        }
+        
     }
     
     override func viewWillAppear(animated: Bool) {
