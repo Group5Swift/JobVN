@@ -8,6 +8,7 @@
 
 import UIKit
 import Parse
+import MBProgressHUD
 
 enum FetchDataMode {
     case Job // job created by employer
@@ -33,11 +34,7 @@ class JobsViewController: UIViewController {
         mainCollectionView.delegate = self
         mainCollectionView.dataSource = self
 
-        print("Current user \(PFUser.currentUser()!)")
-
-        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0)) {
-            self.getJobs()
-        }
+        self.getJobs()
 
         self.navigationController?.navigationBar.setBackgroundImage(UIImage(), forBarMetrics: .Default)
         // Sets shadow (line below the bar) to a blank image
@@ -51,6 +48,8 @@ class JobsViewController: UIViewController {
     }
     
     func getJobs() {
+        MBProgressHUD.showHUDAddedTo(self.view, animated: true)
+        
         let completeHandler = {(objects: [PFObject]?, error: NSError?) -> Void in
             if error == nil {
                 if let objects = objects as? [Job] {
@@ -64,6 +63,7 @@ class JobsViewController: UIViewController {
                     
                 }
             }
+            MBProgressHUD.hideHUDForView(self.view, animated: true)
         }
         
         switch dataMode {
@@ -156,26 +156,25 @@ extension JobsViewController: UICollectionViewDelegate, UICollectionViewDataSour
 
 extension JobsViewController: UIScrollViewDelegate {
     func scrollViewWillEndDragging(scrollView: UIScrollView, withVelocity velocity: CGPoint, targetContentOffset: UnsafeMutablePointer<CGPoint>) {
-
+        
         let width = UIScreen.mainScreen().bounds.size.width
-
+        
         let layout = self.mainCollectionView.collectionViewLayout as! UICollectionViewFlowLayout
         let cellWidthIncludingSpacing = layout.itemSize.width + layout.minimumLineSpacing
-
+        
         var offset = targetContentOffset.memory
-
+        
         let index = (offset.x - scrollView.contentInset.left) / cellWidthIncludingSpacing
         let roundedIndex = round(index)
-
+        
         let x = roundedIndex * cellWidthIncludingSpacing - (width - layout.itemSize.width) / 2 + layout.minimumLineSpacing;
-
+        
         offset = CGPoint(x: x, y: scrollView.contentInset.top)
-
-//        if Int(roundedIndex) < self.jobs.count {
-//            setThumbnailBackgroundImage(Int(roundedIndex))
-//        }
-
+        
+        //        if Int(roundedIndex) < self.jobs.count {
+        //            setThumbnailBackgroundImage(Int(roundedIndex))
+        //        }
+        
         targetContentOffset.memory = offset
     }
-
 }

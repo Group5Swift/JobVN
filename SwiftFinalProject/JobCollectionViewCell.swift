@@ -47,7 +47,7 @@ class JobCollectionViewCell: UICollectionViewCell {
             if job != nil {
                 setupThumbnail()
                 setupVideo()
-                setupDetailView()
+//                setupDetailView()
             }
         }
     }
@@ -67,7 +67,6 @@ class JobCollectionViewCell: UICollectionViewCell {
                 self.defaultImageView.contentMode = UIViewContentMode.ScaleAspectFill
                 self.defaultImageView.transform = CGAffineTransformMakeRotation(CGFloat(M_PI_2))
             }
-            
         })
     }
     
@@ -79,7 +78,7 @@ class JobCollectionViewCell: UICollectionViewCell {
             let filePath = documentsURL.URLByAppendingPathComponent(fileName, isDirectory: false)
             
             if !NSFileManager().fileExistsAtPath(filePath.path!) {
-                dispatch_async(dispatch_get_main_queue(), { 
+                dispatch_async(dispatch_get_global_queue(QOS_CLASS_BACKGROUND, 0), {
                     self.job!.video?.getDataInBackgroundWithBlock({ (data: NSData?, error: NSError?) in
                         data?.writeToURL(filePath, atomically: true)
                         self.setupVideoPlayer(filePath)
@@ -107,34 +106,37 @@ class JobCollectionViewCell: UICollectionViewCell {
     
     func setupDetailView() {
         if let job = job {
-
-            self.title.text = job.name ?? "Baby sitter"
-
-            if let owner = job.owner {
-                do {
-                    try owner.fetchIfNeeded()
-                    if let name = owner.username {
-                        self.byUserValue.text = name
-                    } else {
-                        self.byUserValue.text = "Anonymus"
-                    }
-                } catch let err as NSError {
-                    print (err)
-                }
-            }
-            else {
-                self.byUserValue.text = "Anonymus"
-            }
-            self.priceValue.text = job.price ?? "infinite"
-            self.timeValue.text = job.duetime ?? "30 April"
+            title.text = job.name ?? "Baby sitter"
+            byUserValue.text = getOwnerName()
+            priceValue.text = job.price ?? "infinite"
+            timeValue.text = job.duetime ?? "30 April"
             
-            self.priceValue.sizeToFit()
-            self.priceValue.layer.cornerRadius = 10.0
-            self.priceValue.backgroundColor = UIColor(red: 20/255, green: 206/255, blue: 104/255, alpha: 1)
-            self.priceValue.clipsToBounds = true
-            self.priceValue.textAlignment = NSTextAlignment.Center
-            self.priceValue.layoutIfNeeded()
+            priceValue.sizeToFit()
+            priceValue.layer.cornerRadius = 10.0
+            priceValue.backgroundColor = UIColor(red: 20/255, green: 206/255, blue: 104/255, alpha: 1)
+            priceValue.clipsToBounds = true
+            priceValue.textAlignment = NSTextAlignment.Center
+            priceValue.layoutIfNeeded()
         }
+    }
+    
+    func getOwnerName() -> String {
+        return "Anonymous" // temporarily don't load owner.username because of its slowness
+        
+        if let owner = job?.owner {
+            do {
+                try owner.fetchIfNeeded()
+                if let name = owner.username {
+                    return name
+                } else {
+                    return "Anonymous"
+                }
+            } catch let err as NSError {
+                print (err)
+            }
+        }
+        
+        return "Anonymous"
     }
     
     @IBAction
