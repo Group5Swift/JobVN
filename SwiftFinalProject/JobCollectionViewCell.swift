@@ -47,7 +47,7 @@ class JobCollectionViewCell: UICollectionViewCell {
             if job != nil {
                 setupThumbnail()
                 setupVideo()
-//                setupDetailView()
+                setupDetailView()
             }
         }
     }
@@ -107,7 +107,7 @@ class JobCollectionViewCell: UICollectionViewCell {
     func setupDetailView() {
         if let job = job {
             title.text = job.name ?? "Baby sitter"
-            byUserValue.text = getOwnerName()
+            byUserValue.text = job.getOwnerName()
             priceValue.text = job.price ?? "infinite"
             timeValue.text = job.duetime ?? "30 April"
             
@@ -119,26 +119,7 @@ class JobCollectionViewCell: UICollectionViewCell {
             priceValue.layoutIfNeeded()
         }
     }
-    
-    func getOwnerName() -> String {
-        return "Anonymous" // temporarily don't load owner.username because of its slowness
-        
-        if let owner = job?.owner {
-            do {
-                try owner.fetchIfNeeded()
-                if let name = owner.username {
-                    return name
-                } else {
-                    return "Anonymous"
-                }
-            } catch let err as NSError {
-                print (err)
-            }
-        }
-        
-        return "Anonymous"
-    }
-    
+
     @IBAction
     func playerDidFinishPlaying() {
         print("ending of video")

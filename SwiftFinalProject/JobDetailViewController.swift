@@ -26,23 +26,7 @@ class JobDetailViewController: UIViewController {
         
         if let job = job {
             titleLabel.text = job.name ?? "Baby sitter"
-            
-            if let owner = job.owner {
-                do {
-                    try owner.fetchIfNeeded()
-                    if let name = owner.username {
-                        byUserLabel.text = name
-                    } else {
-                        byUserLabel.text = "Anonymus"
-                    }
-                } catch let err as NSError {
-                    print (err)
-                }
-            }
-            else {
-                byUserLabel.text = "Anonymus"
-            }
-
+            byUserLabel.text = job.getOwnerName()
             priceLabel.text = job.price ?? "infinite"
             descriptionLabel.text = job.jobDescription ?? ""
             locationLabel.text = job.location ?? ""

@@ -236,4 +236,23 @@ class Job: PFObject, PFSubclassing {
             return user
         }
     }
+    
+    func getOwnerName() -> String {
+        return "Anonymous" // temporarily don't load owner.username because of its slowness
+        
+        if let owner = owner {
+            do {
+                try owner.fetchIfNeeded()
+                if let name = owner.username {
+                    return name
+                } else {
+                    return "Anonymous"
+                }
+            } catch let err as NSError {
+                print (err)
+            }
+        }
+        
+        return "Anonymous"
+    }
 }
