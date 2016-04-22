@@ -14,7 +14,7 @@ import MapKit
 
 class PostJobViewController: UIViewController {
     @IBOutlet weak var createJobButton: UIButton!
-
+    
     @IBOutlet weak var headView: UIView!
     @IBOutlet weak var titleLabel: UITextField!
     @IBOutlet weak var price: UITextField!
@@ -86,40 +86,40 @@ class PostJobViewController: UIViewController {
     
     var keyboardIsShowing = false
     
-//    func keyboardWillShow(notification: NSNotification) {
-//        if !keyboardIsShowing {
-//            if let keyboardSize = (notification.userInfo?[UIKeyboardFrameBeginUserInfoKey] as? NSValue)?.CGRectValue() {
-//                var frame = self.view.frame
-//                frame.origin.y = frame.origin.y - keyboardSize.height
-//                self.view.frame = frame
-//                keyboardIsShowing = !keyboardIsShowing
-//            }
-//            
-//        }
-//    }
+    //    func keyboardWillShow(notification: NSNotification) {
+    //        if !keyboardIsShowing {
+    //            if let keyboardSize = (notification.userInfo?[UIKeyboardFrameBeginUserInfoKey] as? NSValue)?.CGRectValue() {
+    //                var frame = self.view.frame
+    //                frame.origin.y = frame.origin.y - keyboardSize.height
+    //                self.view.frame = frame
+    //                keyboardIsShowing = !keyboardIsShowing
+    //            }
+    //
+    //        }
+    //    }
     
-//    func keyboardWillHide(notification: NSNotification) {
-//        if keyboardIsShowing {
-//            if let keyboardSize = (notification.userInfo?[UIKeyboardFrameBeginUserInfoKey] as? NSValue)?.CGRectValue() {
-//                var frame = self.view.frame
-//                frame.origin.y = frame.origin.y + keyboardSize.height
-//                self.view.frame = frame
-//                keyboardIsShowing = !keyboardIsShowing
-//            }
-//        }
-//    }
+    //    func keyboardWillHide(notification: NSNotification) {
+    //        if keyboardIsShowing {
+    //            if let keyboardSize = (notification.userInfo?[UIKeyboardFrameBeginUserInfoKey] as? NSValue)?.CGRectValue() {
+    //                var frame = self.view.frame
+    //                frame.origin.y = frame.origin.y + keyboardSize.height
+    //                self.view.frame = frame
+    //                keyboardIsShowing = !keyboardIsShowing
+    //            }
+    //        }
+    //    }
     
     
     
     @IBAction func onBack(sender: AnyObject) {
         dismissViewControllerAnimated(true, completion: nil)
     }
-
+    
     @IBAction func onRecordVideo(sender: AnyObject) {
         performSegueWithIdentifier("RecordNewVideo", sender: self)
     }
     
-
+    
     @IBAction func onPost(sender: AnyObject) {
         let title = self.titleLabel.text
         let price = self.price.text
@@ -178,7 +178,7 @@ class PostJobViewController: UIViewController {
     }
     
     // MARK: - Navigation
-
+    
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         // Get the new view controller using segue.destinationViewController.
@@ -189,7 +189,7 @@ class PostJobViewController: UIViewController {
         target.delegate = self
         
     }
-
+    
 }
 
 extension PostJobViewController {
@@ -251,7 +251,7 @@ extension PostJobViewController: UITextFieldDelegate {
         
         MapHelper.inflateMap(scrollView, frame: headView.frame, address: textField.text!, delegate: delegate) { (map) in
             self.map = map
-//            map.frame.origin.y += self.scrollView.contentOffset.y
+            //            map.frame.origin.y += self.scrollView.contentOffset.y
             self.view.layoutIfNeeded()
         }
     }
@@ -265,16 +265,16 @@ extension PostJobViewController: RecordVideoCompleteDelegate {
             
             let file = try PFFile(name: "Video.mp4", data: NSData(contentsOfURL: output)!, contentType: "video/mp4")
             
-//            let file = try PFFile(name: "Video", contentsAtPath: output.path!)
-//            let t = PFFile(name: <#T##String?#>, data: <#T##NSData#>, contentType: <#T##String?#>)
-
+            //            let file = try PFFile(name: "Video", contentsAtPath: output.path!)
+            //            let t = PFFile(name: <#T##String?#>, data: <#T##NSData#>, contentType: <#T##String?#>)
+            
             file.saveInBackgroundWithBlock({ (success: Bool, err: NSError?) in
                 if err != nil {
                     print(err)
                 } else {
                     print("Save video complete")
                 }
-            }, progressBlock: { (percent: Int32) in
+                }, progressBlock: { (percent: Int32) in
                     print("Save percent: \(percent)")
             })
             
@@ -314,18 +314,18 @@ extension PostJobViewController: UIPickerViewDataSource, UIPickerViewDelegate {
     func pickerView(pickerView: UIPickerView, rowHeightForComponent component: Int) -> CGFloat {
         return 40
     }
-//    func pickerView(pickerView: UIPickerView, viewForRow row: Int, forComponent component: Int, reusingView view: UIView?) -> UIView {
-//        let pickerLabel = UILabel()
-//        let titleData = categories[row]
-//        let myTitle = NSAttributedString(string: titleData, attributes: [NSFontAttributeName:UIFont(name: "Georgia", size: 30.0)!,NSForegroundColorAttributeName:UIColor.blackColor()])
-//        pickerLabel.attributedText = myTitle
-//        return pickerLabel
-//    }
+    //    func pickerView(pickerView: UIPickerView, viewForRow row: Int, forComponent component: Int, reusingView view: UIView?) -> UIView {
+    //        let pickerLabel = UILabel()
+    //        let titleData = categories[row]
+    //        let myTitle = NSAttributedString(string: titleData, attributes: [NSFontAttributeName:UIFont(name: "Georgia", size: 30.0)!,NSForegroundColorAttributeName:UIColor.blackColor()])
+    //        pickerLabel.attributedText = myTitle
+    //        return pickerLabel
+    //    }
     func pickerView(pickerView: UIPickerView, attributedTitleForRow row: Int, forComponent component: Int) -> NSAttributedString? {
         let titleData = categories[row]
         let myTitle = NSAttributedString(string: titleData, attributes: [NSFontAttributeName:UIFont(name: "Georgia", size: 30.0)!,NSForegroundColorAttributeName:UIColor.blackColor()])
         return myTitle
     }
-
+    
 }
 
