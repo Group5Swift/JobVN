@@ -28,8 +28,6 @@ class JobsViewController: UIViewController {
 
     var jobs: [Job] = []
 
-
-
     override func viewDidLoad() {
         mainCollectionView.delegate = self
         mainCollectionView.dataSource = self
@@ -86,12 +84,23 @@ class JobsViewController: UIViewController {
     @IBAction func onPostNewJob(sender: AnyObject) {
         performSegueWithIdentifier("PostNewJob", sender: nil)
     }
+    
+    func openJobDetailView(job: Job) {
+        performSegueWithIdentifier("ViewJobDetail", sender: job)
+    }
 
     func setThumbnailBackgroundImage(index: Int) {
         do {
             backgroundImage.image = try UIImage(data: (self.jobs[index].thumbnail?.getData())!)
         } catch let e as NSError {
             print(e.localizedDescription)
+        }
+    }
+    
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        if segue.identifier == "ViewJobDetail" {
+            let vc = (segue.destinationViewController as! UINavigationController).viewControllers[0] as! JobDetailViewController
+            vc.job = sender as? Job
         }
     }
 }
@@ -105,6 +114,7 @@ extension JobsViewController: UICollectionViewDelegate, UICollectionViewDataSour
         let cell = mainCollectionView.dequeueReusableCellWithReuseIdentifier("JobCollectionCell", forIndexPath: indexPath) as! JobCollectionViewCell
 
         cell.job = jobs[indexPath.row]
+        cell.jobsView = self
 
         return cell
     }

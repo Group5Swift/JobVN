@@ -25,6 +25,10 @@ class JobCollectionViewCell: UICollectionViewCell {
     @IBOutlet weak var videoView: PlayerView!
     @IBOutlet weak var detailView: UIView!
     
+    var jobsView: JobsViewController?
+    
+    
+    
     func playVideo() {
         videoView.player?.play()
         videoView.hidden = false
@@ -95,6 +99,12 @@ class JobCollectionViewCell: UICollectionViewCell {
 
     }
 
+    @IBAction func onDetail(sender: AnyObject) {
+        if let job = job {
+            jobsView?.openJobDetailView(job)
+        }
+    }
+    
     func setupDetailView() {
         if let job = job {
 

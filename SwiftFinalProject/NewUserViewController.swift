@@ -59,7 +59,7 @@ class NewUserViewController: UIViewController {
     }
     
     func signUp() {
-        var user = PFUser()
+        let user = PFUser()
         user.username = nameInput.text!
         user.email = emailInput.text!
         user.password = passwordInput.text!
