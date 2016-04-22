@@ -26,7 +26,7 @@ class UserDetailViewController: UIViewController, UIImagePickerControllerDelegat
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        userAvatar.clipsToBounds = true
         userAvatar.layer.cornerRadius = userAvatar.frame.size.height / 2
         
         userDescription.text = user.valueForKey(User.DESCRIPTION) as? String
@@ -72,16 +72,23 @@ class UserDetailViewController: UIViewController, UIImagePickerControllerDelegat
             }
         }
         
+        print("get avatar")
+        
         let avatar = user.valueForKey(User.AVATAR) as? PFFile
-        avatar?.getDataInBackgroundWithBlock { (data: NSData?, err: NSError?) in
-            if err == nil {
-                if data == nil {
-                    return
+//        avatar.
+        if let avatar = avatar {
+            avatar.getDataInBackgroundWithBlock { (data: NSData?, err: NSError?) in
+                if err == nil {
+                    print("hsgyjgsadjsad")
+                    if data == nil {
+                        return
+                    }
+                    let image = UIImage(data: data!)
+                    self.userAvatar.image = image
+                } else {
+                    print("ERRRRRRRRRRRRRRRRR")
+                    print (err?.localizedDescription)
                 }
-                let image = UIImage(data: data!)
-                self.userAvatar.image = image
-            } else {
-                print (err?.localizedDescription)
             }
         }
         
@@ -119,37 +126,50 @@ class UserDetailViewController: UIViewController, UIImagePickerControllerDelegat
             avatar?.saveInBackgroundWithBlock({ (success: Bool, err: NSError?) in
                 if err == nil {
                     print("Image uploaded")
+                    self.user.setValue(avatar, forKey: User.AVATAR)
+                    self.user.saveInBackground()
                 }else {
                     print("error: \(err)")
                 }
                 }, progressBlock: { (percent: Int32) in
                     print("Percent \(percent)")
             })
-            user.setValue(avatar, forKey: User.AVATAR)
             
-            
-            
-//            
-//            var uploadImage = PFObject(className: "Avatar")
-//            uploadImage["uploader"] = PFUser.currentUser()
-//            uploadImage.saveInBackgroundWithBlock({ (success,err: NSError?) in
-//                if err == nil {
-//                    var imageData = UIImagePNGRepresentation(self.userAvatar.image!)
-//                    var parseImageFile = PFFile(name: "uploaded_image.png", data: imageData!)
-//                    uploadImage["imageFile"] = parseImageFile
-//                    uploadImage.saveInBackgroundWithBlock({ (success,error: NSError?) in
-//                        if error == nil {
-//                            print ("Image uploaded")
-//                        }else {
-//                            print ("error:\(error)")
-//                        }
-//                    })
-//                }else {
-//                    print("error: \(err)")
-//                }
-//            })
         }
         
+    }
+    
+    func resizeImage(image: UIImage, newWidth: CGFloat) -> UIImage {
+        
+        let scale = newWidth / image.size.width
+        let newHeight = image.size.height * scale
+        UIGraphicsBeginImageContext(CGSizeMake(newWidth, newHeight))
+        image.drawInRect(CGRectMake(0, 0, newWidth, newHeight))
+        let newImage = UIGraphicsGetImageFromCurrentImageContext()
+        UIGraphicsEndImageContext()
+        
+        return newImage
+    }
+    
+    func imagePickerController(picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : AnyObject]) {
+        var imagenow = info[UIImagePickerControllerOriginalImage] as? UIImage
+        
+        userAvatar.image = resizeImage(imagenow!, newWidth: 200)
+        
+        
+        
+//        pimg2 = imageImage.image!
+//        
+//        cidnew2 = textFieldCID!.text!
+//        pname2 = textFieldName!.text
+//        pmanu2 = textFieldMan!.text
+//        pnick2 = textFieldNick!.text
+//        podate2 = textFieldPODate!.text
+//        pno2 = textFieldArtNo!.text
+        
+        
+        
+        self.dismissViewControllerAnimated(true, completion: nil)
     }
     /*
     // MARK: - Navigation
