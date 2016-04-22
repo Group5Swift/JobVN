@@ -72,21 +72,17 @@ class UserDetailViewController: UIViewController, UIImagePickerControllerDelegat
             }
         }
         
-        print("get avatar")
-        
         let avatar = user.valueForKey(User.AVATAR) as? PFFile
 //        avatar.
         if let avatar = avatar {
             avatar.getDataInBackgroundWithBlock { (data: NSData?, err: NSError?) in
                 if err == nil {
-                    print("hsgyjgsadjsad")
                     if data == nil {
                         return
                     }
                     let image = UIImage(data: data!)
                     self.userAvatar.image = image
                 } else {
-                    print("ERRRRRRRRRRRRRRRRR")
                     print (err?.localizedDescription)
                 }
             }
