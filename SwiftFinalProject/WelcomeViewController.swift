@@ -35,14 +35,31 @@ class WelcomeScreenViewController: UIViewController {
                 let accessToken = FBSDKAccessToken.currentAccessToken().tokenString
                 print("Successfully logged in with facebook. \(accessToken)")
                 
-                
-                
                 FBSDKGraphRequest.init(graphPath: "me", parameters: ["fields":"first_name, last_name, picture.type(large)"]).startWithCompletionHandler { (connection, facebookResult, error) -> Void in
-//                    let strFirstName: String = (facebookResult.objectForKey("first_name") as? String)!
-//                    let strLastName: String = (facebookResult.objectForKey("last_name") as? String)!
-//                    let strPictureURL: String = (facebookResult.objectForKey("picture")?.objectForKey("data")?.objectForKey("url") as? String)!
+                    let strFirstName: String = (facebookResult.objectForKey("first_name") as? String)!
+                    let strLastName: String = (facebookResult.objectForKey("last_name") as? String)!
+                    let strPictureURL: String = (facebookResult.objectForKey("picture")?.objectForKey("data")?.objectForKey("url") as? String)!
 //                    let name = "Welcome, \(strFirstName) \(strLastName)"
-                    //self.ivUserProfileImage.image = UIImage(data: NSData(contentsOfURL: NSURL(string: strPictureURL)!)!)
+                    
+                    let newuser = PFUser()
+                    newuser.username = strFirstName+strLastName
+                    newuser.password = "123456"
+                    newuser.email = strFirstName + strLastName + "@gmail.com"
+                    let avatarImage = NSData(contentsOfURL: NSURL(fileURLWithPath: strPictureURL))
+                    if let avatarImage = avatarImage {
+                        let avatar = PFFile(data: avatarImage)
+                        avatar?.saveInBackground()
+                        newuser.setValue(avatar, forKey: User.AVATAR)
+                    }
+                    newuser.signUpInBackgroundWithBlock({ (success: Bool, err: NSError?) in
+                        PFUser.logInWithUsernameInBackground(strFirstName, password: "123456", block: { (user: PFUser?, err: NSError?) in
+                            if err == nil {
+                                self.performSegueWithIdentifier("GoToMainScreen", sender: nil)
+                            } else {
+                                print(err)
+                            }
+                        })
+                        })
                     }
                 
                 NSUserDefaults.standardUserDefaults().setValue(SEGUE_LOGGED_IN, forKey: KEY_UID)
