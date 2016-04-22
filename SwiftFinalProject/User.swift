@@ -29,19 +29,19 @@ class User: PFUser {
 //        return CLASS_STRING
 //    }
     
-    var avatar: PFFile? {
-        set (newValue) {
-            setValue(newValue, forKey: User.AVATAR)
-            saveInBackgroundWithBlock { (success: Bool, err: NSError?) in
-                if !success {
-                    print(err?.localizedDescription)
-                }
-            }
-        }
-        get {
-            return valueForKey(User.AVATAR) as? PFFile
-        }
-    }
+//    var avatar: PFFile? {
+//        set (newValue) {
+//            setValue(newValue, forKey: User.AVATAR)
+//            saveInBackgroundWithBlock { (success: Bool, err: NSError?) in
+//                if !success {
+//                    print(err?.localizedDescription)
+//                }
+//            }
+//        }
+//        get {
+//            return valueForKey(User.AVATAR) as? PFFile
+//        }
+//    }
     
     var name: String {
         set(newValue) {

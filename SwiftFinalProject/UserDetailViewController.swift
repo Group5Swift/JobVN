@@ -10,7 +10,7 @@ import UIKit
 import Parse
 
 class UserDetailViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
-
+    
     @IBOutlet weak var userAvatar: UIImageView!
     @IBOutlet weak var username: UILabel!
     @IBOutlet weak var takedJobCount: UILabel!
@@ -26,7 +26,7 @@ class UserDetailViewController: UIViewController, UIImagePickerControllerDelegat
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        userAvatar.clipsToBounds = true
         userAvatar.layer.cornerRadius = userAvatar.frame.size.height / 2
         
         userDescription.text = user.valueForKey(User.DESCRIPTION) as? String
@@ -73,21 +73,24 @@ class UserDetailViewController: UIViewController, UIImagePickerControllerDelegat
         }
         
         let avatar = user.valueForKey(User.AVATAR) as? PFFile
-        avatar?.getDataInBackgroundWithBlock { (data: NSData?, err: NSError?) in
-            if err == nil {
-                if data == nil {
-                    return
+        //        avatar.
+        if let avatar = avatar {
+            avatar.getDataInBackgroundWithBlock { (data: NSData?, err: NSError?) in
+                if err == nil {
+                    if data == nil {
+                        return
+                    }
+                    let image = UIImage(data: data!)
+                    self.userAvatar.image = image
+                } else {
+                    print (err?.localizedDescription)
                 }
-                let image = UIImage(data: data!)
-                self.userAvatar.image = image
-            } else {
-                print (err?.localizedDescription)
             }
         }
         
         // Do any additional setup after loading the view.
     }
-
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
@@ -96,7 +99,7 @@ class UserDetailViewController: UIViewController, UIImagePickerControllerDelegat
     @IBAction func onBack(sender: AnyObject) {
         dismissViewControllerAnimated(true, completion: nil)
     }
-
+    
     @IBAction func changeAvatarFromSource(sender: UIButton) {
         let imagePicker = UIImagePickerController()
         imagePicker.delegate = self
@@ -119,46 +122,59 @@ class UserDetailViewController: UIViewController, UIImagePickerControllerDelegat
             avatar?.saveInBackgroundWithBlock({ (success: Bool, err: NSError?) in
                 if err == nil {
                     print("Image uploaded")
+                    self.user.setValue(avatar, forKey: User.AVATAR)
+                    self.user.saveInBackground()
                 }else {
                     print("error: \(err)")
                 }
                 }, progressBlock: { (percent: Int32) in
                     print("Percent \(percent)")
             })
-            user.setValue(avatar, forKey: User.AVATAR)
             
-            
-            
-//            
-//            var uploadImage = PFObject(className: "Avatar")
-//            uploadImage["uploader"] = PFUser.currentUser()
-//            uploadImage.saveInBackgroundWithBlock({ (success,err: NSError?) in
-//                if err == nil {
-//                    var imageData = UIImagePNGRepresentation(self.userAvatar.image!)
-//                    var parseImageFile = PFFile(name: "uploaded_image.png", data: imageData!)
-//                    uploadImage["imageFile"] = parseImageFile
-//                    uploadImage.saveInBackgroundWithBlock({ (success,error: NSError?) in
-//                        if error == nil {
-//                            print ("Image uploaded")
-//                        }else {
-//                            print ("error:\(error)")
-//                        }
-//                    })
-//                }else {
-//                    print("error: \(err)")
-//                }
-//            })
         }
         
     }
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
+    
+    func resizeImage(image: UIImage, newWidth: CGFloat) -> UIImage {
+        
+        let scale = newWidth / image.size.width
+        let newHeight = image.size.height * scale
+        UIGraphicsBeginImageContext(CGSizeMake(newWidth, newHeight))
+        image.drawInRect(CGRectMake(0, 0, newWidth, newHeight))
+        let newImage = UIGraphicsGetImageFromCurrentImageContext()
+        UIGraphicsEndImageContext()
+        
+        return newImage
     }
-    */
-
+    
+    func imagePickerController(picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : AnyObject]) {
+        var imagenow = info[UIImagePickerControllerOriginalImage] as? UIImage
+        
+        userAvatar.image = resizeImage(imagenow!, newWidth: 200)
+        
+        
+        
+        //        pimg2 = imageImage.image!
+        //
+        //        cidnew2 = textFieldCID!.text!
+        //        pname2 = textFieldName!.text
+        //        pmanu2 = textFieldMan!.text
+        //        pnick2 = textFieldNick!.text
+        //        podate2 = textFieldPODate!.text
+        //        pno2 = textFieldArtNo!.text
+        
+        
+        
+        self.dismissViewControllerAnimated(true, completion: nil)
+    }
+    /*
+     // MARK: - Navigation
+     
+     // In a storyboard-based application, you will often want to do a little preparation before navigation
+     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+     // Get the new view controller using segue.destinationViewController.
+     // Pass the selected object to the new view controller.
+     }
+     */
+    
 }
