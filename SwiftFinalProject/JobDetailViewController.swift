@@ -20,7 +20,7 @@ class JobDetailViewController: UIViewController {
     @IBOutlet weak var mapView: MKMapView!
     
     var job: Job?
-    
+    var user: User?
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -51,6 +51,12 @@ class JobDetailViewController: UIViewController {
             let relation = currentUser.relationForKey("savedJobs")
             relation.addObject(job!)
             currentUser.saveInBackground()
+        }
+        if let currentUser = PFUser.currentUser() {
+            let phoneNumber = user?.phone ?? "01689722989"
+            if let url = NSURL(string: "tel://\(phoneNumber)") {
+                UIApplication.sharedApplication().openURL(url)
+            }
         }
     }
     

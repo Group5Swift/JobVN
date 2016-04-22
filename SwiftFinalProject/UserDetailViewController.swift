@@ -154,17 +154,6 @@ class UserDetailViewController: UIViewController, UIImagePickerControllerDelegat
         
         
         
-        //        pimg2 = imageImage.image!
-        //
-        //        cidnew2 = textFieldCID!.text!
-        //        pname2 = textFieldName!.text
-        //        pmanu2 = textFieldMan!.text
-        //        pnick2 = textFieldNick!.text
-        //        podate2 = textFieldPODate!.text
-        //        pno2 = textFieldArtNo!.text
-        
-        
-        
         self.dismissViewControllerAnimated(true, completion: nil)
     }
     /*
