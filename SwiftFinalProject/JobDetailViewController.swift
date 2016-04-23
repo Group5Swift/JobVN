@@ -9,7 +9,7 @@
 import UIKit
 import MapKit
 import Parse
-
+import Social
 class JobDetailViewController: UIViewController {
 
     @IBOutlet weak var titleLabel: UILabel!
@@ -67,5 +67,14 @@ class JobDetailViewController: UIViewController {
             currentUser.saveInBackground()
         }
     }
+    
+    @IBAction func shareOnFacebook(sender: UIButton) {
+        
+        var shareToFacebook : SLComposeViewController = SLComposeViewController(forServiceType: SLServiceTypeFacebook)
+        shareToFacebook.setInitialText("\(titleLabel.text!)")
+        shareToFacebook.setInitialText("\(descriptionLabel.text!)")
+        self.presentViewController(shareToFacebook, animated: true, completion: nil)
+    }
+    
 }
 

@@ -82,9 +82,6 @@ class LoginViewController: UIViewController {
                 
             }
         }
-        
-        
-        
     }
     func showErrorAlert(title: String, msg: String) {
         let alert = UIAlertController(title: title, message: msg, preferredStyle: .Alert)
