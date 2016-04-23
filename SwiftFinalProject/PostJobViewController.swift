@@ -135,7 +135,9 @@ class PostJobViewController: UIViewController {
         let selectedcategory = self.selectedCatagory
         
         if title == "" || price == "" || location == "" || description == ""{
-            showErrorAlert("Error", msg: "Please input required fields")
+            //showErrorAlert("Error", msg: "Please input required fields")
+            SCLAlertView().showError("Error", subTitle: "Please input required fields")
+            
         } else {
             if jobModeSegment.selectedSegmentIndex == 0 {
                 job.setValue(Job.MODEJOB, forKey: Job.JOBMODE)
@@ -154,18 +156,14 @@ class PostJobViewController: UIViewController {
                     self.showErrLog(err!)
                 }
                 else {
+                    SCLAlertView().showSuccess("Successs", subTitle: "Job is posted")
                     print("New JOB posted with title: \(title!), price: \(price!), location: \(location!), description: \(description!), dateTime: \(dateTime), selectedCategory: \(selectedcategory)")
                     self.dismissViewControllerAnimated(true, completion: nil)
                 }
             }
         }
     }
-    func showErrorAlert(title: String, msg: String) {
-        let alert = UIAlertController(title: title, message: msg, preferredStyle: .Alert)
-        let action = UIAlertAction(title: "OK", style: .Default, handler: nil)
-        alert.addAction(action)
-        presentViewController(alert, animated: true, completion: nil)
-    }
+    
     func showErrLog(err: NSError) {
         let alert = UIAlertController(title: "Oops!", message: err.localizedDescription, preferredStyle: .Alert)
         let action = UIAlertAction(title: "OK", style: .Default, handler: nil)
@@ -272,7 +270,8 @@ extension PostJobViewController: RecordVideoCompleteDelegate {
                 if err != nil {
                     print(err)
                 } else {
-                    print("Save video complete")
+                    
+                    SCLAlertView().showSuccess("Successful", subTitle: "Save video complete")
                 }
                 }, progressBlock: { (percent: Int32) in
                     print("Save percent: \(percent)")

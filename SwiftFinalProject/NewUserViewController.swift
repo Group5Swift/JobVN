@@ -66,34 +66,26 @@ class NewUserViewController: UIViewController {
         
         if (retypePasswordInput.text == passwordInput.text) {
             if (nameInput.text == "" || emailInput.text == "" || passwordInput.text == "" || retypePasswordInput.text == "") {
-                self.showErrorAlert("Error input", msg: "Please input require fields")
+                SCLAlertView().showError("Error Input", subTitle: "Please input required fields")
             }else {
                 user.signUpInBackgroundWithBlock { (success, error) in
                     if success {
-                        //print("Successfully Signed Up \(user.username) and \(user.email) and \(user.password)")
-                        self.showErrorAlert("Successfull", msg: "Sign up successfull with User name : \(user.username!)")
+                        SCLAlertView().showSuccess("Successfull", subTitle: "Sign up successfull with User Name : \(user.username!)")
                         self.performSegueWithIdentifier("GoToMainScreen", sender: nil)
                         
                     }else {
-                        //print ("Error: \(error)")
-                        self.showErrorAlert("Could not sign up", msg: "Please check your email and password")
+                        SCLAlertView().showError("Could not sign up", subTitle: "Please check your email and password")
                     }
                 }
             }
             
         }else {
-            self.showErrorAlert("Error input", msg: "Retype password is not match")
+            SCLAlertView().showError("Error input", subTitle: "Retype password is not match")
         }
         
         
     }
     
-    func showErrorAlert(title: String, msg: String) {
-        let alert = UIAlertController(title: title, message: msg, preferredStyle: .Alert)
-        let action = UIAlertAction(title: "OK", style: .Default, handler: nil)
-        alert.addAction(action)
-        presentViewController(alert, animated: true, completion: nil)
-    }
     
     
     @IBAction func onTapOutside(sender: AnyObject) {

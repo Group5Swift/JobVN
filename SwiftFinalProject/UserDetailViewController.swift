@@ -115,15 +115,15 @@ class UserDetailViewController: UIViewController, UIImagePickerControllerDelegat
     @IBAction func saveChanged(sender: UIBarButtonItem) {
         
         if userAvatar.image == nil {
-            print ("Image not uploaded")
+            SCLAlertView().showError("Error", subTitle: "Image not uploaded")
         }else {
             let imageData = UIImagePNGRepresentation(self.userAvatar.image!)
             let avatar = PFFile(data: imageData!)
             avatar?.saveInBackgroundWithBlock({ (success: Bool, err: NSError?) in
                 if err == nil {
-                    print("Image uploaded")
                     self.user.setValue(avatar, forKey: User.AVATAR)
                     self.user.saveInBackground()
+                    SCLAlertView().showSuccess("Success", subTitle: "Image uploaded")
                 }else {
                     print("error: \(err)")
                 }

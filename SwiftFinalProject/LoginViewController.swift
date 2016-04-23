@@ -49,9 +49,7 @@ class LoginViewController: UIViewController {
 
     @IBAction func onBack(sender: AnyObject) {
         dismissViewControllerAnimated(true, completion: nil)
-//        dismissViewControllerAnimated(true) {
-//        self.welcomeScreen.onLoginComplete()
-//        }
+
         
     }
     
@@ -63,7 +61,7 @@ class LoginViewController: UIViewController {
         user.password = passwordInput.text
         
         if (emailInput.text == "" || passwordInput.text == "") {
-            self.showErrorAlert("Error Sign in", msg: "Please input required fields")
+            SCLAlertView().showError("Could not login", subTitle: "Please input required fields")
         }else {
             PFUser.logInWithUsernameInBackground(emailInput.text!, password: passwordInput.text!) { (User: PFUser?, error: NSError?) in
                 
@@ -75,20 +73,15 @@ class LoginViewController: UIViewController {
                     })
                     
                 }else {
-                    //print ("Error: \(error)")
-                    self.showErrorAlert("Could not login", msg: "Please check your email and password")
+                    
+                    SCLAlertView().showError("Could not login", subTitle: "Please check your email and password")
                     
                 }
                 
             }
         }
     }
-    func showErrorAlert(title: String, msg: String) {
-        let alert = UIAlertController(title: title, message: msg, preferredStyle: .Alert)
-        let action = UIAlertAction(title: "OK", style: .Default, handler: nil)
-        alert.addAction(action)
-        presentViewController(alert, animated: true, completion: nil)
-    }
+
     
     @IBAction func onTapOutside(sender: AnyObject) {
         view.endEditing(true)
