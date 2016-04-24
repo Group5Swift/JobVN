@@ -11,6 +11,7 @@ import Parse
 import ParseUI
 import AVFoundation
 import MapKit
+import MBProgressHUD
 
 class PostJobViewController: UIViewController {
     @IBOutlet weak var createJobButton: UIButton!
@@ -121,6 +122,7 @@ class PostJobViewController: UIViewController {
     
     
     @IBAction func onPost(sender: AnyObject) {
+        MBProgressHUD.showHUDAddedTo(self.view, animated: true)
         let title = self.titleLabel.text
         let price = self.price.text
         let location = self.locationLabel.text
@@ -161,6 +163,7 @@ class PostJobViewController: UIViewController {
                     self.showErrLog(err!)
                 }
                 else {
+                    MBProgressHUD.hideHUDForView(self.view, animated: true)
                     SCLAlertView().showSuccess("Successs", subTitle: "Job is posted")
                     print("New JOB posted with title: \(title!), price: \(price!), location: \(location!), description: \(description!), dateTime: \(dateTime), selectedCategory: \(selectedcategory)")
                     self.dismissViewControllerAnimated(true, completion: nil)
