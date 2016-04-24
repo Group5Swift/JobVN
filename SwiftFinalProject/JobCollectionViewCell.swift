@@ -108,7 +108,7 @@ class JobCollectionViewCell: UICollectionViewCell {
     func setupDetailView() {
         if let job = job {
             title.text = job.name ?? "Baby sitter"
-            byUserValue.text = job.getOwnerName()
+            byUserValue.text = job.ownerUsername ?? "Anomymous"
             priceValue.text = job.price ?? "infinite"
             timeValue.text = job.duetime ?? "30 April"
             

@@ -149,6 +149,11 @@ class PostJobViewController: UIViewController {
             job.setValue(location!, forKey: Job.LOCATION)
             job.setValue(description!, forKey: Job.DESCRIPTION)
             job.setValue(owner!, forKey: Job.OWNER)
+            if let ownerUsername = owner!.valueForKey(User.NAME) {
+                job.setValue(ownerUsername, forKey: Job.OWNERUSERNAME)
+            } else {
+                job.setValue("Anomymous", forKey: Job.OWNERUSERNAME)
+            }
             job.setValue(dateTime, forKey: Job.DATETIME)
             job.setValue(selectedcategory, forKey: Job.SELECTEDCATEGORY)
             job.saveInBackgroundWithBlock { (success: Bool, err: NSError?) in

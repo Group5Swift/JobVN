@@ -14,6 +14,7 @@ class Job: PFObject, PFSubclassing {
     static let NAME = "Name"
     static let DESCRIPTION = "Description"
     static let OWNER = "Owner"
+    static let OWNERUSERNAME = "OwnerUsername"
     static let LOCATION = "Location"
     static let LONGTITUDE = "Longtitude"
     static let LATITUDE = "Latitude"
@@ -95,7 +96,6 @@ class Job: PFObject, PFSubclassing {
     
     var name: String? {
         set(newValue) {
-//            self.name = newValue
             setValue(name, forKey: Job.NAME)
             saveInBackgroundWithBlock { (success: Bool, err: NSError?) in
                 if !success {
@@ -111,7 +111,6 @@ class Job: PFObject, PFSubclassing {
     
     var jobDescription: String? {
         set(newValue) {
-//            self.jobDescription = newValue
             setValue(jobDescription, forKey: Job.DESCRIPTION)
             saveInBackgroundWithBlock { (success: Bool, err: NSError?) in
                 if !success {
@@ -127,7 +126,6 @@ class Job: PFObject, PFSubclassing {
     
     var location: String? {
         set(newValue) {
-//            self.location = newValue
             setValue(location, forKey: Job.LOCATION)
             saveInBackgroundWithBlock { (success: Bool, err: NSError?) in
                 if !success {
@@ -143,7 +141,6 @@ class Job: PFObject, PFSubclassing {
     
     var longtitue: String? {
         set(newValue) {
-//            self.longtitue = newValue
             setValue(longtitue, forKey: Job.LONGTITUDE)
             saveInBackgroundWithBlock { (success: Bool, err: NSError?) in
                 if !success {
@@ -159,7 +156,6 @@ class Job: PFObject, PFSubclassing {
     
     var latitue: String? {
         set(newValue) {
-//            self.latitue = newValue
             setValue(latitue, forKey: Job.LATITUDE)
             saveInBackgroundWithBlock { (success: Bool, err: NSError?) in
                 if !success {
@@ -175,7 +171,6 @@ class Job: PFObject, PFSubclassing {
     
     var price: String? {
         set(newValue) {
-//            self.price = newValue
             setValue(price, forKey: Job.PRICE)
             saveInBackgroundWithBlock { (success: Bool, err: NSError?) in
                 if !success {
@@ -191,7 +186,6 @@ class Job: PFObject, PFSubclassing {
     
     var duetime: String? {
         set(newValue) {
-//            self.duetime = newValue
             setValue(duetime, forKey: Job.DATETIME)
             saveInBackgroundWithBlock { (success: Bool, err: NSError?) in
                 if !success {
@@ -207,7 +201,6 @@ class Job: PFObject, PFSubclassing {
     
     var owner: User? {
         set(newValue) {
-//            self.owner = newValue
             setValue(owner, forKey: Job.OWNER)
             saveInBackgroundWithBlock { (success: Bool, err: NSError?) in
                 if !success {
@@ -221,22 +214,17 @@ class Job: PFObject, PFSubclassing {
         }
     }
     
-    func getOwnerName() -> String {
-        return "Anonymous" // temporarily don't load owner.username because of its slowness
-        
-        if let owner = owner {
-            do {
-                try owner.fetchIfNeeded()
-                if let name = owner.username {
-                    return name
-                } else {
-                    return "Anonymous"
+    var ownerUsername: String? {
+        set(newValue) {
+            setValue(duetime, forKey: Job.OWNERUSERNAME)
+            saveInBackgroundWithBlock { (success: Bool, err: NSError?) in
+                if !success {
+                    print(err?.localizedDescription)
                 }
-            } catch let err as NSError {
-                print (err)
             }
         }
-        
-        return "Anonymous"
+        get {
+            return valueForKey(Job.OWNERUSERNAME) as? String
+        }
     }
 }
