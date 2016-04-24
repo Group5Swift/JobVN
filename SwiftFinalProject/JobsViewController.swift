@@ -174,10 +174,10 @@ extension JobsViewController: UIScrollViewDelegate {
         
         offset = CGPoint(x: x, y: scrollView.contentInset.top)
         
-        //        if Int(roundedIndex) < self.jobs.count {
-        //            setThumbnailBackgroundImage(Int(roundedIndex))
-        //        }
-        
+        if Int(roundedIndex) < self.jobs.count {
+            setThumbnailBackgroundImage(Int(roundedIndex))
+        }
+
         targetContentOffset.memory = offset
     }
 }

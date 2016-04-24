@@ -18,7 +18,6 @@ class Job: PFObject, PFSubclassing {
     static let LONGTITUDE = "Longtitude"
     static let LATITUDE = "Latitude"
     static let PRICE = "Price"
-    static let DUETIME = "DueTime"
     static let VIDEO = "Video"
     static let EMPLOYER = "Employer"
     static let THUMBNAIL = "Thumbnail"
@@ -62,21 +61,6 @@ class Job: PFObject, PFSubclassing {
         get {
             let estimate = valueForKey(Job.ESTIMATE) as? String
             return estimate
-        }
-    }
-    
-    var date: String? {
-        set(newValue) {
-            setValue(date, forKey: Job.DUETIME)
-            saveInBackgroundWithBlock { (success: Bool, err: NSError?) in
-                if !success {
-                    print(err?.localizedDescription)
-                }
-            }
-        }
-        get {
-            let date = valueForKey(Job.DUETIME) as? String
-            return date
         }
     }
     
