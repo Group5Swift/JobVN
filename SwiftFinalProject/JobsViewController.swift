@@ -53,14 +53,15 @@ class JobsViewController: UIViewController {
         let completeHandler = {(objects: [PFObject]?, error: NSError?) -> Void in
             if error == nil {
                 if let objects = objects as? [Job] {
-                    self.jobs = objects
-                    self.mainCollectionView.reloadData()
-                    
-                    // load thumbnail of first job
-                    self.jobs[0].thumbnail?.getDataInBackgroundWithBlock({ (data: NSData?, error: NSError?) in
-                        self.setThumbnailBackgroundImage(0)
-                    })
-                    
+                    if objects.count > 0 {
+                        self.jobs = objects
+                        self.mainCollectionView.reloadData()
+                        
+                        // load thumbnail of first job
+                        self.jobs[0].thumbnail?.getDataInBackgroundWithBlock({ (data: NSData?, error: NSError?) in
+                            self.setThumbnailBackgroundImage(0)
+                        })
+                    }
                 }
             }
             MBProgressHUD.hideHUDForView(self.view, animated: true)
@@ -71,6 +72,8 @@ class JobsViewController: UIViewController {
             JobService.getJobs(completeHandler)
         case .Saved:
             JobService.getSavedJobs(completeHandler)
+        case .Seeker:
+            JobService.getSeekers(completeHandler)
         default:
             JobService.getJobs(completeHandler)
         }

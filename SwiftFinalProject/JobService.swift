@@ -12,6 +12,14 @@ import Parse
 class JobService {
     static func getJobs(complete: (objects: [PFObject]?, error: NSError?) -> ()) {
         let query = Job.query()!
+        query.whereKey(Job.JOBMODE, equalTo: 1)
+        query.findObjectsInBackgroundWithBlock(complete)
+        
+    }
+    
+    static func getSeekers(complete: (objects: [PFObject]?, error: NSError?) -> ()) {
+        let query = Job.query()!
+        query.whereKey(Job.JOBMODE, equalTo: 2)
         query.findObjectsInBackgroundWithBlock(complete)
     }
     
