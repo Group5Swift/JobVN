@@ -35,7 +35,7 @@ class PostJobViewController: UIViewController {
     var isKeyboardShow = false
     var _currentKeyboardHeight:CGFloat = 0
     
-    let categories = ["Baby Keeper","Love" ,"Homework","Part-time", "Carrier","Hospital", "Restaurant", "Retail", "Hotel",  "Health Care", "Office", "Art work", "Deliver"]
+    let categories = ["Baby", "Teach", "Housework", "Clean", "Worker", "Cook", "Fix", "Nurse", "Old", "Disable", "Deliver"]
     
     let job = PFObject(className: Job.CLASS_STRING)
     var selectedCatagory = String()
@@ -308,7 +308,7 @@ extension PostJobViewController: UIPickerViewDataSource, UIPickerViewDelegate {
     }
     func pickerView(pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
         //print("Selected category: \(categories[row])")
-        selectedCatagory = categories[row]
+        selectedCatagory = categories[row].lowercaseString
     }
     func pickerView(pickerView: UIPickerView, rowHeightForComponent component: Int) -> CGFloat {
         return 40
