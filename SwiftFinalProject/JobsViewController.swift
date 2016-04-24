@@ -34,8 +34,6 @@ class JobsViewController: UIViewController {
         mainCollectionView.delegate = self
         mainCollectionView.dataSource = self
 
-        self.getJobs()
-
         self.navigationController?.navigationBar.setBackgroundImage(UIImage(), forBarMetrics: .Default)
         // Sets shadow (line below the bar) to a blank image
         self.navigationController?.navigationBar.shadowImage = UIImage()
@@ -45,6 +43,10 @@ class JobsViewController: UIViewController {
         self.navigationController?.navigationBar.translucent = true
         
         super.viewDidLoad()
+    }
+    
+    override func viewDidAppear(animated: Bool) {
+        getJobs()
     }
     
     func getJobs() {

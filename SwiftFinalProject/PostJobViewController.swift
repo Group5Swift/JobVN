@@ -38,7 +38,7 @@ class PostJobViewController: UIViewController {
     let categories = ["Baby", "Teach", "Housework", "Clean", "Worker", "Cook", "Fix", "Nurse", "Old", "Disable", "Deliver"]
     
     let job = PFObject(className: Job.CLASS_STRING)
-    var selectedCatagory = String()
+    var selectedCatagory: String = "baby"
     
     override func viewDidLoad() {
         super.viewDidLoad()
