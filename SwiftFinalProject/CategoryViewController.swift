@@ -105,16 +105,14 @@ extension CategoryViewController: UITableViewDelegate, UITableViewDataSource {
     }
 }
 
-let categories = [["name" : "Baby Keeper", "code": "babykeeper"],
-                  ["name" : "Love", "code": "love"],
-                  ["name": "Homework", "code": "homework"],
-                  ["name": "Part-time", "code": "partime"],
-                  ["name": "Carrier", "code": "carrier"],
-                  ["name": "Hospital", "code": "hospital"],
-                  ["name": "Restaurant", "code": "restaurant"],
-                  ["name": "Retail", "code": "retail"],
-                  ["name": "Hotel", "code": "hotel"],
-                  ["name": "Health Care", "code": "healthcare"],
-                  ["name": "Office", "code": "office"],
-                  ["name": "Art work", "code": "artwork"],
+let categories = [["name" : "Baby Keeper", "code": "baby"],
+                  ["name": "Tutor", "code": "teach"],
+                  ["name": "Housework", "code": "housework"],
+                  ["name": "Cleaning", "code": "clean"],
+                  ["name": "Worker", "code": "worker"],
+                  ["name": "Food & Cook", "code": "cook"],
+                  ["name": "Mechanism fix", "code": "fix"],
+                  ["name": "Hospital", "code": "nurse"],
+                  ["name": "Old people Care", "code": "old"],
+                  ["name": "Disable people care", "code": "disable"],
                   ["name": "Deliver", "code": "deliver"]]

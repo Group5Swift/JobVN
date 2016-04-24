@@ -24,6 +24,7 @@ class JobCollectionViewCell: UICollectionViewCell {
     @IBOutlet weak var defaultImageView: UIImageView!
     @IBOutlet weak var videoView: PlayerView!
     @IBOutlet weak var detailView: UIView!
+    @IBOutlet weak var categoryImage: UIImageView!
     
     var jobsView: JobsViewController?
     
@@ -110,6 +111,10 @@ class JobCollectionViewCell: UICollectionViewCell {
             byUserValue.text = job.getOwnerName()
             priceValue.text = job.price ?? "infinite"
             timeValue.text = job.duetime ?? "30 April"
+            
+            if let selectedCategory = job.selectedCategory {
+                categoryImage.image = UIImage(named: selectedCategory)
+            }
             
             priceValue.sizeToFit()
             priceValue.layer.cornerRadius = 10.0
