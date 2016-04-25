@@ -84,8 +84,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             let tabbar = UITabBarController()
             tabbar.viewControllers = [mainJobsView, mainSeekersView, savedJobsView, userDetail]
             
-//            tabbar.tabBar.barTintColor = UIColor.blackColor()
-//            tabbar.tabBar.tintColor = UIColor.grayColor()
+            tabbar.tabBar.barTintColor = UIColor.blackColor()
+            tabbar.tabBar.tintColor = UIColor.grayColor()
             
             window?.rootViewController = tabbar
             
