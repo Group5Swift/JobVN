@@ -58,11 +58,7 @@ class JobsViewController: UIViewController {
                     if objects.count > 0 {
                         self.jobs = objects
                         self.mainCollectionView.reloadData()
-                        
-                        // load thumbnail of first job
-                        self.jobs[0].thumbnail?.getDataInBackgroundWithBlock({ (data: NSData?, error: NSError?) in
-                            self.setThumbnailBackgroundImage(0)
-                        })
+                        self.setThumbnailBackgroundImage(0)
                     }
                 }
             }
