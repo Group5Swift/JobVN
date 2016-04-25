@@ -24,6 +24,8 @@ class JobDetailViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        
+        
         if let job = job {
             titleLabel.text = job.name ?? "Baby sitter"
             byUserLabel.text = job.ownerUsername ?? "Anomymous"
@@ -48,29 +50,26 @@ class JobDetailViewController: UIViewController {
 
     @IBAction func onTakeThisJob(sender: AnyObject) {
         if let currentUser = PFUser.currentUser() {
-            let relation = currentUser.relationForKey("savedJobs")
+            let relation = currentUser.relationForKey(User.SAVES)
             relation.addObject(job!)
             currentUser.saveInBackground()
         }
-        if let currentUser = PFUser.currentUser() {
-            let phoneNumber = user?.phone ?? "01689722989"
-            if let url = NSURL(string: "tel://\(phoneNumber)") {
-                UIApplication.sharedApplication().openURL(url)
-            }
+        let phoneNumber = user?.phone ?? "01689722989"
+        if let url = NSURL(string: "tel://\(phoneNumber)") {
+            UIApplication.sharedApplication().openURL(url)
         }
     }
     
     @IBAction func onFavorite(sender: AnyObject) {
         if let currentUser = PFUser.currentUser() {
-            let relation = currentUser.relationForKey("favoritedJobs")
+            let relation = currentUser.relationForKey(User.LOVEDJOB)
             relation.addObject(job!)
             currentUser.saveInBackground()
         }
     }
     
     @IBAction func shareOnFacebook(sender: UIButton) {
-        
-        var shareToFacebook : SLComposeViewController = SLComposeViewController(forServiceType: SLServiceTypeFacebook)
+        let shareToFacebook : SLComposeViewController = SLComposeViewController(forServiceType: SLServiceTypeFacebook)
         shareToFacebook.setInitialText("\(titleLabel.text!)")
         shareToFacebook.setInitialText("\(descriptionLabel.text!)")
         self.presentViewController(shareToFacebook, animated: true, completion: nil)

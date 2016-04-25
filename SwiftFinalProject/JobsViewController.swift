@@ -84,12 +84,12 @@ class JobsViewController: UIViewController {
     
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
-        UIApplication.sharedApplication().statusBarStyle = .LightContent
+//        UIApplication.sharedApplication().statusBarStyle = .LightContent
     }
     
     override func viewDidDisappear(animated: Bool) {
         super.viewDidDisappear(animated)
-        UIApplication.sharedApplication().statusBarStyle = .Default
+//        UIApplication.sharedApplication().statusBarStyle = .Default
     }
     
     @IBAction func onLogout(sender: AnyObject) {
@@ -176,9 +176,9 @@ extension JobsViewController: UIScrollViewDelegate {
         
         offset = CGPoint(x: x, y: scrollView.contentInset.top)
         
-//        if Int(roundedIndex) < self.jobs.count {
-//            setThumbnailBackgroundImage(Int(roundedIndex))
-//        }
+        if Int(roundedIndex) < self.jobs.count {
+            setThumbnailBackgroundImage(Int(roundedIndex))
+        }
 
         targetContentOffset.memory = offset
     }

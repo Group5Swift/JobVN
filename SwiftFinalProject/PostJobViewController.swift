@@ -139,7 +139,6 @@ class PostJobViewController: UIViewController {
         if title == "" || price == "" || location == "" || description == ""{
             //showErrorAlert("Error", msg: "Please input required fields")
             SCLAlertView().showError("Error", subTitle: "Please input required fields")
-            
         } else {
             if jobModeSegment.selectedSegmentIndex == 0 {
                 job.setValue(Job.MODEJOB, forKey: Job.JOBMODE)
@@ -166,6 +165,11 @@ class PostJobViewController: UIViewController {
                     MBProgressHUD.hideHUDForView(self.view, animated: true)
                     SCLAlertView().showSuccess("Successs", subTitle: "Job is posted")
                     print("New JOB posted with title: \(title!), price: \(price!), location: \(location!), description: \(description!), dateTime: \(dateTime), selectedCategory: \(selectedcategory)")
+                    if let currentUser = PFUser.currentUser() {
+                        let createdRela = currentUser.relationForKey(User.POSTEDJOB)
+                        createdRela.addObject(self.job)
+                        currentUser.saveInBackground()
+                    }
                     self.dismissViewControllerAnimated(true, completion: nil)
                 }
             }
@@ -278,7 +282,7 @@ extension PostJobViewController: RecordVideoCompleteDelegate {
                 if err != nil {
                     print(err)
                 } else {
-                    
+                    print("Video saved")
                     SCLAlertView().showSuccess("Successful", subTitle: "Save video complete")
                 }
                 }, progressBlock: { (percent: Int32) in

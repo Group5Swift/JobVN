@@ -117,7 +117,7 @@ class JobCollectionViewCell: UICollectionViewCell {
             }
             
             priceValue.sizeToFit()
-            priceValue.layer.cornerRadius = 10.0
+            priceValue.layer.cornerRadius = priceValue.frame.size.height / 2
             priceValue.backgroundColor = UIColor(red: 20/255, green: 206/255, blue: 104/255, alpha: 1)
             priceValue.clipsToBounds = true
             priceValue.textAlignment = NSTextAlignment.Center

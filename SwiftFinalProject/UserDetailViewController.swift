@@ -26,15 +26,25 @@ class UserDetailViewController: UIViewController, UIImagePickerControllerDelegat
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        self.navigationController?.navigationBar.setBackgroundImage(UIImage(), forBarMetrics: .Default)
+        // Sets shadow (line below the bar) to a blank image
+        self.navigationController?.navigationBar.shadowImage = UIImage()
+        // Sets the translucent background color
+        self.navigationController?.navigationBar.backgroundColor = UIColor(red: 0.0, green: 0.0, blue: 0.0, alpha: 0.0)
+        // Set translucent. (Default value is already true, so this can be removed if desired.)
+        self.navigationController?.navigationBar.translucent = true
+
+        
         userAvatar.clipsToBounds = true
         userAvatar.layer.cornerRadius = userAvatar.frame.size.height / 2
         
         userDescription.text = user.valueForKey(User.DESCRIPTION) as? String
-        rating.text = "\(user.valueForKey(User.RATING) as? Float)"
+        rating.text = "\((user.valueForKey(User.RATING) as? Float) ?? 4.5)"
         
         let createdRela = user.relationForKey(User.POSTEDJOB)
         let lovedRela = user.relationForKey(User.LOVEDJOB)
-        let takedRela = user.relationForKey(User.TAKES)
+        let takedRela = user.relationForKey(User.SAVES)
         
         createdRela.query().findObjectsInBackgroundWithBlock { (data: [PFObject]?, err: NSError?) in
             if err == nil {
@@ -101,6 +111,14 @@ class UserDetailViewController: UIViewController, UIImagePickerControllerDelegat
     }
     
     @IBAction func changeAvatarFromSource(sender: UIButton) {
+        let imagePicker = UIImagePickerController()
+        imagePicker.delegate = self
+        imagePicker.sourceType = UIImagePickerControllerSourceType.PhotoLibrary
+        imagePicker.allowsEditing = false
+        self.presentViewController(imagePicker, animated: true, completion: nil)
+    }
+    
+    @IBAction func changeAvatar(sender: AnyObject) {
         let imagePicker = UIImagePickerController()
         imagePicker.delegate = self
         imagePicker.sourceType = UIImagePickerControllerSourceType.PhotoLibrary

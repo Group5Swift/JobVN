@@ -67,7 +67,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             
             let mainSeekersView = storyboard.instantiateViewControllerWithIdentifier("JobViewController") as! UINavigationController
             mainSeekersView.tabBarItem.title = "Seeker"
-            mainSeekersView.tabBarItem.image = UIImage(named: "recent")
+            mainSeekersView.tabBarItem.image = UIImage(named: "seekercat")
             (mainSeekersView.viewControllers[0] as! JobsViewController).dataMode = .Seeker
             
             let savedJobsView = storyboard.instantiateViewControllerWithIdentifier("JobViewController") as! UINavigationController
@@ -84,8 +84,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             let tabbar = UITabBarController()
             tabbar.viewControllers = [mainJobsView, mainSeekersView, savedJobsView, userDetail]
             
-            tabbar.tabBar.barTintColor = UIColor.blackColor()
-            tabbar.tabBar.tintColor = UIColor.grayColor()
+//            tabbar.tabBar.barTintColor = UIColor.blackColor()
+//            tabbar.tabBar.tintColor = UIColor.grayColor()
             
             window?.rootViewController = tabbar
             
