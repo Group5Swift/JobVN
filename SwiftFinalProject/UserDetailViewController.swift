@@ -34,12 +34,14 @@ class UserDetailViewController: UIViewController, UIImagePickerControllerDelegat
         self.navigationController?.navigationBar.backgroundColor = UIColor(red: 0.0, green: 0.0, blue: 0.0, alpha: 0.0)
         // Set translucent. (Default value is already true, so this can be removed if desired.)
         self.navigationController?.navigationBar.translucent = true
-
+        user.fetchIfNeededInBackground()
         
         userAvatar.clipsToBounds = true
         userAvatar.layer.cornerRadius = userAvatar.frame.size.height / 2
         
         userDescription.text = (user.valueForKey(User.DESCRIPTION) as? String) ?? userDescription.text
+        
+        username.text = user.username ?? username.text
         
         userDescription.sizeToFit()
         
