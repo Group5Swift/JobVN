@@ -16,7 +16,7 @@ import MBProgressHUD
 class PostJobViewController: UIViewController {
     @IBOutlet weak var createJobButton: UIButton!
     
-    @IBOutlet weak var headView: UIView!
+    @IBOutlet weak var headView: MKMapView!
     @IBOutlet weak var titleLabel: UITextField!
     @IBOutlet weak var price: UITextField!
     @IBOutlet weak var locationLabel: UITextField!
@@ -258,11 +258,10 @@ extension PostJobViewController: UITextFieldDelegate {
         let delegate = MapHelperDelegate()
         
         print ("inflate map")
+        print (textField.text!)
         
-        MapHelper.inflateMap(scrollView, frame: headView.frame, address: textField.text!, delegate: delegate) { (map) in
-            self.map = map
-            //            map.frame.origin.y += self.scrollView.contentOffset.y
-            self.view.layoutIfNeeded()
+        headView.subviews.forEach({ $0.removeFromSuperview() })
+        MapHelper.inflateMap(headView, frame: CGRect(x: 0, y: 0, width: headView.frame.width, height: headView.frame.height), address: textField.text!, delegate: delegate) { (map) in
         }
     }
 }

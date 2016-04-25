@@ -110,11 +110,13 @@ class JobsViewController: UIViewController {
     }
 
     func setThumbnailBackgroundImage(index: Int) {
-        do {
-            backgroundImage.image = try UIImage(data: (self.jobs[index].thumbnail?.getData())!)
-        } catch let e as NSError {
-            print(e.localizedDescription)
-        }
+        self.jobs[index].thumbnail?.getDataInBackgroundWithBlock({ (data: NSData?, error: NSError?) in
+            if error == nil {
+                self.backgroundImage.image = UIImage(data: data!)
+            } else {
+                print(error!.localizedDescription)
+            }
+        }, progressBlock: nil)
     }
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
