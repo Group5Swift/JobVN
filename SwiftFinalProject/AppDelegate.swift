@@ -63,20 +63,24 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             
             let mainJobsView = storyboard.instantiateViewControllerWithIdentifier("JobViewController") as! UINavigationController
             mainJobsView.tabBarItem.title = "Job"
+            mainJobsView.tabBarItem.titlePositionAdjustment = UIOffsetMake(CGFloat(0), CGFloat(-3))
             mainJobsView.tabBarItem.image = UIImage(named: "recent")
             
             let mainSeekersView = storyboard.instantiateViewControllerWithIdentifier("JobViewController") as! UINavigationController
             mainSeekersView.tabBarItem.title = "Seeker"
+            mainSeekersView.tabBarItem.titlePositionAdjustment = UIOffsetMake(CGFloat(0), CGFloat(-3))
             mainSeekersView.tabBarItem.image = UIImage(named: "seekercat")
             (mainSeekersView.viewControllers[0] as! JobsViewController).dataMode = .Seeker
             
             let savedJobsView = storyboard.instantiateViewControllerWithIdentifier("JobViewController") as! UINavigationController
             savedJobsView.tabBarItem.title = "Saved"
+            savedJobsView.tabBarItem.titlePositionAdjustment = UIOffsetMake(CGFloat(0), CGFloat(-3))
             savedJobsView.tabBarItem.image = UIImage(named: "love")
             (savedJobsView.viewControllers[0] as! JobsViewController).dataMode = .Saved
             
             let userDetail = storyboard.instantiateViewControllerWithIdentifier("UserDetailController") as! UINavigationController
             userDetail.tabBarItem.title = "Profile"
+            userDetail.tabBarItem.titlePositionAdjustment = UIOffsetMake(CGFloat(0), CGFloat(-3))
             userDetail.tabBarItem.image = UIImage(named: "info")
             
             (userDetail.viewControllers[0] as! UserDetailViewController).user = PFUser.currentUser()
@@ -86,7 +90,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             
             tabbar.tabBar.barTintColor = UIColor.blackColor()
             tabbar.tabBar.tintColor = UIColor.grayColor()
-            
             window?.rootViewController = tabbar
             
             return true
