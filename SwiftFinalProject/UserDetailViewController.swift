@@ -39,8 +39,11 @@ class UserDetailViewController: UIViewController, UIImagePickerControllerDelegat
         userAvatar.clipsToBounds = true
         userAvatar.layer.cornerRadius = userAvatar.frame.size.height / 2
         
-        userDescription.text = user.valueForKey(User.DESCRIPTION) as? String
-        rating.text = "\((user.valueForKey(User.RATING) as? Float) ?? 4.5)"
+        userDescription.text = (user.valueForKey(User.DESCRIPTION) as? String) ?? userDescription.text
+        
+        userDescription.sizeToFit()
+        
+        rating.text = "\((user.valueForKey(User.RATING) as? Float) ?? 4.5)/5"
         
         let createdRela = user.relationForKey(User.POSTEDJOB)
         let lovedRela = user.relationForKey(User.LOVEDJOB)
@@ -166,12 +169,8 @@ class UserDetailViewController: UIViewController, UIImagePickerControllerDelegat
     }
     
     func imagePickerController(picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : AnyObject]) {
-        var imagenow = info[UIImagePickerControllerOriginalImage] as? UIImage
-        
+        let imagenow = info[UIImagePickerControllerOriginalImage] as? UIImage
         userAvatar.image = resizeImage(imagenow!, newWidth: 200)
-        
-        
-        
         self.dismissViewControllerAnimated(true, completion: nil)
     }
     /*

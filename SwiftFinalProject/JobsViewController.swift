@@ -42,6 +42,10 @@ class JobsViewController: UIViewController {
         // Set translucent. (Default value is already true, so this can be removed if desired.)
         self.navigationController?.navigationBar.translucent = true
         
+        if view.frame.size.width < 375 && view.frame.size.height < 500 {
+            (mainCollectionView.collectionViewLayout as! UICollectionViewFlowLayout).itemSize = CGSize(width: 260, height: 300)
+        }
+        
         super.viewDidLoad()
     }
     
