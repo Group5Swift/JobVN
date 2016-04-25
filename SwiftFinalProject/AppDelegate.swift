@@ -80,7 +80,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             userDetail.tabBarItem.image = UIImage(named: "info")
             
             (userDetail.viewControllers[0] as! UserDetailViewController).user = PFUser.currentUser()
-            
+            (userDetail.viewControllers[0] as! UserDetailViewController).navigationItem.leftBarButtonItems = []
             let tabbar = UITabBarController()
             tabbar.viewControllers = [mainJobsView, mainSeekersView, savedJobsView, userDetail]
             
