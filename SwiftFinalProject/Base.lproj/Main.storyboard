@@ -465,9 +465,6 @@
                                     <constraint firstItem="iem-jf-GOU" firstAttribute="leading" secondItem="fAa-JN-M83" secondAttribute="leading" id="X8Z-rR-NN0"/>
                                     <constraint firstAttribute="trailing" secondItem="iem-jf-GOU" secondAttribute="trailing" id="aR2-br-s7q"/>
                                 </constraints>
-                                <connections>
-                                    <outletCollection property="gestureRecognizers" destination="TuG-Ki-5bd" appends="YES" id="CwA-nS-WG1"/>
-                                </connections>
                             </view>
                         </subviews>
                         <color key="backgroundColor" red="0.14509803921568629" green="0.14509803921568629" blue="0.14509803921568629" alpha="1" colorSpace="calibratedRGB"/>
@@ -516,11 +513,6 @@
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="DC3-Um-WrM" userLabel="First Responder" sceneMemberID="firstResponder"/>
-                <tapGestureRecognizer id="TuG-Ki-5bd">
-                    <connections>
-                        <action selector="onTapOutside:" destination="Nqm-mX-Sja" id="P5e-ZQ-ZeT"/>
-                    </connections>
-                </tapGestureRecognizer>
             </objects>
             <point key="canvasLocation" x="1775.5" y="530.5"/>
         </scene>
