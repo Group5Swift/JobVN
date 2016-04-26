@@ -267,7 +267,7 @@
 				TargetAttributes = {
 					949879791CB4A69300219AD4 = {
 						CreatedOnToolsVersion = 7.3;
-						DevelopmentTeam = M3984GFJZF;
+						DevelopmentTeam = 9M89LZG9KX;
 					};
 				};
 			};
@@ -346,7 +346,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-SwiftFinalProject/Pods-SwiftFinalProject-resources.sh\"\n\n";
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-SwiftFinalProject/Pods-SwiftFinalProject-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		8A4724F41757EFE744E31210 /* 📦 Check Pods Manifest.lock */ = {
@@ -541,14 +541,17 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/SwiftFinalProject",
 				);
 				INFOPLIST_FILE = SwiftFinalProject/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.RStudio.ios.coderschool.SwiftFinalProject;
+				PRODUCT_BUNDLE_IDENTIFIER = com.RStudio.ios.coderschoolSwiftFinalProject;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "SwiftFinalProject/SwiftFinalProject-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 			};
@@ -560,14 +563,17 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/SwiftFinalProject",
 				);
 				INFOPLIST_FILE = SwiftFinalProject/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.RStudio.ios.coderschool.SwiftFinalProject;
+				PRODUCT_BUNDLE_IDENTIFIER = com.RStudio.ios.coderschoolSwiftFinalProject;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "SwiftFinalProject/SwiftFinalProject-Bridging-Header.h";
 			};
 			name = Release;
