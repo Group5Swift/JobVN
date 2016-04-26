@@ -115,4 +115,5 @@ let categories = [["name" : "Baby Keeper", "code": "baby"],
                   ["name": "Hospital", "code": "nurse"],
                   ["name": "Old people Care", "code": "old"],
                   ["name": "Disable people care", "code": "disable"],
-                  ["name": "Deliver", "code": "deliver"]]
+                  ["name": "Deliver", "code": "deliver"],
+                  ["name": "Other", "code": "Other"]]

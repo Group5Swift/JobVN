@@ -36,7 +36,7 @@ class PostJobViewController: UIViewController {
     var isKeyboardShow = false
     var _currentKeyboardHeight:CGFloat = 0
     
-    let categories = ["Baby", "Teach", "Housework", "Clean", "Worker", "Cook", "Fix", "Nurse", "Old", "Disable", "Deliver"]
+    let categories = ["Baby", "Teach", "Housework", "Clean", "Worker", "Cook", "Fix", "Nurse", "Old", "Disable", "Deliver", "Other"]
     
     let job = PFObject(className: Job.CLASS_STRING)
     var selectedCatagory: String = "baby"

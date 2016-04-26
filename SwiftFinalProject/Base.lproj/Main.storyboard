@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10116" systemVersion="15E65" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10116" systemVersion="15B42" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="BYZ-38-t0r">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
@@ -23,7 +23,7 @@
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="welcomeback" translatesAutoresizingMaskIntoConstraints="NO" id="Kms-WD-s3O">
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                             </imageView>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="lRl-VD-YPi" customClass="FBSDKLoginButton">
+                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="lRl-VD-YPi" customClass="FBSDKLoginButton">
                                 <rect key="frame" x="30" y="460" width="315" height="62"/>
                                 <color key="backgroundColor" red="0.0" green="0.67450980392156867" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
@@ -67,7 +67,7 @@
                                     <action selector="onLoginWithAccount:" destination="BYZ-38-t0r" eventType="touchUpInside" id="GOE-hu-X41"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5iP-ou-NLW">
+                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5iP-ou-NLW">
                                 <rect key="frame" x="30" y="540" width="315" height="61"/>
                                 <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
@@ -291,7 +291,7 @@
                                         </collectionViewFlowLayout>
                                         <cells>
                                             <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="JobCollectionCell" id="2pI-tJ-Xqx" customClass="JobCollectionViewCell" customModule="SwiftFinalProject" customModuleProvider="target">
-                                                <rect key="frame" x="20" y="41.5" width="330" height="520"/>
+                                                <rect key="frame" x="20" y="42" width="330" height="520"/>
                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                 <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
                                                     <rect key="frame" x="0.0" y="0.0" width="330" height="520"/>
@@ -573,7 +573,7 @@
                                                 </connections>
                                             </button>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="200.000đ" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="m1B-Gh-6Rn">
-                                                <rect key="frame" x="79" y="343.5" width="100" height="28"/>
+                                                <rect key="frame" x="79" y="344" width="100" height="28"/>
                                                 <color key="backgroundColor" red="0.078431372549019607" green="0.80784313725490198" blue="0.40784313725490196" alpha="1" colorSpace="calibratedRGB"/>
                                                 <constraints>
                                                     <constraint firstAttribute="width" constant="100" id="Kfo-Uw-HUF"/>
@@ -621,8 +621,8 @@
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="5tS-vA-N5S">
                                                 <rect key="frame" x="0.0" y="543" width="375" height="60"/>
                                                 <subviews>
-                                                    <button opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="249" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4Us-VW-lIZ">
-                                                        <rect key="frame" x="191" y="12" width="175.5" height="36"/>
+                                                    <button opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="249" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4Us-VW-lIZ">
+                                                        <rect key="frame" x="191" y="12" width="176" height="36"/>
                                                         <color key="backgroundColor" red="0.0" green="0.67450980390000004" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                                         <constraints>
                                                             <constraint firstAttribute="height" constant="36" id="wD1-Zh-c38"/>
@@ -636,7 +636,7 @@
                                                         </connections>
                                                     </button>
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="GuB-oP-DRw">
-                                                        <rect key="frame" x="8" y="12" width="175.5" height="36"/>
+                                                        <rect key="frame" x="8" y="12" width="176" height="36"/>
                                                         <color key="backgroundColor" red="0.0" green="0.67450980392156867" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                                         <constraints>
                                                             <constraint firstAttribute="height" constant="36" id="qIX-GZ-Ypa"/>
@@ -1440,7 +1440,7 @@
                                         <rect key="frame" x="0.0" y="28" width="375" height="54"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="bdy-Nj-49a" id="V5y-rr-Ibw">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="53.5"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="53"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="sJu-mZ-V1e">
@@ -1595,7 +1595,7 @@
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="justified" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="OsI-Ie-wSV">
-                                                <rect key="frame" x="22" y="358" width="331" height="217.5"/>
+                                                <rect key="frame" x="22" y="358" width="331" height="218"/>
                                                 <string key="text">Want some good family fun? Make a mess.
 
 “Kids love a good mess and a mess is often a sign of a good time,” says award-winning author Donna Erickson. Simple activities like playing in a big pile of leaves or splashing in puddles after an afternoon shower become family traditions that kids remember.
