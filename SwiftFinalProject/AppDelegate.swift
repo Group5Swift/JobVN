@@ -56,8 +56,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             self.window?.rootViewController = vc
         }
         
-        if NSUserDefaults.standardUserDefaults().valueForKey(KEY_UID) != nil
-            || PFUser.currentUser()?.username != nil{
+        NSNotificationCenter.defaultCenter().addObserverForName(User.USER_DID_LOGIN_NOTIFICATION, object: nil, queue: NSOperationQueue.mainQueue()) { (noti: NSNotification) in
             
             let storyboard = UIStoryboard(name: "Main", bundle: nil)
             
@@ -90,9 +89,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             
             tabbar.tabBar.barTintColor = UIColor.blackColor()
             tabbar.tabBar.tintColor = UIColor.grayColor()
-            window?.rootViewController = tabbar
-            
-            return true
+            self.window?.rootViewController = tabbar
+        }
+        
+        if NSUserDefaults.standardUserDefaults().valueForKey(KEY_UID) != nil
+            || PFUser.currentUser()?.username != nil{
+            NSNotificationCenter.defaultCenter().postNotificationName(User.USER_DID_LOGIN_NOTIFICATION, object: nil)
         }
         else {
             if application.applicationState != UIApplicationState.Background {
@@ -108,6 +110,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             }
             return FBSDKApplicationDelegate.sharedInstance().application(application, didFinishLaunchingWithOptions: launchOptions)
         }
+        return true
     }
 
     func applicationWillResignActive(application: UIApplication) {

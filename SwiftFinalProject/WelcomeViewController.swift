@@ -54,7 +54,8 @@ class WelcomeScreenViewController: UIViewController {
                     newuser.signUpInBackgroundWithBlock({ (success: Bool, err: NSError?) in
                         PFUser.logInWithUsernameInBackground(strFirstName, password: "123456", block: { (user: PFUser?, err: NSError?) in
                             if err == nil {
-                                self.performSegueWithIdentifier("GoToMainScreen", sender: nil)
+                                NSNotificationCenter.defaultCenter().postNotificationName(User.USER_DID_LOGIN_NOTIFICATION, object: nil)
+//                                self.performSegueWithIdentifier("GoToMainScreen", sender: nil)
                             } else {
                                 print(err)
                             }

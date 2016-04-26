@@ -63,13 +63,16 @@ class LoginViewController: UIViewController {
         if (emailInput.text == "" || passwordInput.text == "") {
             SCLAlertView().showError("Could not login", subTitle: "Please input required fields")
         }else {
-            PFUser.logInWithUsernameInBackground(emailInput.text!, password: passwordInput.text!) { (User: PFUser?, error: NSError?) in
+            PFUser.logInWithUsernameInBackground(emailInput.text!, password: passwordInput.text!) { (user: PFUser?, error: NSError?) in
                 
                 if error == nil {
                     dispatch_async(dispatch_get_main_queue(), {
                         
                         NSUserDefaults.standardUserDefaults().setValue(SEGUE_LOGGED_IN, forKey: KEY_UID)
-                        self.performSegueWithIdentifier("GoToMainScreen", sender: nil)
+                        
+                        self.view.endEditing(true)
+                        
+                        NSNotificationCenter.defaultCenter().postNotificationName(User.USER_DID_LOGIN_NOTIFICATION, object: nil)
                     })
                     
                 }else {

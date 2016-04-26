@@ -19,16 +19,22 @@ class JobDetailViewController: UIViewController {
     @IBOutlet weak var descriptionLabel: UILabel!
     @IBOutlet weak var mapView: MKMapView!
     
+    @IBOutlet weak var postJobButton: UIButton!
+    @IBOutlet weak var shareFbButton: UIButton!
+    
     var job: Job?
     var user: User?
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        
+        postJobButton.layer.cornerRadius = postJobButton.frame.size.height / 2
+        shareFbButton.layer.cornerRadius = shareFbButton.frame.size.height / 2
+        priceLabel.layer.cornerRadius = 8
+        priceLabel.clipsToBounds = true
         
         if let job = job {
             titleLabel.text = job.name ?? "Baby sitter"
-            byUserLabel.text = job.ownerUsername ?? "Anomymous"
+            byUserLabel.text = "Posted by " + (job.ownerUsername ?? "Anomymous")
             priceLabel.text = job.price ?? "infinite"
             descriptionLabel.text = job.jobDescription ?? ""
             locationLabel.text = job.location ?? ""

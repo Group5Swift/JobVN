@@ -34,8 +34,6 @@ class NewUserViewController: UIViewController {
         blurEffectView.autoresizingMask = [.FlexibleWidth, .FlexibleHeight] // for supporting device rotation
         backgroundImage.addSubview(blurEffectView)
         
-        
-        
         self.navigationController?.navigationBar.setBackgroundImage(UIImage(), forBarMetrics: .Default)
         // Sets shadow (line below the bar) to a blank image
         self.navigationController?.navigationBar.shadowImage = UIImage()
@@ -71,22 +69,20 @@ class NewUserViewController: UIViewController {
                 user.signUpInBackgroundWithBlock { (success, error) in
                     if success {
                         SCLAlertView().showSuccess("Successfull", subTitle: "Sign up successfull with User Name : \(user.username!)")
-                        self.performSegueWithIdentifier("GoToMainScreen", sender: nil)
                         
+                        self.view.endEditing(true)
+                        
+                        NSNotificationCenter.defaultCenter().postNotificationName(User.USER_DID_LOGIN_NOTIFICATION, object: nil)
+//                        self.performSegueWithIdentifier("GoToMainScreen", sender: nil)
                     }else {
                         SCLAlertView().showError("Could not sign up", subTitle: "Please check your email and password")
                     }
                 }
             }
-            
         }else {
             SCLAlertView().showError("Error input", subTitle: "Retype password is not match")
         }
-        
-        
     }
-    
-    
     
     @IBAction func onTapOutside(sender: AnyObject) {
         view.endEditing(true)

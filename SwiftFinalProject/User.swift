@@ -12,6 +12,7 @@ import Parse
 class User: PFUser {
     
     static let USER_DID_LOGOUT_NOTIFICATION = "UserDidLogout"
+    static let USER_DID_LOGIN_NOTIFICATION = "UserDidLogin"
     
     static let CLASS_STRING = "User"
     static let NAME = "UserName"

@@ -125,6 +125,10 @@ class JobsViewController: UIViewController {
             vc.job = sender as? Job
         }
     }
+    
+    @IBAction func onTapOutside(sender: AnyObject) {
+        self.view.endEditing(true)
+    }
 }
 
 extension JobsViewController: UICollectionViewDelegate, UICollectionViewDataSource {
