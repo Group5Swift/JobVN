@@ -1107,7 +1107,7 @@
                                 <action selector="onBack:" destination="PnC-FA-2o5" id="bwn-kB-sNg"/>
                             </connections>
                         </barButtonItem>
-                        <barButtonItem key="rightBarButtonItem" title="Video" id="h5V-aw-6fd">
+                        <barButtonItem key="rightBarButtonItem" image="recordvideo" id="h5V-aw-6fd">
                             <connections>
                                 <action selector="onRecordVideo:" destination="PnC-FA-2o5" id="n9c-8D-y5k"/>
                             </connections>
@@ -1933,6 +1933,7 @@ Families can enjoy endless indoor fun, too, without giving messes a second thoug
         <image name="nurse" width="48" height="48"/>
         <image name="playVideoButton" width="200" height="200"/>
         <image name="r1" width="1500" height="1026"/>
+        <image name="recordvideo" width="19" height="19"/>
         <image name="saveinfo" width="20" height="18"/>
         <image name="shadow" width="321" height="297"/>
         <image name="trigger" width="94" height="94"/>
