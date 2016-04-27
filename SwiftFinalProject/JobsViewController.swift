@@ -89,7 +89,7 @@ class JobsViewController: UIViewController {
     
     override func viewWillDisappear(animated: Bool) {
         super.viewWillDisappear(animated)
-//        UIApplication.sharedApplication().statusBarStyle = .Default
+        UIApplication.sharedApplication().statusBarStyle = .Default
     }
     
     @IBAction func onLogout(sender: AnyObject) {

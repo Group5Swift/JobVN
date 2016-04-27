@@ -78,7 +78,18 @@ class JobDetailViewController: UIViewController {
         let shareToFacebook : SLComposeViewController = SLComposeViewController(forServiceType: SLServiceTypeFacebook)
         shareToFacebook.setInitialText("\(titleLabel.text!)")
         shareToFacebook.setInitialText("\(descriptionLabel.text!)")
-        self.presentViewController(shareToFacebook, animated: true, completion: nil)
+        let thumbnail = job?.valueForKey(Job.THUMBNAIL) as? PFFile
+        if let thump = thumbnail {
+            thump.getDataInBackgroundWithBlock({ (data: NSData?, err: NSError?) in
+                if err == nil {
+                    let image = UIImage(data: data!)
+                    shareToFacebook.addImage(image)
+                }
+                self.presentViewController(shareToFacebook, animated: true, completion: nil)
+            })
+        } else {
+            self.presentViewController(shareToFacebook, animated: true, completion: nil)
+        }
     }
     
 }
