@@ -156,12 +156,19 @@ extension JobsViewController: UICollectionViewDelegate, UICollectionViewDataSour
 
         if cell != selectedCell {
             selectedCell?.stopVideo()
+            
+            if cell.videoView.player?.isStopped() == true {
+                cell.playVideo()
+            }
+            selectedCell = cell
+        } else {
+            if cell.videoView.player?.isStopped() == false {
+                cell.stopVideo()
+            } else {
+                cell.playVideo()
+            }
         }
-        if cell.videoView.player?.isStopped() == true {
-            cell.playVideo()
-        }
-
-        selectedCell = cell
+        
     }
 }
 
