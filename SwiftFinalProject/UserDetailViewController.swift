@@ -23,7 +23,7 @@ class UserDetailViewController: UIViewController, UIImagePickerControllerDelegat
     var lovedJobNumber: Int = 0
     var takedJobNumber: Int = 0
     var user: PFUser!
-    
+    let imagePicker = UIImagePickerController()
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -35,10 +35,12 @@ class UserDetailViewController: UIViewController, UIImagePickerControllerDelegat
 //        // Set translucent. (Default value is already true, so this can be removed if desired.)
 //        self.navigationController?.navigationBar.translucent = true
         
+        
+        
         user.fetchIfNeededInBackground()
         
         userAvatar.clipsToBounds = true
-        userAvatar.layer.cornerRadius = userAvatar.frame.size.height / 2
+//        userAvatar.layer.cornerRadius = userAvatar.frame.size.height / 2
         
         userDescription.text = (user.valueForKey(User.DESCRIPTION) as? String) ?? userDescription.text
         
@@ -106,7 +108,11 @@ class UserDetailViewController: UIViewController, UIImagePickerControllerDelegat
             }
         }
         
-        // Do any additional setup after loading the view.
+        imagePicker.delegate = self
+        
+        let tap = UITapGestureRecognizer(target: self, action: #selector(loadPicker(_:)))
+        tap.numberOfTapsRequired = 1
+        userAvatar.addGestureRecognizer(tap)
     }
     
     override func didReceiveMemoryWarning() {
@@ -118,26 +124,34 @@ class UserDetailViewController: UIViewController, UIImagePickerControllerDelegat
         dismissViewControllerAnimated(true, completion: nil)
     }
     
-    @IBAction func changeAvatarFromSource(sender: UIButton) {
-        let imagePicker = UIImagePickerController()
-        imagePicker.delegate = self
-        imagePicker.sourceType = UIImagePickerControllerSourceType.PhotoLibrary
-        imagePicker.allowsEditing = false
-        self.presentViewController(imagePicker, animated: true, completion: nil)
-    }
+//    @IBAction func changeAvatarFromSource(sender: UIButton) {
+//        let imagePicker = UIImagePickerController()
+//        imagePicker.delegate = self
+//        imagePicker.sourceType = UIImagePickerControllerSourceType.PhotoLibrary
+//        imagePicker.allowsEditing = false
+//        self.presentViewController(imagePicker, animated: true, completion: nil)
+//    }
+//    
+//    @IBAction func changeAvatar(sender: AnyObject) {
+//        let imagePicker = UIImagePickerController()
+//        imagePicker.delegate = self
+//        imagePicker.sourceType = UIImagePickerControllerSourceType.PhotoLibrary
+//        imagePicker.allowsEditing = false
+//        self.presentViewController(imagePicker, animated: true, completion: nil)
+//    }
     
-    @IBAction func changeAvatar(sender: AnyObject) {
-        let imagePicker = UIImagePickerController()
-        imagePicker.delegate = self
-        imagePicker.sourceType = UIImagePickerControllerSourceType.PhotoLibrary
+    func loadPicker(gesture: UITapGestureRecognizer) {
         imagePicker.allowsEditing = false
-        self.presentViewController(imagePicker, animated: true, completion: nil)
+        imagePicker.sourceType = .PhotoLibrary
+        presentViewController(imagePicker, animated: true, completion: nil)
     }
     
     func imagePickerController(picker: UIImagePickerController, didFinishPickingImage image: UIImage, editingInfo: [String : AnyObject]?) {
         userAvatar.image = image
         self.dismissViewControllerAnimated(true, completion: nil)
     }
+    
+    
     @IBAction func saveChanged(sender: UIBarButtonItem) {
         
         if userAvatar.image == nil {
@@ -178,6 +192,9 @@ class UserDetailViewController: UIViewController, UIImagePickerControllerDelegat
         userAvatar.image = resizeImage(imagenow!, newWidth: 200)
         self.dismissViewControllerAnimated(true, completion: nil)
     }
+
+
+    
     /*
      // MARK: - Navigation
      
