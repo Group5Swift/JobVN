@@ -35,8 +35,6 @@ class UserDetailViewController: UIViewController, UIImagePickerControllerDelegat
 //        // Set translucent. (Default value is already true, so this can be removed if desired.)
 //        self.navigationController?.navigationBar.translucent = true
         
-        
-        
         user.fetchIfNeededInBackground()
         
         userAvatar.clipsToBounds = true
@@ -46,7 +44,7 @@ class UserDetailViewController: UIViewController, UIImagePickerControllerDelegat
         
         userDescription.sizeToFit()
         
-        username.text = user.username ?? username.text
+//        username.text = user.username ?? username.text
         
         userDescription.sizeToFit()
         
