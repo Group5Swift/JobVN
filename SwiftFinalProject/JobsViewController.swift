@@ -182,10 +182,11 @@ extension JobsViewController: UIScrollViewDelegate {
         
         var offset = targetContentOffset.memory
         
-        let index = (offset.x - scrollView.contentInset.left) / cellWidthIncludingSpacing
+//        let index = (offset.x - scrollView.contentInset.left) / cellWidthIncludingSpacing
+        let index = (offset.x - 20) / cellWidthIncludingSpacing
         let roundedIndex = round(index)
         
-        let x = roundedIndex * cellWidthIncludingSpacing - (width - layout.itemSize.width) / 2 + layout.minimumLineSpacing;
+        let x = roundedIndex * cellWidthIncludingSpacing - (width - layout.itemSize.width) / 2 + layout.minimumLineSpacing + 10;
         
         offset = CGPoint(x: x, y: scrollView.contentInset.top)
         
