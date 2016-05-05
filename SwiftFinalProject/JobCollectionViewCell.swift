@@ -66,7 +66,7 @@ class JobCollectionViewCell: UICollectionViewCell {
                 let image = UIImage(data: data!)
                 self.defaultImageView.image = image
                 self.defaultImageView.contentMode = UIViewContentMode.ScaleAspectFill
-                self.defaultImageView.transform = CGAffineTransformMakeRotation(CGFloat(M_PI_2))
+//                self.defaultImageView.transform = CGAffineTransformMakeRotation(CGFloat(M_PI_2))
             }
         })
     }

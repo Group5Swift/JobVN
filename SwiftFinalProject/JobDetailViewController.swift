@@ -21,6 +21,7 @@ class JobDetailViewController: UIViewController {
     
     @IBOutlet weak var postJobButton: UIButton!
     @IBOutlet weak var shareFbButton: UIButton!
+    @IBOutlet weak var favoriteButton: UIButton!
     
     var job: Job?
     var user: User?
@@ -72,6 +73,7 @@ class JobDetailViewController: UIViewController {
             relation.addObject(job!)
             currentUser.saveInBackground()
         }
+        favoriteButton.setImage(UIImage(named: "loved"), forState: .Normal)
     }
     
     @IBAction func shareOnFacebook(sender: UIButton) {

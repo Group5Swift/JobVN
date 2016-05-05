@@ -24,7 +24,7 @@
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                             </imageView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="lRl-VD-YPi" customClass="FBSDKLoginButton">
-                                <rect key="frame" x="30" y="460" width="315" height="62"/>
+                                <rect key="frame" x="30" y="460" width="315" height="61"/>
                                 <color key="backgroundColor" red="0.0" green="0.67450980392156867" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="lRl-VD-YPi" secondAttribute="height" multiplier="307:60" id="ntz-oX-DcE"/>
@@ -68,7 +68,7 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5iP-ou-NLW">
-                                <rect key="frame" x="30" y="540" width="315" height="61"/>
+                                <rect key="frame" x="30" y="539" width="315" height="62"/>
                                 <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="5iP-ou-NLW" secondAttribute="height" multiplier="307:60" id="K5H-dF-jt0"/>
@@ -291,7 +291,7 @@
                                         </collectionViewFlowLayout>
                                         <cells>
                                             <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="JobCollectionCell" id="2pI-tJ-Xqx" customClass="JobCollectionViewCell" customModule="SwiftFinalProject" customModuleProvider="target">
-                                                <rect key="frame" x="20" y="36.5" width="330" height="530"/>
+                                                <rect key="frame" x="20" y="37" width="330" height="530"/>
                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                 <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
                                                     <rect key="frame" x="0.0" y="0.0" width="330" height="530"/>
@@ -565,18 +565,6 @@
                                                 <color key="textColor" red="0.52549019607843139" green="0.7803921568627451" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
-                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qIx-sW-cdh">
-                                                <rect key="frame" x="310" y="262" width="49" height="47"/>
-                                                <constraints>
-                                                    <constraint firstAttribute="height" constant="47" id="0le-2F-SRc"/>
-                                                    <constraint firstAttribute="width" constant="49" id="Rfz-18-Boh"/>
-                                                </constraints>
-                                                <inset key="contentEdgeInsets" minX="10" minY="10" maxX="10" maxY="10"/>
-                                                <state key="normal" title="Button" image="love"/>
-                                                <connections>
-                                                    <action selector="onFavorite:" destination="pQa-Bh-yid" eventType="touchUpInside" id="asO-Re-8gX"/>
-                                                </connections>
-                                            </button>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="200.000đ" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="m1B-Gh-6Rn">
                                                 <rect key="frame" x="79" y="344" width="100" height="28"/>
                                                 <color key="backgroundColor" red="0.078431372549019607" green="0.80784313725490198" blue="0.40784313725490196" alpha="1" colorSpace="calibratedRGB"/>
@@ -679,6 +667,18 @@
                                                 <color key="textColor" red="0.53725490196078429" green="0.53725490196078429" blue="0.53725490196078429" alpha="1" colorSpace="calibratedRGB"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qIx-sW-cdh">
+                                                <rect key="frame" x="310" y="262" width="49" height="47"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="47" id="0le-2F-SRc"/>
+                                                    <constraint firstAttribute="width" constant="49" id="Rfz-18-Boh"/>
+                                                </constraints>
+                                                <inset key="contentEdgeInsets" minX="10" minY="10" maxX="10" maxY="10"/>
+                                                <state key="normal" title="Button" image="love"/>
+                                                <connections>
+                                                    <action selector="onFavorite:" destination="pQa-Bh-yid" eventType="touchUpInside" id="asO-Re-8gX"/>
+                                                </connections>
+                                            </button>
                                         </subviews>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <constraints>
@@ -778,6 +778,7 @@
                     <connections>
                         <outlet property="byUserLabel" destination="trN-Vp-Ve9" id="yUi-BC-cI5"/>
                         <outlet property="descriptionLabel" destination="kGK-rs-g0H" id="LX0-zq-AFn"/>
+                        <outlet property="favoriteButton" destination="qIx-sW-cdh" id="LnC-w3-mw8"/>
                         <outlet property="locationLabel" destination="mhr-IF-rgg" id="b61-3J-iZ4"/>
                         <outlet property="mapView" destination="VDk-2a-njp" id="edU-yE-gCb"/>
                         <outlet property="postJobButton" destination="GuB-oP-DRw" id="fMH-bF-evE"/>
@@ -1446,7 +1447,7 @@
                                         <rect key="frame" x="0.0" y="28" width="375" height="54"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="bdy-Nj-49a" id="V5y-rr-Ibw">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="53.5"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="53"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="sJu-mZ-V1e">
@@ -2001,6 +2002,6 @@ Families can enjoy endless indoor fun, too, without giving messes a second thoug
         <image name="welcomeback" width="375" height="667"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="FaS-yP-eGA"/>
+        <segue reference="6AW-JH-4Bs"/>
     </inferredMetricsTieBreakers>
 </document>

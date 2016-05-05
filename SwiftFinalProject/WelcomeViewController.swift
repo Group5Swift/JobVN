@@ -54,7 +54,7 @@ class WelcomeScreenViewController: UIViewController {
                     newuser.signUpInBackgroundWithBlock({ (success: Bool, err: NSError?) in
                         PFUser.logInWithUsernameInBackground(strFirstName, password: "123456", block: { (user: PFUser?, err: NSError?) in
                             if err == nil {
-                                NSNotificationCenter.defaultCenter().postNotificationName(User.USER_DID_LOGIN_NOTIFICATION, object: nil)
+//                                NSNotificationCenter.defaultCenter().postNotificationName(User.USER_DID_LOGIN_NOTIFICATION, object: nil)
 //                                self.performSegueWithIdentifier("GoToMainScreen", sender: nil)
                             } else {
                                 print(err)
@@ -62,7 +62,7 @@ class WelcomeScreenViewController: UIViewController {
                         })
                         })
                     }
-                
+                NSNotificationCenter.defaultCenter().postNotificationName(User.USER_DID_LOGIN_NOTIFICATION, object: nil)
                 NSUserDefaults.standardUserDefaults().setValue(SEGUE_LOGGED_IN, forKey: KEY_UID)
                 self.performSegueWithIdentifier(SEGUE_LOGGED_IN, sender: nil)
                 //self.performSegueWithIdentifier("GoToMainScreen", sender: nil)
